@@ -116,16 +116,17 @@ site cantolang {
     menu_style [|    
         .menu_box {
             background-color: #614722;
+            opacity: 0.5;
             color: #EEEEEE;
             margin: 0;
-            padding: 0.25rem 0;
+            padding: 0;
         }
 
         .menu_box li {
             float: left;
             display: inline;
             padding: 0.25rem 1rem;
-            margin: 1rem;
+            margin: 0;
         }
         
         .menu_box ul {
@@ -146,7 +147,7 @@ site cantolang {
         .menu_item {
             display: block;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-family: "Arial", sans-serif;
         }
 
@@ -322,7 +323,7 @@ site cantolang {
             }
 
             .page_wrapper {
-                padding: 1rem;
+                padding: 1rem 0;
                 background-color: #EAEAEF;
                 width: 100%;
                 min-height: 100%;

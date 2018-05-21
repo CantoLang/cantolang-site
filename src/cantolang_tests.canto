@@ -1,10 +1,10 @@
-/**  fundev_tests.fun
+/**  cantolang_tests.fun
  *
- *   Tests for Bento web site.
+ *   Tests for Canto web site.
  *
  **/
 
-site fundev {
+site cantolang {
 
     test_runner[] test_runners = [ content_parser_tests ]
     
