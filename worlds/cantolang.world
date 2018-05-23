@@ -1,11 +1,11 @@
 /**
- *  cantoworld.world
+ *  cantolang.world
  *
  *  3D scene for cantolang web site
  *
  **/
 
-world cantoworld {
+world cantolang {
 
     adopt three
     

@@ -1,6 +1,6 @@
-###Say Hello, Fun
+###Say Hello, Canto
 
-How else to begin our tour?  Say hello, Fun:
+How else to begin our tour?  Say hello, Canto:
 
   script hello_world {
       public main = "Hello, World."
@@ -10,9 +10,9 @@ How else to begin our tour?  Say hello, Fun:
       public page index = "<h1>Hello, World.</h1>"
   }
 
-The above code defines a web site called <code>hello</code>.  (A Fun program is
+The above code defines a web site called <code>hello</code>.  (A Canto program is
 automatically a web site.)  The <code>{</code> and <code>}</code> delimit a code
-block, which is a block containing Fun statements.  This particular block contains
+block, which is a block containing Canto statements.  This particular block contains
 a single statement, a definition of a page called <code>index</code>, the default
 home page for the site.  
 
@@ -20,7 +20,7 @@ The line
 
   page index = "<h1>Hello, World.</h1>"
 
-may look like the declaration of a variable initialized to a string, but Fun is a 
+may look like the declaration of a variable initialized to a string, but Canto is a 
 declarative language and doesn't have variables of the sort procedural languages do.
 The above line defines an entity called <code>index</code>, a subclass of <code>page</code>,
 which behaves more like a function than a variable: it returns the string 
@@ -48,9 +48,9 @@ Let's now enhance our humble site to be a bit more dynamic, by allowing the targ
 the greeting to be specified at runtime.  In a traditional language, we might handle this
 with command line arguments.  The web-oriented equivalent are the arguments encoded in
 the request url, and all we have to do to get them is add the appropriate parameter to 
-our page definition.  In this case, the appropriate parameter is what Fun calls a
+our page definition.  In this case, the appropriate parameter is what Canto calls a
 table -- also known as a map, dict, key-value pair collection or associative array.  In
-Fun curly braces (<code>{}</code>) signify a table.
+Canto curly braces (<code>{}</code>) signify a table.
 
 What we want our application to do is look for a "name" argument, and if it's there say
 hello to the specified name, otherwise say hello to World.  Here is our improved site: 
@@ -105,7 +105,7 @@ the one visible to the outside world.  This is all to preserve one-way dependenc
 subclasses are dependent on superclasses, but superclasses are completely ignorant of 
 subclasses.
 
-Fun is object-oriented with a rich inheritance model that provides possibilities that
+Canto is object-oriented with a rich inheritance model that provides possibilities that
 are not available in other languages.  One of these possibilities is inside-out
 construction, which begins with the realization that the wrapping order can be inverted
 without changing the dependency order.    

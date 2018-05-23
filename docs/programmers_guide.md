@@ -1,24 +1,27 @@
-This is a very brief look at Fun's main features, with examples but with
+This is a very brief look at Canto's main features, with examples but with
 little background or explanation.  For a more in-depth account, see
-<a href="overview?article=leisurely_tour">A More Leisurely Tour of Fun</a>.   
+<a href="overview?article=leisurely_tour">A More Leisurely Tour of Canto</a>.   
 
 
 ###Statements
 
-Fun is a declarative language.  A Fun program specifies output.  Typically
-a Fun program is run as a web site, in which case the output consists of
-web pages.
+Canto is a declarative language.  A Canto program specifies output.  Often
+a Canto program is run as a web site, in which case the output consists of
+web pages.  A Canto program can also be run as a conventional script.
 
-A Fun program is comprised of <b>definitions</b> and <b>constructions</b>.  A
-definition associates a name with a (possibly empty) set of constructions and
-child definitions.  A construction is a statement that potentially yields 
-output.  There are several kinds of constructions:
+A Canto program is comprised of <b>definitions</b>.  A definition consists of
+<b>constructions</b> and <b>child definitions</b>.
+
+###Constructions
+
+A construction is a statement that yields output.  There are several kinds
+of constructions:
 
 * Blocks (code or data)
 * Control statements (loops, conditionals and redirections)
 * Expressions
 * Instantiations
-* Literal values (strings, characters, booleans or numbers)
+* Literal values (strings, characters, booleans, and numbers)
 
 An example of each of the above, with comments:
 
@@ -31,7 +34,7 @@ An example of each of the above, with comments:
     }
 
     /* an expression */
-    ("<h1>Hello, " + user_name + ".</h1>");
+    ("<h1>Hello, " + (user_name ? user_name : "friend") + ".</h1>");
     
     /* an instantiation */
     hello_world;
@@ -44,7 +47,7 @@ An example of each of the above, with comments:
 
 ###Definitions
 
-A definition associates a name and optionally a type with a set of Fun statements, which
+A definition associates a name and optionally a type with a set of Canto statements, which
 can be any combination of child definitions and constructions. The following is a 
 definition of <code>hello</code>, of type <code>page</code>, which contains 
 one construction:
@@ -53,7 +56,7 @@ one construction:
         "Hello, World";
     }
  
-Fun is declarative, not imperative, and what a definition defines is output, not commands.  So
+Canto is declarative, not imperative, and what a definition defines is output, not commands.  So
 instead of a command to output "Hello, World", something like <code>print "Hello, World"</code>,
 all you need is "Hello, World".
 
@@ -121,7 +124,7 @@ will compile:
 
 ###Types
 
-In Fun, every definition defines a type by that name.  This type can then be used as
+In Canto, every definition defines a type by that name.  This type can then be used as
 the basis for typed definitions.  
 
 A typed definition behaves differently from an untyped definition in several ways,
@@ -155,10 +158,9 @@ The types declared by the above definitions include two primitive types (<code>i
 latter two types are defined in the standard fun library.
 
 
-
 ###Programs
 
-A Fun program is typically a web site, which is a definition of type <code>site</code> such as
+A Canto program is typically a web site, which is a definition of type <code>site</code> such as
 the following:
 
     site hello_world {
@@ -179,7 +181,7 @@ Definitions of type <code>site</code> have several special properties:
 
 * They can be served as web sites.
 * They can contain site-level directives (<code>adopt</code> and <code>extern</code>) that enable access
-to Fun and non-Fun code outside of the site.
+to Canto and non-Canto code outside of the site.
 * They cannot directly contain constructions (though they can contain definitions that contain constructions).
 * They can be split across multiple files.
 
@@ -212,7 +214,7 @@ section.
 
 ###Collections
 
-Fun supports two kinds of collections, <b>arrays</b> and <b>tables</b>. An array is an
+Canto supports two kinds of collections, <b>arrays</b> and <b>tables</b>. An array is an
 ordered collection of elements; a table is an unordered collection of key-element pairs.
 
 Here is an array definition:

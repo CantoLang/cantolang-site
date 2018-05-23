@@ -1,18 +1,18 @@
 ##Quick Tour
 
-In some ways, Fun is a regular programming language.  Much of the syntax looks and feels familiar to anyone conversant in a language in the C family (C, C++, C#, Java, and to a degree Javascript).  But the underlying model is quite different.
+In some ways, Canto is a regular programming language.  Much of the syntax looks and feels familiar to anyone conversant in a language in the C family (C, C++, C#, Java, and to a degree Javascript).  But the underlying model is quite different.
 
-The following is a valid statement in Fun as well as most of the languages listed above:
+The following is a valid statement in Canto as well as most of the languages listed above:
 
     int x = 5;
 
-In C (and C++, Java, etc.) the above statement defines a variable and sets the initial value.  In Fun, this statement defines a function called x that returns an integer.  
+In C (and C++, Java, etc.) the above statement defines a variable and sets the initial value.  In Canto, this statement defines a function called x that returns an integer.  
 
-To understand Fun it helps to understand its conceptual underpinnings.  
+To understand Canto it helps to understand its conceptual underpinnings.  
 
-###Fun Entities and Roles
+###Canto Entities and Roles
 
-Whereas most languages distinguish between types, functions, variables, etc., in Fun 
+Whereas most languages distinguish between types, functions, variables, etc., in Canto 
 there is just one category of entity, and a range of roles an entity can play, depending
 on circumstances:
 
@@ -36,6 +36,5 @@ extended by a superclass or subclass.
 definition is referenced again in the same scope the cached value is used instead of constructing 
 the value again. Such an entity can play the role of a variable.
 
-* _Object_. A definition can specify that a child definition's value be cached along with its parent.
-Such a definition can play the role of an object. 
+* _Object_. A definition can specify that a child definition's value be cached along with its parent.  Such a definition can play the role of an object. 
 
