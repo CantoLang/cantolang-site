@@ -336,12 +336,14 @@ site cantolang {
             }
             
             .header_bar {
+                position: fixed;
                 background-color: #F7F1BC;
                 color: #555555;
                 text-align: left;
                 padding: 0 1rem;
                 margin: 0.25rem 0;
                 width: 100%;
+                height: 11rem;
             }
 
             .header_bar div {
@@ -361,7 +363,7 @@ site cantolang {
             .header_bar img {
                 width: {= HEADER_LOGO_WIDTH; =}px;
                 height: {= HEADER_LOGO_HEIGHT; =}px;
-                vertical-align: baseline;
+                vertical-align: middle;
             }
 
             .side_box {
