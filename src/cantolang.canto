@@ -103,11 +103,16 @@ site cantolang {
 
     static SPLASH_LOGO = "images/canto-logo-502x192.png"
     static HEADER_LOGO = "images/canto-logo-251x99.png"
+    
+    /** pixels **/    
     static int HEADER_LOGO_WIDTH = 251
     static int HEADER_LOGO_HEIGHT = 99
+    
+    /** rems **/
+    static float HEADER_HEIGHT = 9 
     static int HEADER_MIN_WIDTH = 28
     static int MENU_WIDTH = 13
-    static int CONTENT_MIN_WIDTH = 36
+    static int CONTENT_MIN_WIDTH = 28
 
     color main_bgcolor = "white"
 
@@ -119,7 +124,8 @@ site cantolang {
             opacity: 0.5;
             color: #EEEEEE;
             margin: 0;
-            padding: 0;
+            padding: 0 1rem;
+            width: 100%;
         }
 
         .menu_box li {
@@ -243,8 +249,8 @@ site cantolang {
 
     media_queries {
     
-        int narrow_max = HEADER_MIN_WIDTH + MENU_WIDTH   
-        float side_box_width = 0.5 //  11.5
+        int narrow_max = HEADER_MIN_WIDTH   
+        float side_box_width = 11.5
       
         /--- narrow ---/
           
@@ -253,7 +259,7 @@ site cantolang {
                    width: 100%;
                    padding: 0;
                }
-               .header_bar {
+               .header_box {
                    width: 100%;
                }
                .side_box {
@@ -335,15 +341,23 @@ site cantolang {
                 height: 100%;
             }
             
-            .header_bar {
+            .header_box {
                 position: fixed;
+                padding: 0;
+                margin: 0;
+                height: {= HEADER_HEIGHT; =}rem;
+            }
+            
+            .content_box {
+                margin-top: {= HEADER_HEIGHT; =}rem;
+            }
+
+            .header_bar {
                 background-color: #F7F1BC;
                 color: #555555;
                 text-align: left;
                 padding: 0 1rem;
-                margin: 0.25rem 0;
                 width: 100%;
-                height: 11rem;
             }
 
             .header_bar div {
@@ -593,18 +607,16 @@ site cantolang {
             [| <div class="page_wrapper"><div class="header_box"> |]
             header_bar;
             menu_box(page_name, header_menu);
-            [| </div><div class="content_header_box"> |]
+            [| </div><div class="content_box"><div class="content_header_box"> |]
             content_header_box;
             [| </div><div class="content_body"> |] 
             sub;
-            [| </div><div class="footer_box"> |]
+            [| </div></div><div class="footer_box"> |]
             footer_box(page_name, footer_menu);
-            [| </div> |] 
-            
+            [| </div></div> |] 
             with (bg_scene) {
                 tc(bg_scene);
             }
-            [| </div> |] 
 
         } else {
             log("access to " + page_name + " by " + this_username + " denied");
