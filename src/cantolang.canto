@@ -109,10 +109,10 @@ site cantolang {
     static int HEADER_LOGO_HEIGHT = 99
     
     /** rems **/
-    static float HEADER_HEIGHT = 9 
+    static float HEADER_HEIGHT = 8.25 
     static int HEADER_MIN_WIDTH = 28
     static int MENU_WIDTH = 13
-    static int CONTENT_MIN_WIDTH = 28
+    static int CONTENT_MIN_WIDTH = 14
 
     color main_bgcolor = "white"
 
@@ -247,10 +247,10 @@ site cantolang {
                                         menu_item(about) ]
 
 
+    float side_box_width = 14
     media_queries {
     
         int narrow_max = HEADER_MIN_WIDTH   
-        float side_box_width = 11.5
       
         /--- narrow ---/
           
@@ -286,12 +286,20 @@ site cantolang {
                .side_box {
                    position: fixed;
                    float: left;
-                   width: {= (side_box_width - 2); =}rem;
+                   width: {= (side_box_width - 4.5); =}rem;
+                   margin: 0 0.5rem 0 0;
+                   padding: 5rem 3rem 1rem 1rem;
                }
                .content_body {
-                   margin-left: {= side_box_width; =}rem;
-                   margin-top: 0.25rem;
+                   width: 100%;
                }
+               .content_header_box {
+                   margin-left: {= side_box_width; =}rem;
+               }
+               .main_panel {
+                   margin-left: {= side_box_width; =}rem;
+               }
+               
            }
         |]
     }
@@ -346,6 +354,7 @@ site cantolang {
                 padding: 0;
                 margin: 0;
                 height: {= HEADER_HEIGHT; =}rem;
+                width: 100%;
             }
             
             .content_box {
@@ -361,8 +370,7 @@ site cantolang {
             }
 
             .header_bar div {
-                vertical-align: middle;
-                text-align: right;
+                vertical-align: text-bottom;
                 display: inline-block;
             }
 
@@ -381,9 +389,7 @@ site cantolang {
             }
 
             .side_box {
-                background-color: white;
-                margin: 0;
-                padding: 5rem 1rem;
+                background-color: #EFEDE1;
                 z-index: 1000;
             }
             
@@ -391,10 +397,14 @@ site cantolang {
                 clear: both;
             }
             
-            .content_header {
-                position: fixed;
-                height: {= HEADER_LOGO_HEIGHT; =}px;
-                background-color: #D5DEE7;
+            .content_header_box_wrapper {
+                width: 100%;
+                max-width: 64rem;
+            }
+            
+            .content_header_box {
+                text-align: center;
+                background-color: white;
             }
                 
             .content_main_points li {
@@ -409,24 +419,27 @@ site cantolang {
             }
 
             .content_body {
+                max-width: 64rem;
+            }
+
+            .main_panel {
                 background-color: white;
-                max-width: 49rem;
                 color: black;
-                padding: 1rem 0rem;
+                padding: 1rem;
                 font-family: "Lucida Bright", Georgia, serif;
                 font-size: 0.95rem;
                 line-height: 1.5;
             }
             
-            .content_body li {
+            .main_panel li {
                 padding-bottom: 1rem;
             }
 
-            .content_body ul {
+            .main_panel ul {
                 list-style-type: square;
             }
             
-            .content_body pre {
+            .main_panel pre {
                 background-color: #DEE3EE;
                 color: #0000CC; 
                 margin: 0 1rem 1rem 0;
@@ -434,11 +447,11 @@ site cantolang {
                 font-size: 0.9rem;
             }
 
-            .content_body code {
+            .main_panel code {
                 color: #0000CC; 
                 font-size: 0.9rem;
             }
-
+            
             .content_panel {
                 width: 40rem;
                 padding: 1.5rem;
@@ -581,16 +594,24 @@ site cantolang {
         }        
 
         component side_box {
-            [| <h1>The Canto Programming Language</h1>
-               <h2>A functional-ish, object-y language for imaginitive programming</h2> 
-            |]
+            component_class = "side_box"
+            side_box_content;
         }
+        
+        
+        side_box_content [|
+            <h1>The Canto Programming Language</h1>
+            <p><i>A program is, above all, a form of human communication.  A 
+            program can't just work; it must explain itself.  It must telegraph
+            its intentions and wear its strategy on its sleeve.  It must have a
+            voice.</i></p> 
+        |]
 
         component header_bar {
             component_class = "header_bar"
             
             [| <div><img src="{= HEADER_LOGO; =}"></div> |]
-            [| <div><h1>A language for imaginitive programming</h1></div> |]
+            [| <div><h1>A Language<br>for Imaginitive Programming</h1></div> |]
         }
         
 
@@ -607,13 +628,14 @@ site cantolang {
             [| <div class="page_wrapper"><div class="header_box"> |]
             header_bar;
             menu_box(page_name, header_menu);
-            [| </div><div class="content_box"><div class="content_header_box"> |]
+            [| </div><div class="content_box"> |]
+            side_box;
+            [| <div class="content_header_box_wrapper"> |]
             content_header_box;
             [| </div><div class="content_body"> |] 
             sub;
-            [| </div></div><div class="footer_box"> |]
-            footer_box(page_name, footer_menu);
             [| </div></div> |] 
+            footer_box(page_name, footer_menu);
             with (bg_scene) {
                 tc(bg_scene);
             }
@@ -667,13 +689,15 @@ site cantolang {
     }    
 
     component content_header_box {
+        component_class = "content_header_box"
+
         with (content_header_scene) {
             tc(content_header_scene);
         }
     }
 
     component footer_box {
-    
+        component_class = "footer_box"
     }
 
     /-------- home page ---------------------------/
@@ -786,14 +810,14 @@ site cantolang {
 
         
 
-        [| <div class="main_panel content_main_points"><ul> |]
+        [| <div class="main_panel content_main_points"> |]
         
-        main_point("Functional-ish", declarative);
-        main_point("Object-y", object_oriented);
-        main_point("Safe State", automated_state_management);
+        [| <ul> |]
+        
+        main_point("Declarative", declarative);
+        main_point("Object Oriented", object_oriented);
+        main_point("Managed State", automated_state_management);
         main_point("Web Native", web_oriented);
-        main_point("Poetic", poetic);
-        main_point("Fun!", fun_is_fun);
 
         [| </ul></div><script> |]
         
