@@ -304,9 +304,269 @@ site cantolang {
         |]
     }
 
+    /-------- useful display objects --------------/
+
+    serializable(*) quote(quote_text, quote_author) {
+        keep: text = quote_text
+        keep: author = quote_author
+        this;
+    }
+    
+    dynamic quote_slide(quote q) {
+        [| <p><i> |]
+        q.text;
+        [| </i></p> |]
+        if (q.author) {
+            [| <p><b> |]
+            q.author;
+            [| </b></p> |]
+        }
+    }
+
+    /-------- base styles -------------------------/
+
+    main_style [| 
+        html, body { 
+            height: 100%;
+            margin: 0 0 0 0;
+            background-color: {= main_bgcolor; =};
+            font-family: "Arial", sans-serif;
+            font-size: 100%;
+        }
+        
+        code, pre {
+            font-family: "Lucida Console", Monaco, monospace
+        }
+
+        .page_wrapper {
+            padding: 1rem 0;
+            background-color: #EAEAEF;
+            width: 100%;
+            min-height: 100%;
+            overflow: hidden;
+        }
+        
+        .viewer_container {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .header_box {
+            position: fixed;
+            padding: 0;
+            margin: 0;
+            height: {= HEADER_HEIGHT; =}rem;
+            width: 100%;
+        }
+        
+        .content_box {
+            margin-top: {= HEADER_HEIGHT; =}rem;
+        }
+
+        .header_bar {
+            background-color: #F7F1BC;
+            color: #555555;
+            text-align: left;
+            padding: 0 1rem;
+            width: 100%;
+        }
+
+        .header_bar div {
+            vertical-align: text-bottom;
+            display: inline-block;
+        }
+
+        .header_bar h1 {
+            color: #338888;
+            font-size: 1.25rem;
+            font-family: "Arial Black", Gadget, sans-serif
+            font-weight: bold;
+            padding-left: 2rem;
+        }
+
+        .header_bar img {
+            width: {= HEADER_LOGO_WIDTH; =}px;
+            height: {= HEADER_LOGO_HEIGHT; =}px;
+            vertical-align: middle;
+        }
+
+        .side_box {
+            background-color: #EFEDE1;
+            z-index: 1000;
+        }
+        
+        .footer_box {
+            clear: both;
+        }
+        
+        .content_header_box_wrapper {
+            width: 100%;
+            max-width: 64rem;
+        }
+        
+        .content_header_box {
+            text-align: center;
+            background-color: white;
+        }
+            
+        .content_main_points li {
+            display: block;
+            padding: 0.5rem 1rem;
+        }
+    
+        .content_main_points ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: square;
+        }
+
+        .content_body {
+            max-width: 64rem;
+        }
+
+        .main_panel {
+            background-color: white;
+            color: black;
+            padding: 1rem;
+            font-family: "Lucida Bright", Georgia, serif;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .main_panel li {
+            padding-bottom: 1rem;
+        }
+
+        .main_panel ul {
+            list-style-type: square;
+        }
+        
+        .main_panel pre {
+            background-color: #DEE3EE;
+            color: #0000CC; 
+            margin: 0 1rem 1rem 0;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .main_panel code {
+            color: #0000CC; 
+            font-size: 0.9rem;
+        }
+        
+        .content_panel {
+            width: 40rem;
+            padding: 1.5rem;
+            color: #88FFAA;
+            z-index: 100;
+            background: rgba(31, 31, 31, 0.75);
+        }
+
+        .main_point {
+            color: #003388;
+            background-color: white;
+            font-size: 1.25rem;
+            padding: 0.25rem;
+            list-style-type: square;
+        }
+        
+        .main_point_body {
+            overflow: hidden;
+            transition: transform 0.67s ease-in-out, height 0.67s ease-in-out;
+        }
+
+        .active, .main_point_span:hover {
+            background-color: gold; 
+        }
+        
+        .point_closed {
+            height: 0;
+        }
+
+        .point_open {
+            height: 100%;
+        }
+
+        .centered_container {
+            width: 100%;
+            height: 100%;
+            margin: 0 0 0 0;
+            position: relative;
+        }
+        
+        .centered_high_box {
+            position: absolute;
+            left: 50%;
+            top: 38%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+            width: 36rem;
+        }
+        
+        .centered_div  {
+            width: 100%;
+            text-align: center;
+         }
+        
+       .labeled_edit {
+            text-align: center;
+            font-weight: bold;
+            padding:0.5rem;
+        }
+
+        #splash_image_holder img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        #login_splash_box {
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            font-family: "Arial", sans-serif;
+        }
+        
+        #login_button {
+            width: 10rem;
+        }
+        
+        #ok_button {
+            width: 10rem;
+        }
+
+        #cancel_button {
+            width: 10rem;
+        }
+        
+        #tc_container {
+            width: 100%;
+            height: 100%;
+        }
+        
+        #tc {
+            width: 100%;
+            height: 100%;
+        }
+        
+        h1 {
+            color: blue;
+            font-size: 1.25rem;
+            font-family: Impact, Charcoal, sans-serif
+            font-weight: bold;
+        }
+        
+        h2 {
+            color: #777777;
+            font-size: 1rem;
+            font-family: "Arial Black", Gadget, sans-serif
+            font-weight: bold;
+        }
+        
+        {= media_queries; =}
+    |]        
 
     /-------- base page ---------------------------/
-
     page(*) base_page(params{}) {
         boolean ajax_enabled = true
     
@@ -322,248 +582,7 @@ site cantolang {
             main_style;
             menu_style;
         }
-        
-        main_style [| 
-            html, body { 
-                height: 100%;
-                margin: 0 0 0 0;
-                background-color: {= main_bgcolor; =};
-                font-family: "Arial", sans-serif;
-                font-size: 100%;
-            }
-            
-            code, pre {
-                font-family: "Lucida Console", Monaco, monospace
-            }
 
-            .page_wrapper {
-                padding: 1rem 0;
-                background-color: #EAEAEF;
-                width: 100%;
-                min-height: 100%;
-                overflow: hidden;
-            }
-            
-            .viewer_container {
-                width: 100%;
-                height: 100%;
-            }
-            
-            .header_box {
-                position: fixed;
-                padding: 0;
-                margin: 0;
-                height: {= HEADER_HEIGHT; =}rem;
-                width: 100%;
-            }
-            
-            .content_box {
-                margin-top: {= HEADER_HEIGHT; =}rem;
-            }
-
-            .header_bar {
-                background-color: #F7F1BC;
-                color: #555555;
-                text-align: left;
-                padding: 0 1rem;
-                width: 100%;
-            }
-
-            .header_bar div {
-                vertical-align: text-bottom;
-                display: inline-block;
-            }
-
-            .header_bar h1 {
-                color: #338888;
-                font-size: 1.25rem;
-                font-family: "Arial Black", Gadget, sans-serif
-                font-weight: bold;
-                padding-left: 2rem;
-            }
-
-            .header_bar img {
-                width: {= HEADER_LOGO_WIDTH; =}px;
-                height: {= HEADER_LOGO_HEIGHT; =}px;
-                vertical-align: middle;
-            }
-
-            .side_box {
-                background-color: #EFEDE1;
-                z-index: 1000;
-            }
-            
-            .footer_box {
-                clear: both;
-            }
-            
-            .content_header_box_wrapper {
-                width: 100%;
-                max-width: 64rem;
-            }
-            
-            .content_header_box {
-                text-align: center;
-                background-color: white;
-            }
-                
-            .content_main_points li {
-                display: block;
-                padding: 0.5rem 1rem;
-            }
-        
-            .content_main_points ul {
-                padding: 0;
-                margin: 0;
-                list-style-type: square;
-            }
-
-            .content_body {
-                max-width: 64rem;
-            }
-
-            .main_panel {
-                background-color: white;
-                color: black;
-                padding: 1rem;
-                font-family: "Lucida Bright", Georgia, serif;
-                font-size: 0.95rem;
-                line-height: 1.5;
-            }
-            
-            .main_panel li {
-                padding-bottom: 1rem;
-            }
-
-            .main_panel ul {
-                list-style-type: square;
-            }
-            
-            .main_panel pre {
-                background-color: #DEE3EE;
-                color: #0000CC; 
-                margin: 0 1rem 1rem 0;
-                padding: 1rem;
-                font-size: 0.9rem;
-            }
-
-            .main_panel code {
-                color: #0000CC; 
-                font-size: 0.9rem;
-            }
-            
-            .content_panel {
-                width: 40rem;
-                padding: 1.5rem;
-                color: #88FFAA;
-                z-index: 100;
-                background: rgba(31, 31, 31, 0.75);
-            }
-
-            .main_point {
-                color: #003388;
-                background-color: white;
-                font-size: 1.25rem;
-                padding: 0.25rem;
-                list-style-type: square;
-            }
-            
-            .main_point_body {
-                overflow: hidden;
-                transition: transform 0.67s ease-in-out, height 0.67s ease-in-out;
-            }
-
-            .active, .main_point_span:hover {
-                background-color: gold; 
-            }
-            
-            .point_closed {
-                height: 0;
-            }
-
-            .point_open {
-                height: 100%;
-            }
-
-            .centered_container {
-                width: 100%;
-                height: 100%;
-                margin: 0 0 0 0;
-                position: relative;
-            }
-            
-            .centered_high_box {
-                position: absolute;
-                left: 50%;
-                top: 38%;
-                margin-right: -50%;
-                transform: translate(-50%, -50%);
-                width: 36rem;
-            }
-            
-            .centered_div  {
-                width: 100%;
-                text-align: center;
-             }
-            
-           .labeled_edit {
-                text-align: center;
-                font-weight: bold;
-                padding:0.5rem;
-            }
-
-            #splash_image_holder img {
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            #login_splash_box {
-                color: white;
-                font-size: 1rem;
-                font-weight: bold;
-                font-family: "Arial", sans-serif;
-            }
-            
-            #login_button {
-                width: 10rem;
-            }
-            
-            #ok_button {
-                width: 10rem;
-            }
-
-            #cancel_button {
-                width: 10rem;
-            }
-            
-            #tc_container {
-                width: 100%;
-                height: 100%;
-            }
-            
-            #tc {
-                width: 100%;
-                height: 100%;
-            }
-            
-            h1 {
-                color: blue;
-                font-size: 1.25rem;
-                font-family: Impact, Charcoal, sans-serif
-                font-weight: bold;
-            }
-            
-            h2 {
-                color: #777777;
-                font-size: 1rem;
-                font-family: "Arial Black", Gadget, sans-serif
-                font-weight: bold;
-            }
-            
-            {= media_queries; =}
-        |]        
-        
         component splash_image_holder(img_url) {
             id = "splash_image_holder"
             [| <img src="{= img_url; =}"> |]
@@ -599,13 +618,17 @@ site cantolang {
         }
         
         
-        side_box_content [|
-            <h1>The Canto Programming Language</h1>
-            <p><i>A program is, above all, a form of human communication.  A 
-            program can't just work; it must explain itself.  It must telegraph
-            its intentions and wear its strategy on its sleeve.  It must have a
-            voice.</i></p> 
-        |]
+        side_box_content {
+            [|  <h1>The Canto Programming Language</h1> |]
+            
+            slide_show(main_slides);
+        }
+
+        dynamic slide_show(slides[]) {
+            slides[0];
+        }
+
+        main_slides[] = [ for quote q in main_quotes { quote_slide(q) } ]
 
         component header_bar {
             component_class = "header_bar"
@@ -884,6 +907,33 @@ site cantolang {
         what_is_fun;
         [| </div> |] 
     }  
+
+    quote[] main_quotes = [
+        quote([| A program is, above all, a form of human communication.  A 
+                 program can't just work; it must explain itself.  It must
+                 telegraph its intentions and wear its strategy on its sleeve.
+                 It must have a voice. |], null),
+
+        quote([| The enjoyment of one's tools is an essential ingredient of
+                 successful work. |], "Donald Knuth"),
+
+        quote([| Even if aesthetics are not the mathematics of beauty, they are
+                 the proof of the calculation. |], "Franz Grillparzer"),
+
+        quote([| Einstein argued that there must be simplified explanations of
+                 nature, because God is not capricious or arbitrary. No such
+                 faith comforts the software engineer. |], "Fred Brooks"),
+
+        quote([| Vigorous writing is concise. A sentence should contain no
+                 unnecessary words, a paragraph no unnecessary sentences, for the
+                 same reason that a drawing should have no unnecessary lines and a
+                 machine no unnecessary parts. This requires not that the writer
+                 make all his sentences short, or that he avoid all detail and
+                 treat his subjects only in outline, but that every word tell. |],
+                 "William Strunk, Jr.")
+
+        ]
+
 
     expressive_and_simple [|
         <p>Canto is an open source programming language designed to be simple and 
