@@ -904,7 +904,7 @@ site cantolang {
            <div class="content_panel" style="position: relative; top: 1rem; left: 2rem;">
            <h2>The Canto Programming Language</h2>
         |]
-        what_is_fun;
+        what_is_canto;
         [| </div> |] 
     }  
 
@@ -930,7 +930,18 @@ site cantolang {
                  machine no unnecessary parts. This requires not that the writer
                  make all his sentences short, or that he avoid all detail and
                  treat his subjects only in outline, but that every word tell. |],
-                 "William Strunk, Jr.")
+              "William Strunk, Jr."),
+
+        quote([| It's much easier to make beautiful-but-slow code fast than it is
+                 to make fast-but-ugly code beautiful. |], "Tim Bray"),
+
+        quote([| The world is filled with frameworks that are a little too hard
+                 to understand and look like they have a bit too much investment
+                 in them. |], "Michael Feathers")
+
+        quote([| Code is just a smart kind of data -- data designed to trigger
+                 processors into performing certain useful or amusing acts. |],
+              "Charles Petzold")
 
         ]
 
@@ -994,13 +1005,13 @@ site cantolang {
         use of the cached value.</p>
     |]
         
-    fun_is_fun [|
+    canto_is_fun [|
         <p>Canto was designed by a programmer in order to be enjoyable to program in.  And it
         is.  Have Canto!</p>
     |]
     
 
-    what_is_fun {
+    what_is_canto {
         [| 
            <p>Canto is an open source programming language designed to be expressive and 
            simple.  Language designers sometimes see this as a tradeoff; you can have 
@@ -1042,7 +1053,7 @@ site cantolang {
         |]
     }
  
-    more_what_is_fun {
+    more_what_is_canto {
         [|
            <ul>
            <li><b>Object-oriented</b>: Canto has a rich set of OO features, including some unique to
@@ -1070,16 +1081,16 @@ site cantolang {
     cutting_room_floor [|
     
 
-           Bento's object modeling features are both rich and concise.  The richness comes from
-           Bento's support for multiple inheritance as well as multiple modes of inheritance -- interface
+           Canto's object modeling features are both rich and concise.  The richness comes from
+           Canto's support for multiple inheritance as well as multiple modes of inheritance -- interface
            (inheriting functions), implementation (inheriting construction logic), override (inheriting 
            from the type being overridden) and lateral (mixing in construction logic from an interface).
            The conciseness flows from the object lifecycle paradigm that allows object hierarchies to be
            defined without the need for syntactic buttressing (see next bullet point).
            
-           <li><strong>One namespace, multiple layers of meaning.</strong> In Bento, types, classes, 
+           <li><strong>One namespace, multiple layers of meaning.</strong> In Canto, types, classes, 
            functions, objects and variables are not different kinds of entities living in distinct 
-           namespaces.  Rather, they are different roles that a Bento entity can play, depending on
+           namespaces.  Rather, they are different roles that a Canto entity can play, depending on
            the context.  This reduces both the number of entities needed (because entities can play 
            multiple roles) and the syntax neeed to declare them (because it isn't necessary to specify
            the category of entity).
@@ -1087,13 +1098,13 @@ site cantolang {
 
            <p>Templating languages are popular in web development
            because the template paradigm of code embedded in data efficiently captures the typical 
-           structure of actual web pages: static content with embedded bits of dynamic content.  Bento
+           structure of actual web pages: static content with embedded bits of dynamic content.  Canto
            goes further.  Not only does it support embedding code in data, like a templating language,
            it also supports embedding data in code, which can be more efficient when the content
            is mostly dynamic with some embedded static bits.    
 
-           <li><strong>Web-oriented.</strong> Every Bento program is automatically a web site or service. 
-           More precisely, a Bento program defines a system of responses which the Bento runtime engine 
+           <li><strong>Web-oriented.</strong> Every Canto program is automatically a web site or service. 
+           More precisely, a Canto program defines a system of responses which the Canto runtime engine 
            uses to respond to HTTP requests, either from an external server or from the runtime engine's 
            own embedded Jetty HTTP server.  The immediate benefit is freeing the programmer from having
            to handle connections or protocol details.  
@@ -1120,15 +1131,15 @@ site cantolang {
 
     
            <h2>Simple and familiar, yet radically new</h2>
-           <p>Much of Bento's syntax will be recognizable to programmers familiar with mainstream
+           <p>Much of Canto's syntax will be recognizable to programmers familiar with mainstream
            languages such as C, Java, Python and Javascript.  (An obvious exception is the set of 
-           delimiters Bento uses, which are purposefully unusual so that embedded Bento code can be 
-           safely distinguished from Javascript or other non-Bento code that can appear in Bento data 
+           delimiters Canto uses, which are purposefully unusual so that embedded Canto code can be 
+           safely distinguished from Javascript or other non-Canto code that can appear in Canto data 
            blocks.)  This allows programmers to leverage their existing knowledge and experience when
-           learning to use Bento.  However, while the syntax may be functionally similar, the 
+           learning to use Canto.  However, while the syntax may be functionally similar, the 
            actual meaning is different due to the underlying paradigm.
            </p><p>
-           Consider the following Bento snippet:</p><pre>[``
+           Consider the following Canto snippet:</p><pre>[``
 
     int x = 23
     
@@ -1137,18 +1148,18 @@ site cantolang {
            ``]</pre><p>The first line looks very much like an assignment, and indeed has the same ultimate
            effect; the second line will cause "The value of x is 23" to appear on the console.  But in
            actuality the first line is a definition, not an assignment: x is a function that returns 23,
-           not a memory location which is assigned the value 23.  This syntactic similarity allows Bento
+           not a memory location which is assigned the value 23.  This syntactic similarity allows Canto
            to support lazy evaluation and other benefits of declarative programming without the steep 
            learning curve typical of functional languages.  
            </p>
            
-           Conceptually, a Bento entity follows a lifecycle. It begins as a bare type.
+           Conceptually, a Canto entity follows a lifecycle. It begins as a bare type.
            If the entity has children, then the type becomes an interface.  If the entity is instantiated,
-           it becomes a function; if that instantiated value is cached (the default in Bento), it becomes
+           it becomes a function; if that instantiated value is cached (the default in Canto), it becomes
            a variable; if the entity's children are instantiated and cached it becomes a full-fledged
            object.
                       
-           <h2>Why use Bento?</h2>
+           <h2>Why use Canto?</h2>
            <p>
            </p>
     
