@@ -392,7 +392,7 @@ site cantolang {
 
         .side_box {
             background-color: #EFEDE1;
-            z-index: 1000;
+            height: 100%;
         }
         
         .footer_box {
@@ -428,17 +428,8 @@ site cantolang {
             background-color: white;
             color: black;
             padding: 1rem;
-            font-family: "Lucida Bright", Georgia, serif;
             font-size: 0.95rem;
             line-height: 1.5;
-        }
-        
-        .main_panel li {
-            padding-bottom: 1rem;
-        }
-
-        .main_panel ul {
-            list-style-type: square;
         }
         
         .main_panel pre {
@@ -486,17 +477,37 @@ site cantolang {
         .point_open {
             height: 100%;
         }
-
-        @-webkit-keyframes slideshow {
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 0;
-            }
+        
+        .two_columns {
+            display: flex;
         }
+        
+        .two_columns ul {
+            margin: 0;
+        }
+
+        .two_columns li {
+            color: blue;
+            font-weight: bold;
+        }
+
+        .two_columns p {
+            margin-top: 0.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .column {
+            flex: 50%;
+        }
+
         @keyframes slideshow {
             10% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
                 opacity: 1;
             }
             90% {
@@ -504,9 +515,10 @@ site cantolang {
             }
         }
 
-        #slide {
-            -webkit-animation: slideshow 10s infinite;
-            animation: slideshow 10s infinite;
+        .slide {
+            position: absolute;
+            transition: opacity 1.5s;
+            opacity: 0;
         }
         
         .centered_container {
@@ -641,18 +653,42 @@ site cantolang {
         
         
         side_box_content {
-            [|  <h1>The Canto Programming Language</h1> |]
+            [|  <h1>Experience the Poetry of Code with Canto</h1> |]
             
             slide_show(main_slides);
         }
 
         dynamic slide_show(slides[]) {
-            for slide in slides {
-                [| <div id="slide"> |]
+            for slide in slides and int i from 1 {
+                [| <div class="slide" id="slide{= i; =}"> |]
                 slide;
                 [| </div> |]
             }
+            [| <script> |]
+            slide_script(slides.count);            
+            [| </script> |]
         }
+
+        dynamic javascript slide_script(int numslides) [|
+            var ns = {= numslides; =};
+            var cs = 1;
+
+            var startslide = document.getElementById("slide1");
+            startslide.style.opacity = 1;
+            setInterval(function () {
+                var oldslide = document.getElementById("slide" + cs);
+                if (cs == ns) {
+                    cs = 1;
+                } else {
+                    cs++;
+                }
+                var newslide = document.getElementById("slide" + cs);
+
+                oldslide.style.opacity = 0;
+                newslide.style.opacity = 1;
+            }, 7000); 
+        |]
+
 
         main_slides[] = [ for quote q in main_quotes { quote_slide(q) } ]
 
@@ -752,6 +788,41 @@ site cantolang {
     /-------- home page ---------------------------/
 
     public base_page(*) index(params{}) {
+        boolean needs_login = false    
+
+        label = "Home"
+
+        [| <div class="main_panel"> |]
+        
+        expressive_and_simple;
+
+        [| <h2>Features:</h2> |]
+
+        [| <div class="two_columns"><div class="column" id="leftcol"><ul> |]        
+
+        [| <li>Declarative</li> |]
+        declarative;
+
+        [| <li>Object Oriented</li> |]
+        object_oriented;
+        
+        [| </ul></div><div class="column" id="rightcol"><ul> |]
+       
+        [| <li>One Kind of Thing</li> |]
+        
+        
+        [| <li>Managed State</li> |]
+        automated_state_management;
+        
+        [| <li>Web Native</li> |]
+        web_oriented;
+
+        [| </ul></div> |]
+    }
+
+
+    /--- alternative with accordian points ---/
+    public base_page(*) accordian_index(params{}) {
         boolean needs_login = false    
 
         label = "Home"
@@ -861,6 +932,8 @@ site cantolang {
 
         [| <div class="main_panel content_main_points"> |]
         
+        expressive_and_simple;
+        
         [| <ul> |]
         
         main_point("Declarative", declarative);
@@ -950,12 +1023,9 @@ site cantolang {
                  nature, because God is not capricious or arbitrary. No such
                  faith comforts the software engineer. |], "Fred Brooks"),
 
-        quote([| Vigorous writing is concise. A sentence should contain no
-                 unnecessary words, a paragraph no unnecessary sentences, for the
-                 same reason that a drawing should have no unnecessary lines and a
-                 machine no unnecessary parts. This requires not that the writer
-                 make all his sentences short, or that he avoid all detail and
-                 treat his subjects only in outline, but that every word tell. |],
+        quote([| A sentence should contain no unnecessary words, a paragraph no 
+                 unnecessary sentences, for the same reason that a drawing should 
+                 have no unnecessary lines and a machine no unnecessary parts. |],
               "William Strunk, Jr."),
 
         quote([| It's much easier to make beautiful-but-slow code fast than it is
@@ -973,20 +1043,14 @@ site cantolang {
 
 
     expressive_and_simple [|
-        <p>Canto is an open source programming language designed to be simple and 
-        expressive.  Language designers sometimes see this as a tradeoff; you can have 
-        more features and be more expressive, or you can have fewer features and be 
-        simpler.  Canto shows that with the right design you can 
-        be more expressive and simpler at the same time.</p>
-       
-        <p>Canto's secret for achieving expressiveness and simplicity at the same time is 
-        a design philosophy called <b>Poetic Programming</b>.  Poetic Programming
-        asserts that the same qualities that allow poetry to be simultaneously more 
-        expressive and simpler than prose can work for programming as well: economy
-        (use fewer words and shorter phrases), richness (use words and phrases that 
-        have multiple layers of meaning) and beauty (arrange the words and phrases 
-        into a melodious, rhythmic and visually pleasing whole).  These are the 
-        principles that have guided the design of Canto.</p>
+        <h2>Welcome to the Canto Programming Language</h2>
+        <p>Canto follows a design philosophy called <b>Poetic Programming</b>.
+        Poetry is simpler than prose, yet also more expressive.  Poetic Programming 
+        asserts that the same qualities that allow poetry to achieve this can work
+        for programming as well: economy (use fewer words and shorter phrases), 
+        richness (use words and phrases that have multiple layers of meaning), and
+        beauty (arrange the words and phrases into a melodious, rhythmic and visually 
+        pleasing whole).  These are the principles that have guided the design of Canto.</p>
     |]
     
     
@@ -1004,38 +1068,49 @@ site cantolang {
         <p>A Canto program is a description of output, not a list of commands.  Canto is not
         strictly functional, because this description is not limited to functions -- it
         can also include procedural-style control structures (conditionals and loops)
-        and template-style embedded data (HTML, CSS and Javascript).</p>
+        and template-style embedded data.</p>
     |]
     
     object_oriented [|
-        <p>Canto has a rich set of OO features, including some unique to Canto.  For example,
-        Canto has a <code>sub</code> keyword that works like the <code>super</code> keyword 
-        in Java, C++ and other languages, only in reverse: it allows a superclass to 
-        invoke its subclass.  Instead of the subclass invoking the superclass   This turns 
-        out to be very useful when defining a class hierarchy for things like web pages or
-        message packets, where the stuff on the outside is created by the superclass and the
-        stuff on the inside by the subclass.</p>
+        <p>Canto has a rich set of OO features, including some unique to Canto like the
+        <code>sub</code> keyword which works like the <code>super</code> keyword, only in 
+        reverse: it allows a superclass to wrap a subclass. This turns out to be very useful
+        for things like web pages or message packets, where the stuff on the outside is 
+        common to all while the stuff on the inside is subclass-specific.</p>
     |]
     
     web_oriented [|
-        <p>Canto has a built-in web server, and a program doesn't have to do anything special
-        to be a web site.  Moreover, Canto allows free mixing of code and data, making it an
-        excellent templating language.</p>
+        <p>The Canto runtime engine has a built-in web server, and a Canto program is 
+        automatically a web site.  Moreover, Canto's declarative syntax and free mixing of
+        code and data makes it easy to generate HTML, CSS and Javascript.</p>
     |]
     
     automated_state_management [|
-        <p>As a declarative, flex-functional language, Canto has no variables and no assignment
-        operator.  But Canto does support state by building caching into the language.  By default,
-        if a function is referenced multiple times in a local scope, only the first reference
-        results in a function call; the return value is cached, and subsequent references make
-        use of the cached value.</p>
+        <p>Canto has no variables and no assignment operator.  Canto supports state by 
+        building caching into the language.  The caching behavior is simple, natural, 
+        transparent and customizable.  In appropriate circumstances, functions can behave 
+        like variables -- the result of the function is cached and subsequent references 
+        make use of the cached value.</p>
     |]
         
     canto_is_fun [|
         <p>Canto was designed by a programmer in order to be enjoyable to program in.  And it
-        is.  Have Canto!</p>
+        is.  Have Fun!</p>
     |]
     
+    economy [|
+        <p>Canto is economical by having only one kind of entity.  Other languages have
+        distinct syntax for creating and using various kinds of entities such as
+        classes, types, functions, variables, objects and interfaces.  Canto has all 
+        these things, but doesn't have all the syntactic mechanisms, because in Canto 
+        these things are roles, not entities, and roles can be inferred from context.</p>    
+    |]
+
+    richness [|
+    
+    
+    |]
+
 
     what_is_canto {
         [| 
