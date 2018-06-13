@@ -785,6 +785,17 @@ site cantolang {
         component_class = "footer_box"
     }
 
+    dynamic main_item(item_page ip) {
+        [| <li> |]
+        ip.label;
+        [| </li><p> |]
+        ip.summary;
+        [| </p><a href=" |]
+        ip.type;
+        [| ">Learn more</a> |]
+    }
+
+
     /-------- home page ---------------------------/
 
     public base_page(*) index(params{}) {
@@ -796,15 +807,12 @@ site cantolang {
         
         expressive_and_simple;
 
-        [| <h2>Features:</h2> |]
+        [| <h2>Highlights:</h2> |]
 
         [| <div class="two_columns"><div class="column" id="leftcol"><ul> |]        
 
-        [| <li>Declarative</li> |]
-        declarative;
-
-        [| <li>Object Oriented</li> |]
-        object_oriented;
+        main_item(declarative);
+        main_item(object_oriented);
         
         [| </ul></div><div class="column" id="rightcol"><ul> |]
        
@@ -1063,6 +1071,11 @@ site cantolang {
         rhythmic and visually pleasing whole).</p>
     |]
     
+    base_page item_page {
+        summary [?]
+        
+    
+    }
     
     declarative [|
         <p>A Canto program is a description of output, not a list of commands.  Canto is not
