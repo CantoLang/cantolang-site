@@ -1077,20 +1077,29 @@ site cantolang {
     
     }
     
-    declarative [|
-        <p>A Canto program is a description of output, not a list of commands.  Canto is not
-        strictly functional, because this description is not limited to functions -- it
-        can also include procedural-style control structures (conditionals and loops)
-        and template-style embedded data.</p>
-    |]
+    item_page declarative {
+        
     
-    object_oriented [|
-        <p>Canto has a rich set of OO features, including some unique to Canto like the
-        <code>sub</code> keyword which works like the <code>super</code> keyword, only in 
-        reverse: it allows a superclass to wrap a subclass. This turns out to be very useful
-        for things like web pages or message packets, where the stuff on the outside is 
-        common to all while the stuff on the inside is subclass-specific.</p>
-    |]
+    
+        [|  
+            <p>A Canto program is a description of output, not a list of commands.  Canto is not
+            strictly functional, because this description is not limited to functions -- it
+            can also include procedural-style control structures (conditionals and loops)
+            and template-style embedded data.</p>
+        |]
+    }
+    
+    
+    
+    item_page object_oriented {
+    
+        [|  
+            <p>Canto has a rich set of OO features, including some unique to Canto like the
+            <code>sub</code> keyword which works like the <code>super</code> keyword, only in 
+            reverse: it allows a superclass to wrap a subclass. This turns out to be very useful
+            for things like web pages or message packets, where the stuff on the outside is 
+            common to all while the stuff on the inside is subclass-specific.</p>
+        |]
     
     web_oriented [|
         <p>The Canto runtime engine has a built-in web server, and a Canto program is 
