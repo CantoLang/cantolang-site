@@ -493,7 +493,15 @@ site cantolang {
 
         .two_columns p {
             margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
             padding-right: 1.5rem;
+        }
+
+        .two_columns a {
+            display: block;
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 1rem;
         }
 
         .column {
@@ -653,7 +661,7 @@ site cantolang {
         
         
         side_box_content {
-            [|  <h1>Experience the Poetry of Code with Canto</h1> |]
+            [|  <h1>Explore the Poetry of Code with Canto</h1> |]
             
             slide_show(main_slides);
         }
@@ -717,9 +725,9 @@ site cantolang {
             side_box;
             [| <div class="content_header_box_wrapper"> |]
             content_header_box;
-            [| </div><div class="content_body"> |] 
+            [| </div><div class="content_body"><div class="main_panel"> |]
             sub;
-            [| </div></div> |] 
+            [| </div></div></div> |] 
             footer_box(page_name, footer_menu);
             with (bg_scene) {
                 tc(bg_scene);
@@ -803,12 +811,15 @@ site cantolang {
 
         label = "Home"
 
-        [| <div class="main_panel"> |]
-        
         expressive_and_simple;
 
+        [| <h2>One Kind of Thing</h2> |]
+ 
+        //one_kind_of_thing;
+ 
         [| <h2>Highlights:</h2> |]
 
+ 
         [| <div class="two_columns"><div class="column" id="leftcol"><ul> |]        
 
         main_item(declarative);
@@ -816,14 +827,8 @@ site cantolang {
         
         [| </ul></div><div class="column" id="rightcol"><ul> |]
        
-        [| <li>One Kind of Thing</li> |]
-        
-        
-        [| <li>Managed State</li> |]
-        automated_state_management;
-        
-        [| <li>Web Native</li> |]
-        web_oriented;
+        main_item(automated_state_management);
+        main_item(web_oriented);
 
         [| </ul></div> |]
     }
@@ -1072,48 +1077,82 @@ site cantolang {
     |]
     
     base_page item_page {
+        boolean needs_login = false;    
         summary [?]
-        
-    
     }
     
-    item_page declarative {
+    public item_page declarative {
+        label = "Declarative"
         
-    
-    
-        [|  
-            <p>A Canto program is a description of output, not a list of commands.  Canto is not
-            strictly functional, because this description is not limited to functions -- it
-            can also include procedural-style control structures (conditionals and loops)
-            and template-style embedded data.</p>
+        summary [|  
+            A Canto program is a description of output, not a list of commands.  Canto's
+            declarative syntax supports functional programming (among other programming styles).
+        |]
+        
+        
+        [|
+            <p>
+            <b>A Canto program is a description of output, not a list of commands.</b> Canto is 
+            not a strictly functional language, because this description is not limited to functions -- it
+            can also include procedural-looking control structures (conditionals and loops) and 
+            template-like embedded data.  This enables programmers to carve out programming styles that
+            are natural and effective rather than doctrinaire.
+            </p>
         |]
     }
     
-    
-    
-    item_page object_oriented {
-    
-        [|  
-            <p>Canto has a rich set of OO features, including some unique to Canto like the
-            <code>sub</code> keyword which works like the <code>super</code> keyword, only in 
-            reverse: it allows a superclass to wrap a subclass. This turns out to be very useful
-            for things like web pages or message packets, where the stuff on the outside is 
-            common to all while the stuff on the inside is subclass-specific.</p>
+
+    public item_page object_oriented {
+        label = "Object-Oriented"
+
+        summary [|
+            Canto is richly object-oriented, supporting polymorphism, multiple inheritance, and object
+            persistence along with OO features not available in most languages.
         |]
     
-    web_oriented [|
-        <p>The Canto runtime engine has a built-in web server, and a Canto program is 
-        automatically a web site.  Moreover, Canto's declarative syntax and free mixing of
-        code and data makes it easy to generate HTML, CSS and Javascript.</p>
-    |]
+        [|  
+            <p>
+            <b>Canto is richly object-oriented, supporting polymorphism, multiple inheritance, and object
+            persistence along with OO features not available in most languages.</b>  One such feauture is
+            the  <code>sub</code> keyword, which works like the <code>super</code> keyword found in other
+            languages, only in reverse: it allows a superclass to wrap a subclass. This turns out to be 
+            very useful for things like web pages or message packets, where the stuff on the outside is 
+            common to all while the stuff on the inside is subclass-specific.
+            </p>
+        |]
+    }
+
+    public item_page web_oriented {
+        label = "Web-Oriented"
+        
+        summary [|
+            Canto makes it easy to create web sites and web services.  In fact you don't have to do anything
+            special at all -- a Canto program is automatically a web site.
+        |] 
+        
+        [|  <p>
+            <b>A Canto program is automatically a web site.</b>  The Canto runtime engine has a built-in web
+            server (based on Jetty, the web server used by Tomcat).  Moreover, Canto's declarative syntax and
+            free mixing of code and data makes it ideal for generating HTML, CSS and Javascript.
+            </p>
+        |]
+    }
     
-    automated_state_management [|
-        <p>Canto has no variables and no assignment operator.  Canto supports state by 
-        building caching into the language.  The caching behavior is simple, natural, 
-        transparent and customizable.  In appropriate circumstances, functions can behave 
-        like variables -- the result of the function is cached and subsequent references 
-        make use of the cached value.</p>
-    |]
+    public item_page automated_state_management { 
+        label = "A New Approach to State"
+        
+        summary [|
+            Canto handles state without variables or assignment, by building caching into the language.
+        |]
+        
+        [|
+            <p>
+            <b>Canto handles state without variables or assignment, by building caching into the language.</b>
+            Canto's caching behavior is simple, natural, transparent and customizable.  In appropriate circumstances,
+            functions can behave like variables -- the result of the function is cached and subsequent references 
+            make use of the cached value.</p>
+        |]
+    }
         
     canto_is_fun [|
         <p>Canto was designed by a programmer in order to be enjoyable to program in.  And it
