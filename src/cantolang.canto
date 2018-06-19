@@ -815,10 +815,9 @@ site cantolang {
 
         [| <h2>One Kind of Thing</h2> |]
  
-        //one_kind_of_thing;
+        one_kind_of_thing;
  
         [| <h2>Highlights:</h2> |]
-
  
         [| <div class="two_columns"><div class="column" id="leftcol"><ul> |]        
 
@@ -1066,6 +1065,18 @@ site cantolang {
         pleasing whole).  These are the principles that have guided the design of Canto.</p>
     |]
     
+    one_kind_of_thing [|
+        <p>Canto is economical by having only one kind of entity.  Other languages have 
+        distinct syntax for creating and using various kinds of entities such as classes, 
+        types, functions, variables, objects, and interfaces.  Canto has all these things,
+        but doesn't have all the syntactic mechanisms, because in Canto these things 
+        are roles, not entities, and roles can be inferred from context.</p>
+
+        <p>In addition to making Canto syntactically simpler, this approach provides
+        great flexibiity and expressiveness.  Programmers can effectively invent new
+        kinds of entities that play hybrid roles.</p>
+    |]
+
     
     poetic [|
         <p>Canto's design philosophy, <b>Poetic Programming</b>, asserts that the same
