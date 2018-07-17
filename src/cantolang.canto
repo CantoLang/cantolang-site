@@ -813,14 +813,11 @@ site cantolang {
 
         expressive_and_simple;
 
-        [| <h2>One Kind of Thing</h2> |]
- 
-        one_kind_of_thing;
- 
         [| <h2>Highlights:</h2> |]
  
         [| <div class="two_columns"><div class="column" id="leftcol"><ul> |]        
 
+        main_item(one_kind_of_thing);
         main_item(declarative);
         main_item(object_oriented);
         
@@ -1065,17 +1062,27 @@ site cantolang {
         pleasing whole).  These are the principles that have guided the design of Canto.</p>
     |]
     
-    one_kind_of_thing [|
-        <p>Canto is economical by having only one kind of entity.  Other languages have 
-        distinct syntax for creating and using various kinds of entities such as classes, 
-        types, functions, variables, objects, and interfaces.  Canto has all these things,
-        but doesn't have all the syntactic mechanisms, because in Canto these things 
-        are roles, not entities, and roles can be inferred from context.</p>
+    public item_page one_kind_of_thing {
+        label = "One Kind of Thing"
 
-        <p>In addition to making Canto syntactically simpler, this approach provides
-        great flexibiity and expressiveness.  Programmers can effectively invent new
-        kinds of entities that play hybrid roles.</p>
-    |]
+        summary [|
+            <p>Canto has one kind of entity.  Classes, 
+            types, functions, variables, objects, and interfaces
+            are roles, not entitites.
+        |]
+
+        [|
+            <p>Canto is economical by having only one kind of entity.  Other languages have 
+            distinct syntax for creating and using various kinds of entities such as classes, 
+            types, functions, variables, objects, and interfaces.  Canto has all these things,
+            but doesn't have all the syntactic mechanisms, because in Canto these things 
+            are roles, not entities, and roles can be inferred from context.</p>
+    
+            <p>In addition to making Canto syntactically simpler, this approach provides
+            great flexibiity and expressiveness.  Programmers can effectively invent new
+            kinds of entities that play hybrid roles.</p>
+        |]
+    }
 
     
     poetic [|
@@ -1091,6 +1098,19 @@ site cantolang {
         boolean needs_login = false;    
         summary [?]
     }
+    
+    public item_page mix_code_and_data {
+        label = "Mix Code and Data" 
+    
+        summary [|
+        
+        |]
+        
+        
+    
+    
+    }
+    
     
     public item_page declarative {
         label = "Declarative"
@@ -1150,7 +1170,7 @@ site cantolang {
     }
     
     public item_page automated_state_management { 
-        label = "A New Approach to State"
+        label = "State Safe/State Friendly"
         
         summary [|
             Canto handles state without variables or assignment, by building caching into the language.
