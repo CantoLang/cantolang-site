@@ -819,10 +819,11 @@ site cantolang {
 
         main_item(one_kind_of_thing);
         main_item(declarative);
-        main_item(object_oriented);
+        main_item(mix_code_and_data);
         
         [| </ul></div><div class="column" id="rightcol"><ul> |]
        
+        main_item(object_oriented);
         main_item(automated_state_management);
         main_item(web_oriented);
 
@@ -1062,27 +1063,6 @@ site cantolang {
         pleasing whole).  These are the principles that have guided the design of Canto.</p>
     |]
     
-    public item_page one_kind_of_thing {
-        label = "One Kind of Thing"
-
-        summary [|
-            <p>Canto has one kind of entity.  Classes, 
-            types, functions, variables, objects, and interfaces
-            are roles, not entitites.
-        |]
-
-        [|
-            <p>Canto is economical by having only one kind of entity.  Other languages have 
-            distinct syntax for creating and using various kinds of entities such as classes, 
-            types, functions, variables, objects, and interfaces.  Canto has all these things,
-            but doesn't have all the syntactic mechanisms, because in Canto these things 
-            are roles, not entities, and roles can be inferred from context.</p>
-    
-            <p>In addition to making Canto syntactically simpler, this approach provides
-            great flexibiity and expressiveness.  Programmers can effectively invent new
-            kinds of entities that play hybrid roles.</p>
-        |]
-    }
 
     
     poetic [|
@@ -1103,15 +1083,49 @@ site cantolang {
         label = "Mix Code and Data" 
     
         summary [|
-        
+            Canto supports free mixing of code and data, similar to templates but with
+            the power of a full-featured object-oriented language. 
         |]
         
-        
+        [|
+            <p>A Canto program is a description of output.  Sometimes the most succinct
+            description is the output itself.  Canto allows raw output wherever code is
+            allowed.  Code and data are two forms of the same thing -- output -- and can
+            be freely mixed.</p>
+            
+            <p>This gives Canto a bit of the feel of a templating language.  And Canto
+            certainly is an excellent language for templating.  But Canto is much more
+            than a templating language.  It's a full featured object-oriented language,
+            which means bits of template can be part of a type definition and can be
+            inherited and extended.</p>
+        |]
     
     
     }
     
     
+    public item_page one_kind_of_thing {
+        label = "One Kind of Thing"
+
+        summary [|
+            Canto has one kind of entity.  Classes, 
+            types, functions, variables, objects, and interfaces
+            are roles, not entitites.
+        |]
+
+        [|
+            <p>Canto is economical by having only one kind of entity.  Other languages have 
+            distinct syntax for creating and using various kinds of entities such as classes, 
+            types, functions, variables, objects, and interfaces.  Canto has all these things,
+            but doesn't have all the syntactic mechanisms, because in Canto these things 
+            are roles, not entities, and roles can be inferred from context.</p>
+    
+            <p>In addition to making Canto syntactically simpler, this approach provides
+            great flexibiity and expressiveness.  Programmers can effectively invent new
+            kinds of entities that play hybrid roles.</p>
+        |]
+    }
+
     public item_page declarative {
         label = "Declarative"
         
