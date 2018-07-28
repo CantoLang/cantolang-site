@@ -1123,6 +1123,20 @@ site cantolang {
             <p>In addition to making Canto syntactically simpler, this approach provides
             great flexibiity and expressiveness.  Programmers can effectively invent new
             kinds of entities that play hybrid roles.</p>
+            
+            <h3>Examples of Roles in Canto</h3>
+            
+            A Canto entity begins with a definition.  The simplest definition consists of
+            just a name:
+            
+            <code>
+            x [?]
+            </code>
+            
+            
+            
+          , and the details of this definition
+            may restrict its ro. The role   
         |]
     }
 
