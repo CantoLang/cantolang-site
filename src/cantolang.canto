@@ -1133,10 +1133,10 @@ site cantolang {
             x [?]
             </code>
             
+            The [?] indicates that there is no implementation for this definition.
             
             
-          , and the details of this definition
-            may restrict its ro. The role   
+            
         |]
     }
 
