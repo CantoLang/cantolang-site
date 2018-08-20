@@ -28,8 +28,8 @@ with the return value being the output specified by the definition's constructio
 and defines an inheritable and overridable interface.
 
 * _Constructor_. If a definition contains an implementation, then it plays the role of a
-constructor for the class it defines.  If the implementation contains a <code>super</code>,
-<code>sub</code> or <code>next</code> keyword then this implementation can extend or be
+constructor for the class it defines.  If the implementation contains a `super`,
+`sub` or `next` keyword then this implementation can extend or be
 extended by a superclass or subclass. 
 
 * _Variable_. By default, when a definition is instantiated, the value is cached, and if the 

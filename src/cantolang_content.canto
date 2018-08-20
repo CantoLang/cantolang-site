@@ -210,6 +210,29 @@ site cantolang {
          **/
         string[] accumulator(string[] strs) = strs
 
+        dynamic string[] encoded_lines(string[] strs) = [ for str in strs { encoded_line(str) } ]
+        
+        dynamic encoded_line(ln) {
+            int segment_start = index_of(ln, "`")
+            int segment_end = index_of(ln, "`", segment_start + 1)
+            int line_end = strlen(ln)
+            encoded_segment = "<code>" + substring(ln, segment_start + 1, segment_end) + "</code>" 
+
+            if (segment_start >= 0 && segment_end > segment_start) {
+                if (segment_start > 0) {
+                    substring(ln, 0, segment_start);
+                }
+                encoded_segment;
+                if (segment_end + 1 < line_end) {
+                    encoded_line(substring(ln, segment_end + 1, line_end));
+                }
+            } else {
+                ln;
+            }
+        }
+                
+                
+
         /** Content parser. Processes each line, and adds blocks to the content_block
          *  array as they are completed.  It switches among three modes: normal, code
          *  and bullet, as follows:
@@ -387,7 +410,25 @@ Third line is part of the same bullet.
 Fourth line is plain text.
     |]     
     
+    no_backticks = "A simple line"
+    encoded_no_backticks = no_backticks
+
+    one_backtick = "A one `backtick line"
+    encoded_one_backtick = one_backtick
+
+    two_backticks = "A two `backtick` line"
+    encoded_two_backticks = "A two <code>backtick</code> line"
+
+    three_backticks = "A `line` with three `backticks"
+    encoded_three_backticks = "A <code>line</code> with three `backticks"
     
+    four_backticks = "A `line` with four `backticks`"
+    encoded_four_backticks = "A <code>line</code> with four <code>backticks</code>"
+
+    empty_backticks = "A line with empty `` backticks"
+    encoded_empty_backticks = "A line with empty <code></code> backticks"
+
+    /-- base class for parsing tests --/
     test_base parsing_test_base {
         content [?]
         
@@ -674,16 +715,55 @@ Fourth line is plain text.
                 test_log("missing final paragraph");
             }
         }
-    }
+        
+        /--- the backtick parser tests don't need parsing_test_base ---/
+        test_base test_backtick_parser {
+            expected = "ABCDEF"
+            
+            if (parse_blocks.encoded_line(no_backticks) == encoded_no_backticks) {
+                "A";
+                test_log("correctly encoded line with no backticks");
+            } else {
+                test_log("incorrectly encoded line with no backticks: " + parse_blocks.encoded_line(no_backticks));
+            }
 
-tbc {
-  content = bullet_only_content
-  lns[] = lines(content)
-  content_block[] blx = parse_blocks(lns)
-  content_block first_block = blx[0]
-  bullet[] = split(first_block, "<li>")
-  bullet.count;
-}
+            if (parse_blocks.encoded_line(one_backtick) == encoded_one_backtick) {
+                "B";
+                test_log("correctly encoded line with one backtick");
+            } else {
+                test_log("incorrectly encoded line with one backtick: " + parse_blocks.encoded_line(one_backtick));
+            }
+
+            if (parse_blocks.encoded_line(two_backticks) == encoded_two_backticks) {
+                "C";
+                test_log("correctly encoded line with two backticks");
+            } else {
+                test_log("incorrectly encoded line with two backticks: " + parse_blocks.encoded_line(two_backticks));
+            }
+
+            if (parse_blocks.encoded_line(three_backticks) == encoded_three_backticks) {
+                "D";
+                test_log("correctly encoded line with three backticks");
+            } else {
+                test_log("incorrectly encoded line with three backticks: " + parse_blocks.encoded_line(three_backticks));
+            }
+
+            if (parse_blocks.encoded_line(four_backticks) == encoded_four_backticks) {
+                "E";
+                test_log("correctly encoded line with four backticks");
+            } else {
+                test_log("incorrectly encoded line with four backticks: " + parse_blocks.encoded_line(four_backticks));
+            }
+
+            if (parse_blocks.encoded_line(empty_backticks) == encoded_empty_backticks) {
+                "F";
+                test_log("correctly encoded line with empty backticks");
+            } else {
+                test_log("incorrectly encoded line with empty backticks: " + parse_blocks.encoded_line(empty_backticks));
+            }
+
+        }
+    }
 
 
 }

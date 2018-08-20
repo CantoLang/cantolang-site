@@ -49,7 +49,7 @@ An example of each of the above, with comments:
 
 A definition associates a name and optionally a type with a set of Canto statements, which
 can be any combination of child definitions and constructions. The following is a 
-definition of <code>hello</code>, of type <code>page</code>, which contains 
+definition of `hello`, of type `page`, which contains 
 one construction:
 
     page hello {
@@ -57,7 +57,7 @@ one construction:
     }
  
 Canto is declarative, not imperative, and what a definition defines is output, not commands.  So
-instead of a command to output "Hello, World", something like <code>print "Hello, World"</code>,
+instead of a command to output "Hello, World", something like `print "Hello, World"`,
 all you need is "Hello, World".
 
 This definition is the equivalent of the previous one, but has a child definition as well as
@@ -135,11 +135,11 @@ including:
 * An instance of a typed definition can match a parameter of that type when passed as an
 argument to an overloaded definition.
 * An instance of a typed definition can be detected as an instance of that type in
-a <code>isa</code> expression. 
+a `isa` expression. 
 
 A definition is typed if the definition name is preceded by a type name.  The type name can
-be the name of another definition or a primitive type (<code>int</code>, <code>boolean</code>,
-<code>string</code>, etc.).  The following definitions are all typed:
+be the name of another definition or a primitive type (`int`, `boolean`,
+`string`, etc.).  The following definitions are all typed:
 
     int x = 5
     
@@ -153,14 +153,14 @@ be the name of another definition or a primitive type (<code>int</code>, <code>b
 
     boolean this_is_true = (hello_alert isa javascript)
 
-The types declared by the above definitions include two primitive types (<code>int</code> and
-<code>boolean</code> and two defined types (<code>page</code> and <code>javascript</code>).  The
+The types declared by the above definitions include two primitive types (`int` and
+`boolean` and two defined types (`page` and `javascript`).  The
 latter two types are defined in the standard fun library.
 
 
 ###Programs
 
-A Canto program is typically a web site, which is a definition of type <code>site</code> such as
+A Canto program is typically a web site, which is a definition of type `site` such as
 the following:
 
     site hello_world {
@@ -174,13 +174,13 @@ the following:
         }
     }
 
-Note the use of the <code>public</code> keyword; this indicates that the associated definition
+Note the use of the `public` keyword; this indicates that the associated definition
 is externally accessible.
 
-Definitions of type <code>site</code> have several special properties:
+Definitions of type `site` have several special properties:
 
 * They can be served as web sites.
-* They can contain site-level directives (<code>adopt</code> and <code>extern</code>) that enable access
+* They can contain site-level directives (`adopt` and `extern`) that enable access
 to Canto and non-Canto code outside of the site.
 * They cannot directly contain constructions (though they can contain definitions that contain constructions).
 * They can be split across multiple files.
