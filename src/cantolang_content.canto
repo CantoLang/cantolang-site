@@ -212,23 +212,29 @@ site cantolang {
 
         dynamic string[] encoded_lines(string[] strs) = [ for str in strs { encoded_line(str) } ]
         
-        dynamic encoded_line(ln) {
-            int segment_start = index_of(ln, "`")
-            int segment_end = index_of(ln, "`", segment_start + 1)
-            int line_end = strlen(ln)
-            encoded_segment = "<code>" + substring(ln, segment_start + 1, segment_end) + "</code>" 
-
-            if (segment_start >= 0 && segment_end > segment_start) {
-                if (segment_start > 0) {
-                    substring(ln, 0, segment_start);
-                }
-                encoded_segment;
-                if (segment_end + 1 < line_end) {
-                    encoded_line(substring(ln, segment_end + 1, line_end));
+        dynamic encoded_line(ln),(ln, open_delim, close_delim, open_code, close_code) {
+            with (open_delim) {
+                int segment_start = index_of(ln, open_delim)
+                int segment_end = index_of(ln, close_delim, segment_start + 1)
+                int line_end = strlen(ln)
+                encoded_segment = open_code + substring(ln, segment_start + 1, segment_end) + close_code 
+    
+                if (segment_start >= 0 && segment_end > segment_start) {
+                    if (segment_start > 0) {
+                        substring(ln, 0, segment_start);
+                    }
+                    encoded_segment;
+                    if (segment_end + 1 < line_end) {
+                        encoded_line(substring(ln, segment_end + 1, line_end));
+                    }
+                } else {
+                    ln;
                 }
             } else {
-                ln;
-            }
+                encoded_line(encoded_line(ln,
+                    "`", "`", "<code>", "</code>"),
+                    "_", "_", "<i>", "</i>");
+            }       
         }
                 
                 
@@ -261,9 +267,9 @@ site cantolang {
          **/
      
         eval(mode(: NORMAL_MODE :));
-        log("mode starts at " + MODE_NAMES[mode]);   
-        for ln in lns and int i from 0 {
-            log("line " + i + " first char: " + (int) first_char(ln) + "   first printable char: " + (int) first_printable_char(ln));
+        //log("mode starts at " + MODE_NAMES[mode]);   
+        for ln in encoded_lines(lns) and int i from 0 {
+            //log("line " + i + " first char: " + (int) first_char(ln) + "   first printable char: " + (int) first_printable_char(ln));
 
             /-- first, handle mode switching --/
             if (strlen(ln) > 0) {
@@ -299,37 +305,37 @@ site cantolang {
                 }
             }
             
-            log(" -- mode now " + MODE_NAMES[mode] + "   strlen(ln) = " + strlen(ln));
-            log(" -- accumulator size before processing: " + accumulator.count);
-            if (accumulator.count > 0) { log("   ---- accumulator contents: " + accumulator); }
+            //log(" -- mode now " + MODE_NAMES[mode] + "   strlen(ln) = " + strlen(ln));
+            //log(" -- accumulator size before processing: " + accumulator.count);
+            //if (accumulator.count > 0) { log("   ---- accumulator contents: " + accumulator); }
             
             /-- next, process the current line according to the mode --/
             if (mode == BULLET_MODE) {
                 if (ln) {
                     if (is_normal(ln)) {
-                        log("appending to last bullet string in place");
+                        //log("appending to last bullet string in place");
                         array.set(accumulator, accumulator.count - 1, accumulator[accumulator.count - 1] + " " + ln);
                     } else {
-                        log("accumulating bullet string");
+                        //log("accumulating bullet string");
                         eval(accumulator(: accumulator + trim_bullet(ln) :));
                     }
                 }
             } else if (ln && !is_header(ln)) {
-                log("accumulating non-header string: " + ln);
+                //log("accumulating non-header string: " + ln);
                 eval(accumulator(: accumulator + ln :));
 
             } else if (mode == CODE_MODE) {
-                log("accumulating empty code string");
+                //log("accumulating empty code string");
                 eval(accumulator(: accumulator + " " :));
                 
             } else {
                 if (accumulator) {
-                    log("constructing content block from accumulated strings");
+                    //log("constructing content block from accumulated strings");
                     eval(content_blocks(: content_blocks + content_block_factory(: accumulator :).this :));
                     eval(accumulator(: null :));
                 }
                 if (ln) {
-                    log("constructing content block from line: " + ln);
+                    //log("constructing content block from line: " + ln);
                     eval(content_blocks(: content_blocks + content_block_factory(: ln :).this :));
                 }
             }
@@ -337,7 +343,7 @@ site cantolang {
 
         /-- finally, handle dangling content --/
         if (accumulator) {
-            log("adding dangling content for mode " + MODE_NAMES[mode]);        
+            //log("adding dangling content for mode " + MODE_NAMES[mode]);        
             if (mode == CODE_MODE) {
                 eval(content_blocks(: content_blocks + code_block(: accumulator :).this :));
             } else if (mode == BULLET_MODE) {
