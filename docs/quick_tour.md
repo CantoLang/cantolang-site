@@ -1,12 +1,12 @@
-##Quick Tour
+#Quick Tour
 
-In some ways, Canto is a regular programming language.  Much of the syntax looks and feels familiar to anyone conversant in a language in the C family (C, C++, C#, Java, and to a degree Javascript).  But the underlying model is quite different.
+In some ways, Canto is a regular programming language.  Much of the syntax looks and feels familiar to anyone conversant in popular programming languages.  But the underlying model is quite different.
 
-The following is a valid statement in Canto as well as most of the languages listed above:
+The following is a valid statement in Canto as well as C and Java:
 
     int x = 5;
 
-In C (and C++, Java, etc.) the above statement defines a variable and sets the initial value.  In Canto, this statement defines a function called x that returns an integer.  
+In C and Java the above statement defines a variable and sets the initial value.  In Canto, this statement defines a function called x that returns an integer.  
 
 To understand Canto it helps to understand its conceptual underpinnings.  
 

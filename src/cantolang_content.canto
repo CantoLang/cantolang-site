@@ -118,8 +118,6 @@ site cantolang {
         if (a.children) {
             show_grand_title(a.title);
             show_toc(a);
-        } else {
-            show_title(a.title);
         }
         
         show_content(a.content);

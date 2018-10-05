@@ -1400,19 +1400,19 @@ site cantolang {
     /** Lookup table for articles.  Keyed on article key. **/
     global article{} article_table = { for article a in all_articles { a.key: a } }
     
-    global article overview_article(doc_name, article_name) {
+    article overview_article(doc_name, article_name) {
         title = article_name
         key = doc_name
         content = include_content(doc_name)
     }
 
-    global article quick_tour_article = overview_article("quick_tour", "Quick Tour");
-    global article leisurely_tour_article = overview_article("leisurely_tour", "Leisurely Tour");
-    global article backstory_article = overview_article("backstory", "Backstage Tour")
+    article quick_tour_article = overview_article("quick_tour", "Quick Tour");
+    article leisurely_tour_article = overview_article("leisurely_tour", "Leisurely Tour");
+    article backstory_article = overview_article("backstory", "Backstage Tour")
 
-    public article_page(quick_tour_article) quick_tour_page = article_page(quick_tour_article) 
-    public article_page(leisurely_tour_article) leisurely_tour_page = article_page(leisurely_tour_article) 
-    public article_page(backstory_article) backstory_page = article_page(backstory_article) 
+    public global article_page(quick_tour_article) quick_tour_page = article_page(quick_tour_article) 
+    public global article_page(leisurely_tour_article) leisurely_tour_page = article_page(leisurely_tour_article) 
+    public global article_page(backstory_article) backstory_page = article_page(backstory_article) 
 
 public tt {
  article_page[] pp = [ quick_tour_page, leisurely_tour_page ]
