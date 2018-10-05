@@ -1047,7 +1047,13 @@ site cantolang {
 
         quote([| Code is just a smart kind of data -- data designed to trigger
                  processors into performing certain useful or amusing acts. |],
-              "Charles Petzold")
+              "Charles Petzold"),
+
+        quote([| JavaScript is the web’s CO2. We need some of it, but too much 
+                 puts the entire ecosystem at risk. |], "Alex Russel"),
+
+        quote([| Static typing where possible, dynamic typing when needed! |],
+              "Erik Meijer and Peter Drayton")
 
         ]
 
@@ -1066,7 +1072,7 @@ site cantolang {
 
     
     poetic [|
-        <p>Canto's design philosophy, <b>Poetic Programming</b>, asserts that the same
+        <p>Canto's design philosophy, <a href="<b>Poetic Programming</b>, asserts that the same
         qualities that allow poetry to be simultaneously more expressive and simpler 
         than prose can work for programming as well: economy (use fewer words and 
         shorter phrases), richness (use words and phrases that have multiple layers 
@@ -1406,13 +1412,15 @@ site cantolang {
         content = include_content(doc_name)
     }
 
-    article quick_tour_article = overview_article("quick_tour", "Quick Tour");
-    article leisurely_tour_article = overview_article("leisurely_tour", "Leisurely Tour");
-    article backstory_article = overview_article("backstory", "Backstage Tour")
+    global article quick_tour_article = overview_article("quick_tour", "Quick Tour");
+    global article leisurely_tour_article = overview_article("leisurely_tour", "Leisurely Tour");
+    global article backstory_article = overview_article("backstory", "Backstage Tour")
+    global article poetic_programming_article = overview_article("poetic_programming_manifesto", "Poetic Programming");
 
-    public global article_page(quick_tour_article) quick_tour_page = article_page(quick_tour_article) 
-    public global article_page(leisurely_tour_article) leisurely_tour_page = article_page(leisurely_tour_article) 
-    public global article_page(backstory_article) backstory_page = article_page(backstory_article) 
+    public base_page quick_tour_page = article_page(quick_tour_article) 
+    public base_page leisurely_tour_page = article_page(leisurely_tour_article) 
+    public base_page backstory_page = article_page(backstory_article)
+    public base_page poetic_programming_page = article_page(poetic_programming_article)
 
 public tt {
  article_page[] pp = [ quick_tour_page, leisurely_tour_page ]
