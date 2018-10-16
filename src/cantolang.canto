@@ -1060,7 +1060,7 @@ site cantolang {
 
     expressive_and_simple [|
         <h2>Welcome to the Canto Programming Language</h2>
-        <p>Canto follows a design philosophy called <b>Poetic Programming</b>.
+        <p>Canto follows a design philosophy called <a href="poetic_programming_page"><b>Poetic Programming</b></a>.
         Poetry is simpler than prose, yet also more expressive.  Poetic Programming 
         asserts that the same qualities that allow poetry to achieve this can work
         for programming as well: economy (use fewer words and shorter phrases), 
@@ -1072,7 +1072,7 @@ site cantolang {
 
     
     poetic [|
-        <p>Canto's design philosophy, <a href="<b>Poetic Programming</b>, asserts that the same
+        <p>Canto's design philosophy, <a href="poetic_programming_page"><b>Poetic Programming</b></a>, asserts that the same
         qualities that allow poetry to be simultaneously more expressive and simpler 
         than prose can work for programming as well: economy (use fewer words and 
         shorter phrases), richness (use words and phrases that have multiple layers 
@@ -1082,11 +1082,19 @@ site cantolang {
     
     base_page item_page {
         boolean needs_login = false;    
+        title = label
         summary [?]
+        
+        [| <h2> |]
+        title;
+        [| </h2> |]
+        
+        sub;
     }
     
     public item_page mix_code_and_data {
         label = "Mix Code and Data" 
+        title = "Free Mixing of Code and Data"
     
         summary [|
             Canto supports free mixing of code and data, similar to templates but with
@@ -1112,7 +1120,7 @@ site cantolang {
     
     public item_page one_kind_of_thing {
         label = "One Kind of Thing"
-
+        
         summary [|
             Canto has one kind of entity.  Classes, 
             types, functions, variables, objects, and interfaces
@@ -1148,6 +1156,7 @@ site cantolang {
 
     public item_page declarative {
         label = "Declarative"
+        title = "Declarative Syntax"
         
         summary [|  
             A Canto program is a description of output, not a list of commands.  Canto's
@@ -1169,6 +1178,7 @@ site cantolang {
 
     public item_page object_oriented {
         label = "Object-Oriented"
+        title = "Rich Set of Object-Oriented Features"
 
         summary [|
             Canto is richly object-oriented, supporting polymorphism, multiple inheritance, and object
@@ -1189,6 +1199,7 @@ site cantolang {
 
     public item_page web_oriented {
         label = "Web-Oriented"
+        title = "Web-Oriented Features"
         
         summary [|
             Canto makes it easy to create web sites and web services.  In fact you don't have to do anything
@@ -1214,7 +1225,7 @@ site cantolang {
             <p>
             <b>Canto handles state without variables or assignment, by building caching into the language.</b>
             Canto's caching behavior is simple, natural, transparent and customizable.  In appropriate circumstances,
-            functions can behave like variables -- the result of the function is cached and subsequent references 
+            functions behave like variables -- the result of the function is cached and subsequent references 
             make use of the cached value.</p>
         |]
     }

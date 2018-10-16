@@ -1,23 +1,26 @@
 #Poetic Programming: A Manifesto
 
-Poetic Programming is an attitude that sees programming as a form of writing, and sees poetry as an especially good role model.  Poetry is economical (says a lot with few words), rich (carries multiple layers of meaning), and beautiful (or at least strives to be).  Poetic Programming says that programs should aim for the same economy, richness, and aesthetic value that poems do.
+Poetic Programming is an attitude that sees programming as a form of writing, and sees poetry as an especially good prototype for most programming.  Poetry is economical (says a lot with few words), rich (carries multiple layers of meaning), and beautiful (or strives to be).  Poetic Programming says that programs should aim for the same economy, richness, and aesthetic value that poems do.
 
+Poetic Programming is not the same as Code Poetry, though they certainly share many values and motivations.  Code Poetry takes code of any sort and lays it out so it resembles poetry.  Poetic Programming urges programs to be, not just resemble, poetry. 
 
-##The Critique: The Negative
+##The Poetic Critique
 
-Poetic Programming is not a paradigm, or even a style.  It is a critique.  Too often programs are bloated, incomprehensible, and ugly, not because programmers are incapable of better but because many forces push them in that direction.  Among these forces are various trends and commonly held principles that are generally considered to be neutral or positive, but which reliably lead to unwieldy and confusing programs.  Here are examples:
+Poetic Programming begins not as a paradigm, or even a style.  It begins , in good dialectic fashion, as a critique of the existing practice.  Too often programs are bloated, incomprehensible, and ugly, not because programmers are incapable of better but because many forces push them in that direction.  Among these forces are various trends and commonly held principles that are generally considered to be neutral or positive, but which reliably lead to unwieldy and confusing programs.  Here are examples:
 
 ###Platforms and Frameworks
 
-Platforms and frameworks are evil.  They constrain the behavior of a program and force it to adopt specific models and strategies.  They require constant care and feeding.  Over time the purposes of the platform may crowd out the purposes of the program.  Poetic Programming encourages programmers to see platforms and frameworks as the most temporary and throw-away part of a program rather than its most deeply entrenched and permanent part.
+Platforms and frameworks are harmful.  They constrain the behavior of a program and force it to adopt specific models and strategies.  They require constant care and feeding.  Over time the purposes of the platform may crowd out the purposes of the program.  Poetic Programming encourages programmers to see platforms and frameworks as the most temporary and throw-away part of a program rather than its most deeply entrenched and permanent part.
 
 ###Libraries
 
-Libraries are evil.  They are opaque, written by someone who is not familiar with your concerns and may or may not share your assumptions about what should happen in various circumstances.  They are full of code that you don't need.  In the code you do need, there are often complexities of no value to you, and risks of which you have no knowledge.  Poetic programming encourages programmers to see functions they craft themselves as superior to functions in libraries, other things being equal.  Libraries have value when a programmer is missing either the time, knowledge or interest required to develop and maintain some functionality; but curating your own code is always better than blindly calling someone else's if you can manage it.
+Libraries are harmful.  They are opaque, written by someone who is not familiar with your concerns and may or may not share your assumptions about what should happen in various circumstances.  They are full of code that you don't need.  In the code you do need, there are often complexities of no value to you, and risks of which you have no knowledge.  Poetic programming encourages programmers to see functions they craft themselves as superior to functions in libraries, other things being equal.  Libraries have value because you can't do everything yourself, and wouldn't want to if you could.  But if it's a programming task you do have the luxury of tackling yourself, and you are interested in the problem being solved, then curating your own code may be better than blindly calling someone else's.
    
 ###Dependencies with Dependencies
 
-Depenedencies with dependencies are evil squared.  "Dependency Hell" is a rite of passage for developers, referring to the inability to build an application because of dependency conflicts and the hours of work often needed to fix it.  But "dependency hell" is a misnomer.  It really should be "dependency of dependency hell", because the problem arises only when dependencies have dependencies of their own, and those second-degree dependencies overlap with other primary or secondary dependencies.  Programmers hardly ever disqualify a dependency simply for having its own dependencies, but they should.  Not only would this avoid Dependency Hell, it would also reward those libraries that accomplish their objectives most poetically -- free of irrelevant concerns and unnecessary complexity.
+Depenedencies with dependencies are harmful squared.  "Dependency Hell" is a rite of passage for developers, referring to the inability to build an application because of dependency conflicts and the hours of work often needed to fix them.  But "dependency hell" is a misnomer.  It really should be "dependency of dependency hell", because the problem arises only when dependencies have dependencies of their own, and those second-degree dependencies overlap with other primary or secondary dependencies.  When a dependency-with-a-dependency needs to be updated to a new version it may require an update if its own dependencies, which can trigger a cascade of further update requirements.  Sometimes this leads to contradictory requirements, such as two different versions of a single library. 
+
+Programmers hardly ever disqualify a dependency simply for having its own dependencies, but they should.  Not only would this avoid Dependency Hell, it would also reward those libraries that accomplish their objectives most poetically -- free of irrelevant concerns and unnecessary complexity.
 
 ###Variables
 
@@ -26,7 +29,7 @@ Programmers are often told that state is bad, but generally what is meant is not
 The problem with variables is that they are disentangled from the values they represent.  Consider a variable intended to hold a temperature value.  A measurement is taken, and the result is stored.  At that point the connection between the state of the program and the state of the world is severed.  The world goes its own way, while the stored value just sits there. There is generally no way to know if the value is correct without obtaining the temperature data again to check it against.  But if you have to do that every time there isn't much point in storing the temperature in the first place.
 
 
-##The Anti-Critique: The Positive
+##The Poetic Anti-Critique
 
 Just as important as spotlighting programming practices that should be changed is identifying those that should be encouraged.  Poetic Programming acknowledges several positive trends in software engineering.
 
@@ -78,6 +81,6 @@ Poetic Programming is a practice of simplification.  The most complex program is
 
 ###Automated State Management
 
-
+As we have stated, variables are harmful because they are disconnected from their sources of information.  Poetic Programming suggests replacing variables with cached values that are connected to their sources.   
 
 
