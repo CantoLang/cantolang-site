@@ -2,7 +2,16 @@
 
 Poetic Programming is an attitude that sees programming as a form of writing, and sees poetry as an especially good prototype for most programming.  Poetry is economical (says a lot with few words), rich (carries multiple layers of meaning), and beautiful (or strives to be).  Poetic Programming says that programs should aim for the same economy, richness, and aesthetic value that poems do.
 
-Poetic Programming is not the same as Code Poetry, though they certainly share many values and motivations.  Code Poetry takes code of any sort and lays it out so it resembles poetry.  Poetic Programming urges programs to be, not just resemble, poetry. 
+Poetic Programming is not the same as Code Poetry, though they certainly share many values and motivations.  Code Poetry takes code of any sort and lays it out so it resembles poetry.  Poetic Programming urges programs to be, not just resemble, poetry.
+
+##The Semantics of Poetry
+
+The attributes of poetry that Poetic Programming seeks to emulate -- economy, richness, and beauty -- are means to an end; the end is to convey meaning.  Human writing in general contains two kinds of meaning: denotational (the dictionary definition) and affective (the feelings that are evoked).  Many kinds of writing, such as technical writing, reference works, statutes, contracts, and many others, limit themselves as much as possible to denotational meanings, which can be objectively delineated.  Affective meaning is subjective and much harder to nail down.  But that doesn't mean it's not useful or effective.  Some kinds of writing, such as poetry, actively use affective meaning to great effect.
+
+The great poet Rumi said that from understanding comes love.  It's also true that from love comes understanding.  When we love a subject, we dig deeper and invest more in making sense of it.  Revelations bring us joy.  When we love a person, we want to know not just the surface meaning of what she says; we want to know the feelings that she intends her words to carry.  It is those feelings that tell us what is really going on inside of her.  
+
+##The Semantics of Code
+
 
 ##The Poetic Critique
 
