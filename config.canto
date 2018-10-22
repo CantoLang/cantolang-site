@@ -4,11 +4,13 @@
 
 {
     /** The primary site; requests are directed here by default. **/
-    site_config main_site = cantolang_config
+    site_config main_site = main_config_name ? site_config_table[main_config_name] : cantolang_config
+
+    main_config_name = $("CANTO_CONFIG")
 
     /** All the sites that the server should make available by name. 
      **/ 
-    site_config[] all_sites = [] 
+    site_config[] all_sites = [ cantolang_config, poetic_prog_config ] 
     
     /** If true, the sites in all_sites share the main_site core instead of
      *  loading their own.
@@ -66,11 +68,17 @@
 
     site_config cantolang_config {
         name = "cantolang"
-        cantopath = "src:../three/src:../sceneserver/src"
+        cantopath = "src/cantolang*:../three/src:../sceneserver/src"
     }    
+
+    site_config poetic_prog_config {
+        name = "poetic_programming"
+        cantopath = "src/poetic*"
+    }
+
 
     /** The site config table allows lookup of site configuration by name.  It is
      *  generated automatically from the all_sites list.
      **/
-    site_config{} site_config_table = { for site_config sc in all_sites { sc.name: sc } }
+    site_config{} site_config_table = { for site_config sc in all_sites { (sc.name): sc } }
 }

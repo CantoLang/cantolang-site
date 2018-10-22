@@ -1,16 +1,26 @@
 #Poetic Programming: A Manifesto
 
+##Introduction
+
 Poetic Programming is an attitude that sees programming as a form of writing, and sees poetry as an especially good prototype for most programming.  Poetry is economical (says a lot with few words), rich (carries multiple layers of meaning), and beautiful (or strives to be).  Poetic Programming says that programs should aim for the same economy, richness, and aesthetic value that poems do.
 
 Poetic Programming is not the same as Code Poetry, though they certainly share many values and motivations.  Code Poetry takes code of any sort and lays it out so it resembles poetry.  Poetic Programming urges programs to be, not just resemble, poetry.
 
-##The Semantics of Poetry
+###The Semantics of Poetry
 
-The attributes of poetry that Poetic Programming seeks to emulate -- economy, richness, and beauty -- are means to an end; the end is to convey meaning.  Human writing in general contains two kinds of meaning: denotational (the dictionary definition) and affective (the feelings that are evoked).  Many kinds of writing, such as technical writing, reference works, statutes, contracts, and many others, limit themselves as much as possible to denotational meanings, which can be objectively delineated.  Affective meaning is subjective and much harder to nail down.  But that doesn't mean it's not useful or effective.  Some kinds of writing, such as poetry, actively use affective meaning to great effect.
+The attributes of poetry that Poetic Programming seeks to emulate -- economy, richness, and beauty -- are means to an end; the end is to convey meaning.  Human writing in general contains two kinds of meaning: denotational (the dictionary definition) and affective (the feelings the writing evokes).  Many kinds of writing, such as technical writing, reference works, statutes, contracts, and many others, limit themselves as much as possible to denotational meaning, which can be objectively defined and delineated.  Affective meaning is subjective and much harder to nail down.  But that doesn't mean it's not useful or effective.  Some kinds of writing, such as poetry, actively use affective meaning to great effect.
 
-The great poet Rumi said that from understanding comes love.  It's also true that from love comes understanding.  When we love a subject, we dig deeper and invest more in making sense of it.  Revelations bring us joy.  When we love a person, we want to know not just the surface meaning of what she says; we want to know the feelings that she intends her words to carry.  It is those feelings that tell us what is really going on inside of her.  
+It's also not true that affective meaning in any way conflicts with or takes away from denotational meaning.  Quite the contrary, affective meaning can lead to more and deeper denotational meaning.  The great poet Rumi said that from understanding comes love.  It's also true that from love comes understanding.  When we love a subject, we dig deeper and invest more in making sense of it.  Revelations bring us joy.  When we love a person, we want to know not just the surface meaning of what she says; we want to know the feelings that she intends her words to carry.  It is those feelings that tell us what is really going on inside of her.
 
-##The Semantics of Code
+Ideally we have virtuous understanding-love-understanding-love cycle, where the more we learn about persons or subjects, the more we love them, and the more we love persons or subjects, the more we learn about them.  But even if the feelings are not positive, they add positively to (painful) understanding.
+
+And the connection between denotational and affective goes beyond love of subject.  It extends to our most fundamental judgements.  Denotational knowledge always reaches a limit.  It reaches a limit as you drill down into the facts, and eventually reach questions of fact for which you have no answer.  It reaches a limit as you follow the logical arguments that turn facts into understanding back to their source, the premises we take as given.  And most notably for our present topic, it reaches a limit when we get to the normative judgments that underlie those premises.
+
+It is by now well established experimentally that normative judgments are often influenced by affective factors.  Sometimes this influence is small and fleeting, like the effect of store music on shopping behavior.  Other times it can be deep and abiding, such as the moral instruction we receive as children.  In the deep and abiding category is the normative judgment underlying scientific knowledge, known to philosophers of science as the problem of theory choice.  As Thomas Kuhn and others have observed, there is no way to select between two theories of the world on the basis of fact, because facts are always facts about something, and what counts as something is different from theory to theory.
+
+###The Semantics of Code
+
+Code has its own semantic divide, analogous in some ways to the denotational-affective difference.  Some aspects of code, such as keywords and syntactic structures, determine what happens when the code executes.  Others, such as comments and the names of variables and functions, are largely irrelevant.  It's a common practice, in fact, to remove comments and replace names as part of the deploy process for code such as scripts that run in a browser to improve performance and security.  Yet comments and names are absolutely necessary for understanding and maintaining code.
 
 
 ##The Poetic Critique
@@ -20,6 +30,10 @@ Poetic Programming begins not as a paradigm, or even a style.  It begins , in go
 ###Platforms and Frameworks
 
 Platforms and frameworks are harmful.  They constrain the behavior of a program and force it to adopt specific models and strategies.  They require constant care and feeding.  Over time the purposes of the platform may crowd out the purposes of the program.  Poetic Programming encourages programmers to see platforms and frameworks as the most temporary and throw-away part of a program rather than its most deeply entrenched and permanent part.
+
+###Frameworks on Top of Frameworks
+
+Frameworks designed as customizations or extensions of other frameworks are doubly harmful.  Programmers who love frameworks generally love building frameworks as well, and if a framework has been adopted for a mission the temptation to build a more suitable and powerful framework on top of the first framework is very strong.  Any functionality that might be useful to multiple applications built on top of the framework is a candidate for the new intermediate framework.  The goal is improve the efficiency of application development by providing more functionality "out of the box".  Often however the result is that functionality is divided among different levels, and what might have seemed to be a natural division of responsibility to the original programmer seems arbitrary to those that come after.
 
 ###Libraries
 
