@@ -60,7 +60,9 @@
          *  allowed, but are not automatically enabled; addresses must also appear in 
          *  the listen_to array.  If empty, respond to any address.
          **/
-        respond_only_to[] = []  
+        respond_only_to[] = []
+        
+        this;
     }
     
    
