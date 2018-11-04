@@ -7,6 +7,8 @@
 
 site poetic_programming {
 
+    adopt content_handler
+
     /-------- global values -----------------------/
 
     global User_Table(utbl{}){} = utbl
@@ -614,10 +616,7 @@ site poetic_programming {
         
         label [?]
         
-        scene bg_scene [?]
-        scene content_header_scene [?]
-        
-        style {
+       style {
             main_style;
             menu_style;
         }
@@ -637,19 +636,6 @@ site poetic_programming {
             [| </div> |]
         }
         
-        /--------------------/
-        /---- the canvas ----/
-    
-        three_component(*) tc(scene s),(params{}) {
-            style  [| position: absolute; top: 0; left: 0;
-                      width: 100%; height: 100%; 
-                      margin: 0; padding: 0;
-                      z-index: 0;
-                   |]
-
-            canvas_id = "tc"
-            
-        }        
 
         component side_box {
             component_class = "side_box"
@@ -658,44 +644,8 @@ site poetic_programming {
         
         
         side_box_content {
-            [|  <h1>Explore the Poetry of Code with Canto</h1> |]
-            
-            slide_show(main_slides);
         }
 
-        dynamic slide_show(slides[]) {
-            for slide in slides and int i from 1 {
-                [| <div class="slide" id="slide{= i; =}"> |]
-                slide;
-                [| </div> |]
-            }
-            [| <script> |]
-            slide_script(slides.count);            
-            [| </script> |]
-        }
-
-        dynamic javascript slide_script(int numslides) [|
-            var ns = {= numslides; =};
-            var cs = 1;
-
-            var startslide = document.getElementById("slide1");
-            startslide.style.opacity = 1;
-            setInterval(function () {
-                var oldslide = document.getElementById("slide" + cs);
-                if (cs == ns) {
-                    cs = 1;
-                } else {
-                    cs++;
-                }
-                var newslide = document.getElementById("slide" + cs);
-
-                oldslide.style.opacity = 0;
-                newslide.style.opacity = 1;
-            }, 7000); 
-        |]
-
-
-        main_slides[] = [ for quote q in main_quotes { quote_slide(q) } ]
 
         component header_bar {
             component_class = "header_bar"
@@ -780,10 +730,6 @@ site poetic_programming {
 
     component content_header_box {
         component_class = "content_header_box"
-
-        with (content_header_scene) {
-            tc(content_header_scene);
-        }
     }
 
     component footer_box {
@@ -808,217 +754,9 @@ site poetic_programming {
 
         label = "Home"
 
-        expressive_and_simple;
-
-        [| <h2>Highlights:</h2> |]
  
-        [| <div class="two_columns"><div class="column" id="leftcol"><ul> |]        
-
-        main_item(one_kind_of_thing);
-        main_item(declarative);
-        main_item(mix_code_and_data);
-        
-        [| </ul></div><div class="column" id="rightcol"><ul> |]
-       
-        main_item(object_oriented);
-        main_item(automated_state_management);
-        main_item(web_oriented);
-
-        [| </ul></div> |]
     }
 
-
-    /--- alternative with accordian points ---/
-    public base_page(*) accordian_index(params{}) {
-        boolean needs_login = false    
-
-        label = "Home"
-
-        static javascript toggle_point [|
-            this.classList.toggle('point_active');
-            var div = this.nextElementSibling;
-            var openDiv = getOpenSibling(div);
-            if (openDiv !== null) {
-                openDiv.classList.remove('point_open');
-                div.classList.remove('panel_closed');
-                collapseExpandElements(openDiv, div);          
-                div.classList.add('point_open');
-                openDiv.classList.add('point_closed');
-            } else if (div.classList.contains('point_open')) {
-                div.classList.remove('point_open');
-                collapseElement(div);
-                div.classList.add('point_closed');
-            } else {
-                div.classList.remove('panel_closed');
-                expandElement(div);
-                div.classList.add('point_open');
-            }
-        |]
-
-        static javascript accordion_functions [|
-            function collapseExpandElements(colElement, expElement) {
-                collapseElement(colElement);
-                expandElement(expElement);
-            }            
-
-
-            function collapseElement(element) {
-                function endTransition(event) {     
-                    if (event.target == element.content) {
-                        element.removeEventListener("transitionendevent", endTransition);
-                        if (!element.isOpen) {
-                            this.fire("elementClosed", element);
-                        }
-                    }
-                }
-
-                element.addEventListener("transitionendevent", endTransition);
-                element.isOpen = false;    
-                requestAnimationFrame(()=>{
-                    element.style.transition = '0';
-                    element.style.height = element.scrollHeight + "px";
-                    requestAnimationFrame(()=>{
-                        element.style.transition = null;
-                        element.style.height = 0;
-                    });
-                });
-            }
-
-            function expandElement(element) {
-                function resetHeight(event) {
-                    if (event.target == element.content) {
-                        element.removeEventListener("transitionendevent", resetHeight);
-                        if (element.isOpen) {
-                            requestAnimationFrame(function() {      
-                                element.style.transition = '0';
-                                element.style.height = 'auto';
-                                requestAnimationFrame(function() {
-                                    element.style.height = null;
-                                    element.style.transition = null;
-                                    this.fire("elementOpened", element);
-                                });
-                            });
-                        }
-                    }
-                }
-                element.addEventListener("transitionendevent", resetHeight);
-                element.isOpen = true;
-                element.style.height = element.scrollHeight + "px";
-            }
-            
-            function getOpenSibling(element) {
-                var sibling = element.previousElementSibling.previousElementSibling;
-                while (sibling !== null) {
-                    if (sibling.classList.contains('point_open')) {
-                        return sibling;
-                    }
-                    sibling = sibling.previousElementSibling.previousElementSibling;
-                }
-                sibling = element.nextElementSibling;
-                while (sibling !== null) {
-                    sibling = sibling.nextElementSibling;
-                    if (sibling.classList.contains('point_open')) {
-                        return sibling;
-                    }
-                    sibling = sibling.nextElementSibling;
-                }
-                return null;
-            }
-        |]
-        
-
-        dynamic main_point(pt_label, pt_body) {
-            [| <li class="main_point" onclick="{= toggle_point; =}"><span class="main_point_span"> |]
-            pt_label;
-            [| </span></li><div class="main_point_body point_closed"> |]
-            pt_body;
-            [| </div> |]
-        }
-
-        
-
-        [| <div class="main_panel content_main_points"> |]
-        
-        expressive_and_simple;
-        
-        [| <ul> |]
-        
-        main_point("Declarative", declarative);
-        main_point("Object Oriented", object_oriented);
-        main_point("Managed State", automated_state_management);
-        main_point("Web Native", web_oriented);
-
-        [| </ul></div><script> |]
-        
-        accordion_functions;
-        
-        [| </script> |]
-    }  
-
-
-    quote[] main_quotes = [
-        quote([| A program is, above all, a form of human communication.  A 
-                 program can't just work; it must explain itself.  It must
-                 telegraph its intentions and wear its strategy on its sleeve.
-                 It must have a voice. |], null),
-
-        quote([| The enjoyment of one's tools is an essential ingredient of
-                 successful work. |], "Donald Knuth"),
-
-        quote([| Even if aesthetics are not the mathematics of beauty, they are
-                 the proof of the calculation. |], "Franz Grillparzer"),
-
-        quote([| Einstein argued that there must be simplified explanations of
-                 nature, because God is not capricious or arbitrary. No such
-                 faith comforts the software engineer. |], "Fred Brooks"),
-
-        quote([| A sentence should contain no unnecessary words, a paragraph no 
-                 unnecessary sentences, for the same reason that a drawing should 
-                 have no unnecessary lines and a machine no unnecessary parts. |],
-              "William Strunk, Jr."),
-
-        quote([| It's much easier to make beautiful-but-slow code fast than it is
-                 to make fast-but-ugly code beautiful. |], "Tim Bray"),
-
-        quote([| The world is filled with frameworks that are a little too hard
-                 to understand and look like they have a bit too much investment
-                 in them. |], "Michael Feathers"),
-
-        quote([| Code is just a smart kind of data -- data designed to trigger
-                 processors into performing certain useful or amusing acts. |],
-              "Charles Petzold"),
-
-        quote([| JavaScript is the web’s CO2. We need some of it, but too much 
-                 puts the entire ecosystem at risk. |], "Alex Russel"),
-
-        quote([| Static typing where possible, dynamic typing when needed! |],
-              "Erik Meijer and Peter Drayton")
-
-        ]
-
-
-    expressive_and_simple [|
-        <h2>Welcome to the Canto Programming Language</h2>
-        <p>Canto follows a design philosophy called <a href="poetic_programming_page"><b>Poetic Programming</b></a>.
-        Poetry is simpler than prose, yet also more expressive.  Poetic Programming 
-        asserts that the same qualities that allow poetry to achieve this can work
-        for programming as well: economy (use fewer words and shorter phrases), 
-        richness (use words and phrases that have multiple layers of meaning), and
-        beauty (arrange the words and phrases into a melodious, rhythmic and visually 
-        pleasing whole).  These are the principles that have guided the design of Canto.</p>
-    |]
-    
-
-    
-    poetic [|
-        <p>Canto's design philosophy, <a href="poetic_programming_page"><b>Poetic Programming</b></a>, asserts that the same
-        qualities that allow poetry to be simultaneously more expressive and simpler 
-        than prose can work for programming as well: economy (use fewer words and 
-        shorter phrases), richness (use words and phrases that have multiple layers 
-        of meaning) and beauty (arrange the words and phrases into a melodious, 
-        rhythmic and visually pleasing whole).</p>
-    |]
-    
     base_page item_page {
         boolean needs_login = false;    
         title = label
@@ -1031,316 +769,7 @@ site poetic_programming {
         sub;
     }
     
-    public item_page mix_code_and_data {
-        label = "Mix Code and Data" 
-        title = "Free Mixing of Code and Data"
-    
-        summary [|
-            Canto supports free mixing of code and data, similar to templates but with
-            the power of a full-featured object-oriented language. 
-        |]
-        
-        [|
-            <p>A Canto program is a description of output.  Sometimes the most succinct
-            description is the output itself.  Canto allows raw output wherever code is
-            allowed.  Code and data are two forms of the same thing -- output -- and can
-            be freely mixed.</p>
-            
-            <p>This gives Canto a bit of the feel of a templating language.  And Canto
-            certainly is an excellent language for templating.  But Canto is much more
-            than a templating language.  It's a full featured object-oriented language,
-            which means bits of template can be part of a type definition and can be
-            inherited and extended.</p>
-        |]
-    
-    
-    }
-    
-    
-    public item_page one_kind_of_thing {
-        label = "One Kind of Thing"
-        
-        summary [|
-            Canto has one kind of entity.  Classes, 
-            types, functions, variables, objects, and interfaces
-            are roles, not entitites.
-        |]
 
-        [|
-            <p>Canto is economical by having only one kind of entity.  Other languages have 
-            distinct syntax for creating and using various kinds of entities such as classes, 
-            types, functions, variables, objects, and interfaces.  Canto has all these things,
-            but doesn't have all the syntactic mechanisms, because in Canto these things 
-            are roles, not entities, and roles can be inferred from context.</p>
-    
-            <p>In addition to making Canto syntactically simpler, this approach provides
-            great flexibiity and expressiveness.  Programmers can effectively invent new
-            kinds of entities that play hybrid roles.</p>
-            
-            <h3>Examples of Roles in Canto</h3>
-            
-            A Canto entity begins with a definition.  The simplest definition consists of
-            just a name:
-            
-            <code>
-            x [?]
-            </code>
-            
-            The [?] indicates that there is no implementation for this definition.
-            
-            
-            
-        |]
-    }
-
-    public item_page declarative {
-        label = "Declarative"
-        title = "Declarative Syntax"
-        
-        summary [|  
-            A Canto program is a description of output, not a list of commands.  Canto's
-            declarative syntax supports functional programming (among other programming styles).
-        |]
-        
-        
-        [|
-            <p>
-            <b>A Canto program is a description of output, not a list of commands.</b> Canto is 
-            not a strictly functional language, because this description is not limited to functions -- it
-            can also include procedural-looking control structures (conditionals and loops) and 
-            template-like embedded data.  This enables programmers to carve out programming styles that
-            are natural and effective rather than doctrinaire.
-            </p>
-        |]
-    }
-    
-
-    public item_page object_oriented {
-        label = "Object-Oriented"
-        title = "Rich Set of Object-Oriented Features"
-
-        summary [|
-            Canto is richly object-oriented, supporting polymorphism, multiple inheritance, and object
-            persistence along with OO features not available in most languages.
-        |]
-    
-        [|  
-            <p>
-            <b>Canto is richly object-oriented, supporting polymorphism, multiple inheritance, and object
-            persistence along with OO features not available in most languages.</b>  One such feauture is
-            the  <code>sub</code> keyword, which works like the <code>super</code> keyword found in other
-            languages, only in reverse: it allows a superclass to wrap a subclass. This turns out to be 
-            very useful for things like web pages or message packets, where the stuff on the outside is 
-            common to all while the stuff on the inside is subclass-specific.
-            </p>
-        |]
-    }
-
-    public item_page web_oriented {
-        label = "Web-Oriented"
-        title = "Web-Oriented Features"
-        
-        summary [|
-            Canto makes it easy to create web sites and web services.  In fact you don't have to do anything
-            special at all -- a Canto program is automatically a web site.
-        |] 
-        
-        [|  <p>
-            <b>A Canto program is automatically a web site.</b>  The Canto runtime engine has a built-in web
-            server (based on Jetty, the web server used by Tomcat).  Moreover, Canto's declarative syntax and
-            free mixing of code and data makes it ideal for generating HTML, CSS and Javascript.
-            </p>
-        |]
-    }
-    
-    public item_page automated_state_management { 
-        label = "State Safe/State Friendly"
-        
-        summary [|
-            Canto handles state without variables or assignment, by building caching into the language.
-        |]
-        
-        [|
-            <p>
-            <b>Canto handles state without variables or assignment, by building caching into the language.</b>
-            Canto's caching behavior is simple, natural, transparent and customizable.  In appropriate circumstances,
-            functions behave like variables -- the result of the function is cached and subsequent references 
-            make use of the cached value.</p>
-        |]
-    }
-        
-    canto_is_fun [|
-        <p>Canto was designed by a programmer in order to be enjoyable to program in.  And it
-        is.  Have Fun!</p>
-    |]
-    
-    economy [|
-        <p>Canto is economical by having only one kind of entity.  Other languages have
-        distinct syntax for creating and using various kinds of entities such as
-        classes, types, functions, variables, objects and interfaces.  Canto has all 
-        these things, but doesn't have all the syntactic mechanisms, because in Canto 
-        these things are roles, not entities, and roles can be inferred from context.</p>    
-    |]
-
-    richness [|
-    
-    
-    |]
-
-
-    what_is_canto {
-        [| 
-           <p>Canto is an open source programming language designed to be expressive and 
-           simple.  Language designers sometimes see this as a tradeoff; you can have 
-           more features and be more expressive, or you can have fewer features and be 
-           simpler.  Canto shows that with the right design you can 
-           be more expressive and simpler at the same time.</p>
-           
-           <p>Canto's secret for achieving this is its design philosophy, <b>Poetic Programming</b>.
-           Poetic Programming takes the same qualities that allow poems to be expressive 
-           while being simple and applies them to programs: economy (use fewer words and 
-           shorter phrases), richness (use words and phrases that have multiple layers of
-           meaning) and beauty (arrange the words and phrases into a melodious, rhythmic 
-           and visually pleasing whole).  These are the principles that guide Canto.</p>
-           
-           <ul>
-           <li><b>Economy:</b> Canto is economical by having only one kind of entity.  Other 
-           languages have distinct syntax for creating and using various kinds of entities such
-           as classes, types, functions, variables, objects and interfaces.  Canto has all these 
-           things, but doesn't have all the syntactic mechanisms, because in Canto these things 
-           are roles, not entities, and roles can be inferred from context.</li>
-           
-           <li><b>Richness:</b> Because entities have multiple roles, Canto statements naturally
-           have multiple levels of meaning.  Further meaning flows from Canto's inheritance model,
-           which extends traditional object-oriented inheritance in a number of useful ways, 
-           including multiple inheritance, insdie-out inheritance (the superclass invokes and 
-           wraps the subclass rather than the other way around) and lateral inheritance (similar
-           to aspect-oriented inheritance).</li>
-           
-           <li><b>Beauty:</b> The aesthetics of code is at the heart of Canto's design.  Among other
-           things, Canto is a declarative language.  Most widely used languages are imperative, and 
-           their programs are lists of instructions.  A Canto program is a description of output.  
-           Descriptive language lends itself to beauty; lists of instructions, not so much.  
-           Writing a beautiful program is not guaranteed by Canto, but it is enabled and 
-           encouraged.</li>
-           </ul>
-           
-           <p>Finally, <b>Canto is fun</b>.  Canto was designed by a programmer in order to be enjoyable
-           to program in.  Have fun!</p>
-        |]
-    }
- 
-    more_what_is_canto {
-        [|
-           <ul>
-           <li><b>Object-oriented</b>: Canto has a rich set of OO features, including some unique to
-           Canto.  For example, Canto has a <code>sub</code> keyword that works like the <code>super</code> 
-           keyword in Java, C++ and other languages, only in reverse: it allows a superclass 
-           to invoke its subclass.  Instead of the subclass invoking the superclass   This turns 
-           out to be very useful when defining a class hierarchy for things like web pages or message
-           packets, where the stuff on the outside is created by the superclass and the stuff
-           on the inside by the subclass.</li> 
-           <li><b>Web-oriented</b>: Canto has a built-in web server, and a program doesn't have to do
-           anything special to be a web site.</li>
-           <li><b>Automated state management</b>: Canto is at heart a functional language and has no 
-           assignment operator.  But unlike other functional languages, it's not hard to manage state 
-           in Canto; in fact it happens automatically via caching, which is built in to the language 
-           and can provide whatever stateful behavior a program might need.</li>
-           <li><b>Flexible Typing</b>: Canto supports a hybrid static/dynamic type model.  Static
-           typing is supported but not required.</li>
-           <li><b>Code-Data Mixing</b>: like a templating language, Canto allows code to be embedded
-           in data; Canto also allows data to be embedded in code, with no limit to the nesting.</li>
-           </ul> 
-           
-      |]
-    }
-
-    cutting_room_floor [|
-    
-
-           Canto's object modeling features are both rich and concise.  The richness comes from
-           Canto's support for multiple inheritance as well as multiple modes of inheritance -- interface
-           (inheriting functions), implementation (inheriting construction logic), override (inheriting 
-           from the type being overridden) and lateral (mixing in construction logic from an interface).
-           The conciseness flows from the object lifecycle paradigm that allows object hierarchies to be
-           defined without the need for syntactic buttressing (see next bullet point).
-           
-           <li><strong>One namespace, multiple layers of meaning.</strong> In Canto, types, classes, 
-           functions, objects and variables are not different kinds of entities living in distinct 
-           namespaces.  Rather, they are different roles that a Canto entity can play, depending on
-           the context.  This reduces both the number of entities needed (because entities can play 
-           multiple roles) and the syntax neeed to declare them (because it isn't necessary to specify
-           the category of entity).
-           </li>
-
-           <p>Templating languages are popular in web development
-           because the template paradigm of code embedded in data efficiently captures the typical 
-           structure of actual web pages: static content with embedded bits of dynamic content.  Canto
-           goes further.  Not only does it support embedding code in data, like a templating language,
-           it also supports embedding data in code, which can be more efficient when the content
-           is mostly dynamic with some embedded static bits.    
-
-           <li><strong>Web-oriented.</strong> Every Canto program is automatically a web site or service. 
-           More precisely, a Canto program defines a system of responses which the Canto runtime engine 
-           uses to respond to HTTP requests, either from an external server or from the runtime engine's 
-           own embedded Jetty HTTP server.  The immediate benefit is freeing the programmer from having
-           to handle connections or protocol details.  
-           </li>
-           <p>Having a built-in web server, as convenient as it is, is a fairly superficial feature.  The 
-           real difference lies at the level of interaction between language and human (user or programmer).
-           The standard paradgim of language-human interaction for languages of all kinds – functional, 
-           procedural, object-oriented – is the command paradigm.  In this paradigm, a program is a command.
-           Programs are invoked and run till completion or interruption.  The distinguishing feature of 
-           languages which follow the command paradigm is a singleton entry point.  The rules for the name, 
-           parameters and other details vary from language to language, but whatever it's called there is
-           a particular point in the code where the program begins.
-           </p><p>
-           To be web-oriented, in contrast, is to be driven by request, not command.  A program in a language 
-           that follows the request paradigm has multiple entry points.  There is no guarantee that any 
-           particular entry point will be executed first, or ever, and the completion of a request does not in 
-           general imply completion of the program.   
-           </p><p>
-           Neither paradigm is inherently superior to the other, and neither precludes any interactive 
-           possibilities.  You can in fact implement any kind of interaction model in either language.    The 
-           significance of the interaction paradigm is that it determines which kind of interaction model 
-           comes naturally or automatically when using a language, and which must be devised and engineered.
-           </p>
-
-    
-           <h2>Simple and familiar, yet radically new</h2>
-           <p>Much of Canto's syntax will be recognizable to programmers familiar with mainstream
-           languages such as C, Java, Python and Javascript.  (An obvious exception is the set of 
-           delimiters Canto uses, which are purposefully unusual so that embedded Canto code can be 
-           safely distinguished from Javascript or other non-Canto code that can appear in Canto data 
-           blocks.)  This allows programmers to leverage their existing knowledge and experience when
-           learning to use Canto.  However, while the syntax may be functionally similar, the 
-           actual meaning is different due to the underlying paradigm.
-           </p><p>
-           Consider the following Canto snippet:</p><pre>[``
-
-    int x = 23
-    
-    log("The value of x is " + x);
-
-           ``]</pre><p>The first line looks very much like an assignment, and indeed has the same ultimate
-           effect; the second line will cause "The value of x is 23" to appear on the console.  But in
-           actuality the first line is a definition, not an assignment: x is a function that returns 23,
-           not a memory location which is assigned the value 23.  This syntactic similarity allows Canto
-           to support lazy evaluation and other benefits of declarative programming without the steep 
-           learning curve typical of functional languages.  
-           </p>
-           
-           Conceptually, a Canto entity follows a lifecycle. It begins as a bare type.
-           If the entity has children, then the type becomes an interface.  If the entity is instantiated,
-           it becomes a function; if that instantiated value is cached (the default in Canto), it becomes
-           a variable; if the entity's children are instantiated and cached it becomes a full-fledged
-           object.
-                      
-           <h2>Why use Canto?</h2>
-           <p>
-           </p>
-    
-    |]
       
     /-------- overview page --------------------------/
 
@@ -1372,21 +801,6 @@ site poetic_programming {
     public base_page backstory_page = article_page(backstory_article)
     public base_page poetic_programming_page = article_page(poetic_programming_article)
 
-public tt {
- article_page[] pp = [ quick_tour_page, leisurely_tour_page ]
- for article_page ap in pp {
-    show(ap);
- }
- show(article_page ap) {
-  article_page app = ap
-  app.type;
-  app.label;
- }
-
- br; br;
- quick_tour_page.type;
- quick_tour_page.label;
-}
 
 
     dynamic public base_page article_page(article a) {
@@ -1469,23 +883,6 @@ public tt {
         [| </pre> |]
     }
 
-
-    /---- pseudofiles ----/
-
-    js {
-        libs {
-            three {
-                public js {
-                    include_file("../3p/js/libs/three.js");
-                }
-            }
-            stats {
-                public js {
-                    include_file("../3p/js/libs/stats.min.js");
-                }
-            }
-        }
-    }
 
 
     /-------- error page --------------------------/

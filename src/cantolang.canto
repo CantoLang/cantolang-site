@@ -8,6 +8,7 @@
 site cantolang {
 
     adopt three
+    adopt content_handler
 
     /-------- global values -----------------------/
 

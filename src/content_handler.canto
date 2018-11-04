@@ -5,7 +5,7 @@
  *
  **/
 
-site cantolang {
+site content_handler {
 
     /---- base classes for documemt system ----/
 

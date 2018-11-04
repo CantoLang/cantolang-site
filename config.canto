@@ -70,12 +70,12 @@
 
     site_config cantolang_config {
         name = "cantolang"
-        cantopath = "src/cantolang*:../three/src:../sceneserver/src"
+        cantopath = "src/cantolang*:src/content*:../three/src:../sceneserver/src"
     }    
 
     site_config poetic_prog_config {
         name = "poetic_programming"
-        cantopath = "src/poetic*"
+        cantopath = "src/poetic*:src/content*"
     }
 
 
