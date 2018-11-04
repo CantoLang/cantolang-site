@@ -20,7 +20,16 @@ It is by now well established experimentally that normative judgments are often 
 
 ###The Semantics of Code
 
-Code has its own semantic divide, analogous in some ways to the denotational-affective difference.  Some aspects of code, such as keywords and syntactic structures, determine what happens when the code executes.  Others, such as comments and the names of variables and functions, are largely irrelevant.  It's a common practice, in fact, to remove comments and replace names as part of the deploy process for code such as scripts that run in a browser to improve performance and security.  Yet comments and names are absolutely necessary for understanding and maintaining code.
+Code has its own semantic divide, analogous in some ways to the denotational-affective difference.  In fact, the divide in code is starker: almost all the semantics are on one side.  The aspects of a program that determine what happens when the code executes, such as keywords and syntactic structures, carry no information about what the values being manipulated mean, what the manipulations are intended to accomplish, or almost anything else that touches on the outside world.  Elements that do carry such information, such as comments, variable names and function names, are largely irrelevant to the execution path.  That's why code minification and obfuscation work.  You can remove all the comments and replace all the names and the program runs exactly the same.  Yet these seemingly ineffective elements are absolutely necessary for understanding and maintaining code.
+
+The semantics of code represents the deep connection between the code and the world.  In a ride hailing app, a ```Car``` object is going to (generally) have relationship with an actual car in the real world.  The make and model listed in the ```Car``` object will match the car; the ```driver_name``` property will match the name of the actual driver; etc.  It's not a direct physical link; it takes a lot of application code, network communications, database retrievals, and more to get real-world properties into the ```Car``` object.
+
+Modeling reality in such fashion is not a computing requirement, it's a human requirement.  It represents the way a human would think about the task at hand.  It also exploits a human advantage, which is the knowledge humans have about how the world works.  This knowledge allows a programmer to perform semantic validation of the code.  For example, the assignment ```speed = temperature * salary``` would raise an immediate red flag because it would be absurd to calculate the real-world property of speed in this fashion.   
+
+###Semantic Pollution
+
+Not all names and comments in a program refer to the outside world.  Programs typically also contain internal semantic information referencing various aspects of the program itself.  Often external and internal semantics are mixed together.  So in addition to a ```Car``` object, the ride hailing app might have a ```CarController```, a ```CarView```, a ```CarRepository```, a ```CarEntityFactory```, etc.  When trying to understand a program's relationship to the outside world, such mixtures can muddy the waters.   
+
 
 
 ##The Poetic Critique
