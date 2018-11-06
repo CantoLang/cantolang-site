@@ -24,12 +24,17 @@ Code has its own semantic divide, analogous in some ways to the denotational-aff
 
 The semantics of code represents the deep connection between the code and the world.  In a ride hailing app, a ```Car``` object is going to (generally) have relationship with an actual car in the real world.  The make and model listed in the ```Car``` object will match the car; the ```driver_name``` property will match the name of the actual driver; etc.  It's not a direct physical link; it takes a lot of application code, network communications, database retrievals, and more to get real-world properties into the ```Car``` object.
 
-Modeling reality in such fashion is not a computing requirement, it's a human requirement.  It represents the way a human would think about the task at hand.  It also exploits a human advantage, which is the knowledge humans have about how the world works.  This knowledge allows a programmer to perform semantic validation of the code.  For example, the assignment ```speed = temperature * salary``` would raise an immediate red flag because it would be absurd to calculate the real-world property of speed in this fashion.   
+Modeling reality in such fashion is not a computing requirement, it's a human requirement.  It represents the way a human would think about the task at hand.  It also exploits a human advantage, which is the knowledge humans have about how the world works.  This knowledge allows a programmer to perform semantic validation of the code.  For example, the assignment ```speed = temperature * salary``` would raise an immediate red flag because it would be absurd to calculate the real-world property of speed in this fashion.
+
+###Richness vs. Precision
+
+As noted above, poetry is rich because it includes affective as well as denotative meaning.  But this isn't the only source of richness.  Poetry can also express multiple levels of denotative meaning, via metaphors.  When Carl Sandburg describes fog as coming on little cat feet he draws on our knowledge of cats to understand the behavior of fog.  Contrast this with the description a weather service might provide, which would include much more detailed information (visibility, temperature, time expected to lift), but all of it would be about fog, and none about cats.  This is the tradeoff between richness and precision.
+
+Poetic programming encourages semantic richness over precision.  While programs need to be syntactically, logically and numerically precise in order to be correct, semantically they do not.  (Remember, semantics has no effect on program execution.)  Code semantics can and should express the aspirational vision of the program: the real-world entities and actions it seeks to model, even if the implemented model is a pale shadow of reality.
 
 ###Semantic Pollution
 
-Not all names and comments in a program refer to the outside world.  Programs typically also contain internal semantic information referencing various aspects of the program itself.  Often external and internal semantics are mixed together.  So in addition to a ```Car``` object, the ride hailing app might have a ```CarController```, a ```CarView```, a ```CarRepository```, a ```CarEntityFactory```, etc.  When trying to understand a program's relationship to the outside world, such mixtures can muddy the waters.   
-
+Not all names and comments in a program refer to the outside world.  Programs typically also contain internal semantic information referencing various aspects of the program itself.  Often external and internal semantics are mixed together.  So in addition to a ```Car``` object, the ride hailing app might have a ```CarController```, a ```CarView```, a ```CarRepository```, a ```CarEntityFactory```, etc.  When trying to understand a program's relationship to the outside world, such mixtures can muddy the waters.
 
 
 ##The Poetic Critique
@@ -43,6 +48,8 @@ Platforms and frameworks are harmful.  They constrain the behavior of a program 
 ###Frameworks on Top of Frameworks
 
 Frameworks designed as customizations or extensions of other frameworks are doubly harmful.  Programmers who love frameworks generally love building frameworks as well, and if a framework has been adopted for a mission the temptation to build a more suitable and powerful framework on top of the first framework is very strong.  Any functionality that might be useful to multiple applications built on top of the framework is a candidate for the new intermediate framework.  The goal is improve the efficiency of application development by providing more functionality "out of the box".  Often however the result is that functionality is divided among different levels, and what might have seemed to be a natural division of responsibility to the original programmer seems arbitrary to those that come after.
+
+Furthermore, the new framework-on-framework cancels out many of the advantages of using a framework in the first place.  Instead of implementing the program on top of externally-maintained, well-documented and widely-supported code, the program must be implemented on top of custom code that is much less likely to be properly maintained or documented over time.  If the author of the framework-on-framework has left the company, there is a good chance it's not maintained or documented at all.
 
 ###Libraries
 
@@ -81,7 +88,7 @@ Poetic Programming embraces functional principles, but not functional purity.  F
 
 ###Declarative Programming
 
-There is no doubt that procedural programming is the most natural style for most programmers: step-by-step instructions to the computer, a recipe for the desired outcome.  Yet the focus on _how_ to achieve an outcome can obscure _what_ the outcome should be.  Which steps are vital, and which are simply the whim of the programmer?  Which effects are desired, and which are unanticipated?  
+There is no doubt that procedural programming is the most natural style for most programmers: step-by-step instructions to the computer, a recipe for the desired outcome.  Yet the focus on _how_ to achieve an outcome can obscure _what_ the outcome should be.  Which steps are vital, and which are simply the whim of the programmer?  Which effects are desired, and which are unanticipated?
 
 Declarative programming encourages the programmer to start with the _what_ and work backwards to the _how_.  This requires deeper thinking by the programmer, but the benefits are enormous: the purpose of the program is clear, and the organization of the program reflects its purpose.  As a bonus, the programmer will walk away with a fuller understanding of the original problem.
 
@@ -109,10 +116,10 @@ Automated testing is the software equivalent of mindfulness -- the ability of a 
 
 Simplicity has value.  If two programs do the same thing but differ in complexity, the simpler program is more valuable.  Complex programs are harder to maintain and more expensive to configure and run.  When something goes wrong it's harder to figure out the problem and riskier to push a fix.
 
-Poetic Programming is a practice of simplification.  The most complex program is the program not yet written.  In its earliest stages, when it's all skeleton and boilerplate, a program appears deceptively simple.  In fact, relative to what the program does at this early stage (almost nothing), the program may already be overly complex.   
+Poetic Programming is a practice of simplification.  The most complex program is the program not yet written.  In its earliest stages, when it's all skeleton and boilerplate, a program appears deceptively simple.  In fact, relative to what the program does at this early stage (almost nothing), the program may already be overly complex.
 
 ###Automated State Management
 
-As we have stated, variables are harmful because they are disconnected from their sources of information.  Poetic Programming suggests replacing variables with cached values that are connected to their sources.   
+As we have stated, variables are harmful because they are disconnected from their sources of information.  Poetic Programming suggests replacing variables with cached values that are connected to their sources.
 
 
