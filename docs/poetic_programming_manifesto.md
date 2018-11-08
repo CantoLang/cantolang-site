@@ -2,13 +2,27 @@
 
 ##Introduction
 
-Poetic Programming is an attitude that sees programming as a form of writing, and sees poetry as an especially good prototype for most programming.  Poetry is economical (says a lot with few words), rich (carries multiple layers of meaning), and beautiful (or strives to be).  Poetic Programming says that programs should aim for the same economy, richness, and aesthetic value that poems do.
+Poetic Programming is an attitude that sees programming as a form of writing, and sees poetry as an especially good prototype for programming.  Poetry is economical (says a lot with few words), rich (carries multiple layers of meaning), and beautiful (or strives to be).  Poetic Programming says that programs should aim for the same economy, richness, and aesthetic value that poems do.
 
 Poetic Programming is not the same as Code Poetry, though they certainly share many values and motivations.  Code Poetry takes code of any sort and lays it out so it resembles poetry.  Poetic Programming urges programs to be, not just resemble, poetry.
 
 ###The Semantics of Poetry
 
 The attributes of poetry that Poetic Programming seeks to emulate -- economy, richness, and beauty -- are means to an end; the end is to convey meaning.  Human writing in general contains two kinds of meaning: denotational (the dictionary definition) and affective (the feelings the writing evokes).  Many kinds of writing, such as technical writing, reference works, statutes, contracts, and many others, limit themselves as much as possible to denotational meaning, which can be objectively defined and delineated.  Affective meaning is subjective and much harder to nail down.  But that doesn't mean it's not useful or effective.  Some kinds of writing, such as poetry, actively use affective meaning to great effect.
+
+Affective meaning gives poetry a second channel to convey information.  This is the key to richness: there is always meaning in poetry beyond the straightforward definitions of the words in the poem.  It also paves the way to economy: not everything needs to be spelled out.  And it not just supports beauty, it's a prerequisite to it.
+
+###The Semantics of Code
+
+Code has its own semantic divide, analogous in some ways to the denotational-affective difference.  In fact, the divide in code is starker: almost all the semantics are on one side.  The aspects of a program that determine what happens when the code executes, such as keywords and syntactic structures, carry no information about what the values being manipulated mean, what the manipulations are intended to accomplish, or almost anything else that touches on the outside world.  Elements that do carry such information, such as comments, variable names and function names, are largely irrelevant to the execution path.  That's why code minification and obfuscation work.  You can remove all the comments and replace all the names and the program runs exactly the same.  Yet these seemingly ineffective elements are absolutely necessary for understanding and maintaining code.
+
+The semantics of code represents the deep connection between the code and the world.  In a ride hailing app, a ```Car``` object is going to (generally) have relationship with an actual car in the real world.  The make and model listed in the ```Car``` object will match the car; the ```driver_name``` property will match the name of the actual driver; etc.  It's not a direct physical link; it takes a lot of application code, network communications, database retrievals, and more to get real-world properties into the ```Car``` object.
+
+Modeling reality in such fashion is not a computing requirement, it's a human requirement.  It represents the way a human would think about the task at hand.  It also exploits a human advantage, which is the knowledge humans have about how the world works.  This knowledge allows a programmer to perform semantic validation of the code.  For example, the assignment ```speed = temperature * salary``` would raise an immediate red flag because it would be absurd to calculate the real-world property of speed in this fashion.   
+
+
+
+###Why Affective Meaning Is OK
 
 It's also not true that affective meaning in any way conflicts with or takes away from denotational meaning.  Quite the contrary, affective meaning can lead to more and deeper denotational meaning.  The great poet Rumi said that from understanding comes love.  It's also true that from love comes understanding.  When we love a subject, we dig deeper and invest more in making sense of it.  Revelations bring us joy.  When we love a person, we want to know not just the surface meaning of what she says; we want to know the feelings that she intends her words to carry.  It is those feelings that tell us what is really going on inside of her.
 
@@ -18,13 +32,6 @@ And the connection between denotational and affective goes beyond love of subjec
 
 It is by now well established experimentally that normative judgments are often influenced by affective factors.  Sometimes this influence is small and fleeting, like the effect of store music on shopping behavior.  Other times it can be deep and abiding, such as the moral instruction we receive as children.  In the deep and abiding category is the normative judgment underlying scientific knowledge, known to philosophers of science as the problem of theory choice.  As Thomas Kuhn and others have observed, there is no way to select between two theories of the world on the basis of fact, because facts are always facts about something, and what counts as something is different from theory to theory.
 
-###The Semantics of Code
-
-Code has its own semantic divide, analogous in some ways to the denotational-affective difference.  In fact, the divide in code is starker: almost all the semantics are on one side.  The aspects of a program that determine what happens when the code executes, such as keywords and syntactic structures, carry no information about what the values being manipulated mean, what the manipulations are intended to accomplish, or almost anything else that touches on the outside world.  Elements that do carry such information, such as comments, variable names and function names, are largely irrelevant to the execution path.  That's why code minification and obfuscation work.  You can remove all the comments and replace all the names and the program runs exactly the same.  Yet these seemingly ineffective elements are absolutely necessary for understanding and maintaining code.
-
-The semantics of code represents the deep connection between the code and the world.  In a ride hailing app, a ```Car``` object is going to (generally) have relationship with an actual car in the real world.  The make and model listed in the ```Car``` object will match the car; the ```driver_name``` property will match the name of the actual driver; etc.  It's not a direct physical link; it takes a lot of application code, network communications, database retrievals, and more to get real-world properties into the ```Car``` object.
-
-Modeling reality in such fashion is not a computing requirement, it's a human requirement.  It represents the way a human would think about the task at hand.  It also exploits a human advantage, which is the knowledge humans have about how the world works.  This knowledge allows a programmer to perform semantic validation of the code.  For example, the assignment ```speed = temperature * salary``` would raise an immediate red flag because it would be absurd to calculate the real-world property of speed in this fashion.   
 
 ###Semantic Pollution
 
