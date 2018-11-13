@@ -100,20 +100,21 @@ site poetic_programming {
 
     /-------- styles and appearance constants -----/
 
-    static SPLASH_LOGO = "images/noun_quill_592016_000000.png"
-    static HEADER_LOGO = "images/noun_quill_592016_000000.png"
+    static SPLASH_LOGO = "images/poetic_programming-800x160.png"
+    static HEADER_LOGO = "images/poetic_programming-800x160.png"
+    static SIDEBOX_LOGO = "images/noun_quill_120x120.png"
     
     /** pixels **/    
-    static int HEADER_LOGO_WIDTH = 300
-    static int HEADER_LOGO_HEIGHT = 300
+    static int HEADER_LOGO_WIDTH = 800
+    static int HEADER_LOGO_HEIGHT = 160
     
     /** rems **/
-    static float HEADER_HEIGHT = 8.25 
+    static float HEADER_HEIGHT = 0
     static int HEADER_MIN_WIDTH = 28
     static int MENU_WIDTH = 13
     static int CONTENT_MIN_WIDTH = 14
 
-    color main_bgcolor = "white"
+    color main_bgcolor = "#E7FFFF"
 
     /-------- common user interface ---------------/
 
@@ -229,24 +230,7 @@ site poetic_programming {
         }
     }
 
-
-    dynamic menu_item[] main_menu = [ menu_item(index),
-                                      submenu("A Tour of Canto", [
-                                          menu_item(quick_tour_page),
-                                          menu_item(leisurely_tour_page),
-                                          menu_item(backstory_page)
-                                      ]),
-                                      menu_item(docs),
-                                      menu_item(download) ]
-
-    dynamic menu_item[] header_menu = [ menu_item(index),
-                                        menu_item(quick_tour_page),
-                                        menu_item(docs),
-                                        menu_item(download),
-                                        menu_item(about) ]
-
-
-    float side_box_width = 14
+    float side_box_width = 13
     media_queries {
     
         int narrow_max = HEADER_MIN_WIDTH   
@@ -285,9 +269,9 @@ site poetic_programming {
                .side_box {
                    position: fixed;
                    float: left;
-                   width: {= (side_box_width - 4.5); =}rem;
-                   margin: 0 0.5rem 0 0;
-                   padding: 5rem 3rem 1rem 1rem;
+                   width: {= (side_box_width - 1); =}rem;
+                   margin: 0 0 0 0;
+                   padding: 1rem 1.5rem 1rem 1.5rem;
                }
                .content_body {
                    width: 100%;
@@ -303,24 +287,6 @@ site poetic_programming {
         |]
     }
 
-    /-------- useful display objects --------------/
-
-    serializable(*) quote(quote_text, quote_author) {
-        keep: text = quote_text
-        keep: author = quote_author
-        this;
-    }
-    
-    dynamic quote_slide(quote q) {
-        [| <p><i> |]
-        q.text;
-        [| </i></p> |]
-        if (q.author) {
-            [| <p><b> |]
-            q.author;
-            [| </b></p> |]
-        }
-    }
 
     /-------- base styles -------------------------/
 
@@ -339,10 +305,10 @@ site poetic_programming {
 
         .page_wrapper {
             padding: 1rem 0;
-            background-color: #EAEAEF;
             width: 100%;
             min-height: 100%;
             overflow: hidden;
+            background-color: {= main_bgcolor; =};
         }
         
         .viewer_container {
@@ -351,10 +317,9 @@ site poetic_programming {
         }
         
         .header_box {
-            position: fixed;
             padding: 0;
-            margin: 0;
-            height: {= HEADER_HEIGHT; =}rem;
+            margin: 0 0 2rem 0;
+            text-align: center;
             width: 100%;
         }
         
@@ -363,10 +328,10 @@ site poetic_programming {
         }
 
         .header_bar {
-            background-color: #F7F1BC;
-            color: #555555;
+            background-color: darkslategray;
+            color: white;
             text-align: left;
-            padding: 0 1rem;
+            padding: 0 1rem 0 4rem;
             width: 100%;
         }
 
@@ -376,11 +341,19 @@ site poetic_programming {
         }
 
         .header_bar h1 {
-            color: #338888;
-            font-size: 1.25rem;
-            font-family: "Arial Black", Gadget, sans-serif
-            font-weight: bold;
+            color: gold;
+            font-size: 2.5rem;
+            font-family: Courier New, Courier, Lucida Typewriter, monospace;
             padding-left: 2rem;
+            line-height: 2rem;
+        }
+
+        .header_bar h2 {
+            color: silver;
+            font-size: 2.5rem;
+            font-family: Courier New, Courier, Lucida Typewriter, monospace;
+            padding-left: 2rem;
+            line-height: 2rem;
         }
 
         .header_bar img {
@@ -390,7 +363,7 @@ site poetic_programming {
         }
 
         .side_box {
-            background-color: #EFEDE1;
+            background-color: palegoldenrod;
             height: 100%;
         }
         
@@ -406,6 +379,7 @@ site poetic_programming {
         .content_header_box {
             text-align: center;
             background-color: white;
+            height: {= HEADER_HEIGHT; =}rem;
         }
             
         .content_main_points li {
@@ -424,7 +398,6 @@ site poetic_programming {
         }
 
         .main_panel {
-            background-color: white;
             color: black;
             padding: 1rem;
             font-size: 0.95rem;
@@ -448,8 +421,6 @@ site poetic_programming {
             width: 40rem;
             padding: 1.5rem;
             color: #88FFAA;
-            z-index: 100;
-            background: rgba(31, 31, 31, 0.75);
         }
 
         .main_point {
@@ -523,6 +494,7 @@ site poetic_programming {
         }
 
         .slide {
+            width: {= (side_box_width - 2); =}rem;
             position: absolute;
             transition: opacity 1.5s;
             opacity: 0;
@@ -607,6 +579,80 @@ site poetic_programming {
         {= media_queries; =}
     |]        
 
+    /-------- quote mechanism ---------------------/
+
+    serializable(*) quote(quote_text, quote_author) {
+        keep: text = quote_text
+        keep: author = quote_author
+        this;
+    }
+    
+    dynamic quote_slide(quote q) {
+        [| <p><i> |]
+        q.text;
+        [| </i></p> |]
+        if (q.author) {
+            [| <p><b> |]
+            q.author;
+            [| </b></p> |]
+        }
+    }
+
+    /-------- quotes to show on main page ---------/
+
+    quote[] main_quotes = [
+        quote([| A program is, above all, a form of human communication.  A 
+                 program can't just work; it must explain itself.  It must
+                 telegraph its intentions and wear its strategy on its sleeve.
+                 It must have a voice. |], null),
+
+        quote([| It's much easier to make beautiful-but-slow code fast than it is
+                 to make fast-but-ugly code beautiful. |], "Tim Bray"),
+
+        quote([| Any fool can write code that a computer can understand. Good
+                 programmers write code that humans can understand. |], "Martin Fowler"),
+
+        quote([| Einstein argued that there must be simplified explanations of
+                 nature, because God is not capricious or arbitrary. No such
+                 faith comforts the software engineer. |], "Fred Brooks"),
+
+        quote([| If it's hard to fond a simple name for a variable or method that
+                 creates a clear image of the underlying object, that's a hint that
+                 the underlying object may not have a clean design. |],
+              "John Ousterhout"),
+
+        quote([| There are two ways of constructing a software design: One way is
+                 to make it so simple that there are obviously no deficiencies.  And
+                 the other way is to make it so complicated that there are no obvious
+                 deficiencies. |], "C.A.R. Hoare"),
+
+        quote([| The enjoyment of one's tools is an essential ingredient of
+                 successful work. |], "Donald Knuth"),
+
+        quote([| Even if aesthetics are not the mathematics of beauty, they are
+                 the proof of the calculation. |], "Franz Grillparzer"),
+
+        quote([| A sentence should contain no unnecessary words, a paragraph no 
+                 unnecessary sentences, for the same reason that a drawing should 
+                 have no unnecessary lines and a machine no unnecessary parts. |],
+              "William Strunk, Jr."),
+
+        quote([| The world is filled with frameworks that are a little too hard
+                 to understand and look like they have a bit too much investment
+                 in them. |], "Michael Feathers"),
+
+        quote([| Code is just a smart kind of data -- data designed to trigger
+                 processors into performing certain useful or amusing acts. |],
+              "Charles Petzold"),
+
+        quote([| Controlling complexity is the essence of computer programming. |],
+              "Brian Kernighan"),
+
+        quote([| Static typing where possible, dynamic typing when needed! |],
+              "Erik Meijer and Peter Drayton")
+
+        ]
+
     /-------- base page ---------------------------/
     page(*) base_page(params{}) {
         boolean ajax_enabled = true
@@ -639,21 +685,69 @@ site poetic_programming {
 
         component side_box {
             component_class = "side_box"
+            
+            header_box;
             side_box_content;
+        }
+        
+        component header_box {
+            component_class = "header_box"
+            
+            [| <div><img src="{= SIDEBOX_LOGO; =}"></div> |]
         }
         
         
         side_box_content {
+            slide_show(main_slides);
         }
+
+        dynamic slide_show(slides[]) {
+            for slide in slides and int i from 1 {
+                [| <div class="slide" id="slide{= i; =}"> |]
+                slide;
+                [| </div> |]
+            }
+            [| <script> |]
+            slide_script(slides.count);            
+            [| </script> |]
+        }
+
+        dynamic javascript slide_script(int numslides) [|
+            var ns = {= numslides; =};
+            var cs = 1;
+
+            var startslide = document.getElementById("slide1");
+            startslide.style.opacity = 1;
+            setInterval(function () {
+                var oldslide = document.getElementById("slide" + cs);
+                if (cs == ns) {
+                    cs = 1;
+                } else {
+                    cs++;
+                }
+                var newslide = document.getElementById("slide" + cs);
+
+                oldslide.style.opacity = 0;
+                newslide.style.opacity = 1;
+            }, 7000); 
+        |]
+
+
+        main_slides[] = [ for quote q in main_quotes { quote_slide(q) } ]
+
 
 
         component header_bar {
             component_class = "header_bar"
             
-            [| <div><img src="{= HEADER_LOGO; =}"></div> |]
-            [| <div><h1>A Language<br>for Imaginitive Programming</h1></div> |]
+            [| <div><h1>Poetic Programming:</h1><h2>A Manifesto</h2></div> |]
         }
         
+        component content_header_box {
+            component_class = "content_header_box"
+            header_bar;
+            menu_box(page_name, header_menu);
+        }
 
         base_page this_page = owner
         page_name = owner.type
@@ -665,10 +759,7 @@ site poetic_programming {
 
         } else if (!needs_admin || authenticate_admin(this_username)) {
             log("we're good");
-            [| <div class="page_wrapper"><div class="header_box"> |]
-            header_bar;
-            menu_box(page_name, header_menu);
-            [| </div><div class="content_box"> |]
+            [| <div class="page_wrapper"><div class="content_box"> |]
             side_box;
             [| <div class="content_header_box_wrapper"> |]
             content_header_box;
@@ -676,10 +767,7 @@ site poetic_programming {
             sub;
             [| </div></div></div> |] 
             footer_box(page_name, footer_menu);
-            with (bg_scene) {
-                tc(bg_scene);
-            }
-
+ 
         } else {
             log("access to " + page_name + " by " + this_username + " denied");
             "Access denied.";
@@ -728,10 +816,6 @@ site poetic_programming {
         
     }    
 
-    component content_header_box {
-        component_class = "content_header_box"
-    }
-
     component footer_box {
         component_class = "footer_box"
     }
@@ -754,6 +838,14 @@ site poetic_programming {
 
         label = "Home"
 
+        [| <h3>tl;dr</h3>
+           <p>Current programming practices often lead to software that is too complex and
+           too hard to understand.  Poetic Programming is a programming philosophy that
+           counters this tendency by promoting practices that aim for the values that
+           characterize poetry: economy (say a lot with few words), richness (convey multiple
+           layers of meaning), and beauty.</p> 
+        |]
+      
  
     }
 
@@ -769,119 +861,6 @@ site poetic_programming {
         sub;
     }
     
-
-      
-    /-------- overview page --------------------------/
-
-    current_article(article_key) = article_key
-
-
-    /** The list of available articles.  This is the canonical source of article
-     *  availability; other sources of article information, such as the article
-     *  lookup table, are constructed from this list.
-     **/
-    global article[] all_articles = [ quick_tour_article, leisurely_tour_article, backstory_article ]
-
-    /** Lookup table for articles.  Keyed on article key. **/
-    global article{} article_table = { for article a in all_articles { a.key: a } }
-    
-    article overview_article(doc_name, article_name) {
-        title = article_name
-        key = doc_name
-        content = include_content(doc_name)
-    }
-
-    global article quick_tour_article = overview_article("quick_tour", "Quick Tour");
-    global article leisurely_tour_article = overview_article("leisurely_tour", "Leisurely Tour");
-    global article backstory_article = overview_article("backstory", "Backstage Tour")
-    global article poetic_programming_article = overview_article("poetic_programming_manifesto", "Poetic Programming");
-
-    public base_page quick_tour_page = article_page(quick_tour_article) 
-    public base_page leisurely_tour_page = article_page(leisurely_tour_article) 
-    public base_page backstory_page = article_page(backstory_article)
-    public base_page poetic_programming_page = article_page(poetic_programming_article)
-
-
-
-    dynamic public base_page article_page(article a) {
-        boolean needs_login = false    
-
-        label = a.title
-    
-        show_article(a);
-    }
-
-   
-    public base_page(*) overview(params{}) {
-        boolean needs_login = false    
-
-        label = "A Tour of Canto"
-
-        article_param = params["article"]
-        
-        static DEFAULT_ARTICLE = "quick_tour"
-
-        if (article_param) {
-            eval(current_article(: article_param :));
-        } else if (!current_article) {
-            eval(current_article(: DEFAULT_ARTICLE :));
-        }
-        log("current article is " + current_article); 
-        
-        show_article(article_table[current_article]); 
-
-    }
-
-    dynamic include_content(doc_name) {
-        include_file(file_base + "/docs/" + doc_name + ".md");
-    }
-
-
-
-    /-------- docs page ---------------------------/
-
-    public base_page(*) docs(params{}) {
-        boolean needs_login = false    
-
-        label = "Documentation"
-        
-        [| <h1>Canto Documentation</h1> |]
-        
-        
-    }
-    
-    /-------- download page -----------------------/
-
-    public base_page(*) download(params{}) {
-        boolean needs_login = false    
-
-        label = "Download"
-    }
-    
-    /-------- about page -----------------------/
-
-    public base_page(*) about(params{}) {
-        boolean needs_login = false    
-
-        label = "About"
-    }
-    
-    /-------- examples page -----------------------/
-
-    public base_page(*) examples(params{}) {
-        boolean needs_login = false    
-
-        label = "Examples"
-    }
-    
-    public base_page show_logs {
-        boolean needs_login = true
-        boolean needs_admin = true
-
-        [| <h3>fundev.log</h3><pre> |]
-        include_file(LOG_FILE);
-        [| </pre> |]
-    }
 
 
 

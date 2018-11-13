@@ -72,10 +72,15 @@
         name = "cantolang"
         cantopath = "src/cantolang*:src/content*:../three/src:../sceneserver/src"
     }    
+    
+    site_config content_handler_config {
+        name = "content_handler"
+        cantopath = "src/content*"
+    }
 
     site_config poetic_prog_config {
         name = "poetic_programming"
-        cantopath = "src/poetic*:src/content*"
+        cantopath = "src/poetic*"
     }
 
 
