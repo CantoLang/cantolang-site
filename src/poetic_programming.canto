@@ -343,7 +343,7 @@ site poetic_programming {
         .header_bar h1 {
             color: gold;
             font-size: 2.5rem;
-            font-family: Courier New, Courier, Lucida Typewriter, monospace;
+            font-family: "Courier New", "Tlwg Mono", "Courier", "Lucida Typewriter", monospace;
             padding-left: 2rem;
             line-height: 2rem;
         }
@@ -351,7 +351,7 @@ site poetic_programming {
         .header_bar h2 {
             color: silver;
             font-size: 2.5rem;
-            font-family: Courier New, Courier, Lucida Typewriter, monospace;
+            font-family: "Courier New", "Tlwg Mono", "Courier", "Lucida Typewriter", monospace;
             padding-left: 2rem;
             line-height: 2rem;
         }
@@ -379,7 +379,6 @@ site poetic_programming {
         .content_header_box {
             text-align: center;
             background-color: white;
-            height: {= HEADER_HEIGHT; =}rem;
         }
             
         .content_main_points li {
