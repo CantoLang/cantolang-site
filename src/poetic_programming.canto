@@ -230,7 +230,7 @@ site poetic_programming {
         }
     }
 
-    float side_box_width = 13
+    float side_box_width = 12.5
     media_queries {
     
         int narrow_max = HEADER_MIN_WIDTH   
@@ -275,14 +275,12 @@ site poetic_programming {
                }
                .content_body {
                    width: 100%;
+                   max-width: {= (66 - side_box_width); =}rem;
+                   margin-left: {= (side_box_width + 1.5); =}rem;
                }
                .content_header_box {
                    margin-left: {= side_box_width; =}rem;
                }
-               .main_panel {
-                   margin-left: {= side_box_width; =}rem;
-               }
-               
            }
         |]
     }
@@ -331,7 +329,7 @@ site poetic_programming {
             background-color: darkslategray;
             color: white;
             text-align: left;
-            padding: 0 1rem 0 4rem;
+            padding: 0 1rem 0 2rem;
             width: 100%;
         }
 
@@ -382,23 +380,21 @@ site poetic_programming {
         }
             
         .content_main_points li {
-            display: block;
-            padding: 0.5rem 1rem;
+            padding-bottom: 1rem;
+            font-style: italic;
+            font-weight: bold;
         }
     
         .content_main_points ul {
-            padding: 0;
+            padding-left: 1rem;
             margin: 0;
             list-style-type: square;
         }
 
-        .content_body {
-            max-width: 64rem;
-        }
-
         .main_panel {
             color: black;
-            padding: 1rem;
+            background-color: white;
+            padding: 2rem;
             font-size: 0.95rem;
             line-height: 1.5;
         }
@@ -837,12 +833,15 @@ site poetic_programming {
 
         label = "Home"
 
-        [| <h3>tl;dr</h3>
-           <p>Current programming practices often lead to software that is too complex and
-           too hard to understand.  Poetic Programming is a programming philosophy that
-           counters this tendency by promoting practices that aim for the values that
-           characterize poetry: economy (say a lot with few words), richness (convey multiple
-           layers of meaning), and beauty.</p> 
+        [| <div class="content_main_points">
+           <h3>tl;dr</h3>
+           <ul>
+           <li>Current programming practices often lead to software that is too complex and
+           too hard to understand.</li>
+           <li>Poetic Programming counters this tendency by emphasizing poetic values: economy
+           (say a lot with few words), richness (convey multiple layers of meaning), and beauty.</li>
+           </ul> 
+           </div>
         |]
       
  
