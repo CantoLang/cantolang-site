@@ -2,7 +2,9 @@
 
 ##Introduction
 
-Poetic Programming is an attitude that sees programming as a form of writing, and sees poetry as an especially good prototype for programming.  Poetry is economical (says a lot with few words), rich (carries multiple layers of meaning), and beautiful (or strives to be).  Poetic Programming says that programs should aim for the same economy, richness, and aesthetic value that poems do.
+Poetic Programming is an attitude that sees programming as a form of writing -- that is, as a form of human linguistic expression
+
+, and sees poetry as an especially good prototype for programming.  Poetry is economical (says a lot with few words), rich (carries multiple layers of meaning), and beautiful (or strives to be).  Poetic Programming says that programs should aim for the same economy, richness, and aesthetic value that poems do.
 
 Poetic Programming is not the same as Code Poetry, though they certainly share many values and motivations.  Code Poetry takes code of any sort and lays it out so it resembles poetry.  Poetic Programming urges programs to be, not just resemble, poetry.
 
