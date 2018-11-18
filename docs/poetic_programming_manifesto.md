@@ -2,13 +2,14 @@
 
 ##Introduction
 
-Poetic Programming is an attitude that sees programming as a form of writing -- that is, as a form of human linguistic expression
+Poetic Programming is an attitude that sees programming as a form of human linguistic expression -- i.e., writing.  The purpose of writing is to communicate to people, and indeed the most important goal of any program is to communicate to other programmers what it is trying to do, how it aims to do it, and why this is the best way to do it.  This is more important even than working correctly and delivering value to users, because a program that succeeds in its communication mission can be maintained and improved, and can therefore become better and more useful over time, whereas a program that fails to communicate is destined to fade into irrelevance.
 
-, and sees poetry as an especially good prototype for programming.  Poetry is economical (says a lot with few words), rich (carries multiple layers of meaning), and beautiful (or strives to be).  Poetic Programming says that programs should aim for the same economy, richness, and aesthetic value that poems do.
+It may seem that the room for expression in a program is limited, given the severe constraints of syntax and logic.  But the truth is the opposite: the room for expression is infinite.  It would be nonsensical to say that syntax and grammar stand in the way of writing a great novel; the same is true of writing a great program.  
 
-Poetic Programming is not the same as Code Poetry, though they certainly share many values and motivations.  Code Poetry takes code of any sort and lays it out so it resembles poetry.  Poetic Programming urges programs to be, not just resemble, poetry.
+Unfortunately many current programming practices relegate expression to a minor concern or ignore it altogether.  The result is that modern software tends to be more complicated and harder to understand than it neeeds to be.  Poetic programming addresses this problem by adopting poetry as a model for programming, not in the superficial sense of rhyming or being formatted like a poem, but in the deeper sense of striving to embody poetic values.  Poetry is economical (says a lot with few words), rich (carries multiple layers of meaning), and aesthetic (seeks to evoke an emotional response).  Poetic Programming says that programs should aim for precisely these things.
 
-###The Semantics of Poetry
+
+##Poetry and Meaning
 
 The attributes of poetry that Poetic Programming seeks to emulate -- economy, richness, and beauty -- are means to an end; the end is to convey meaning.  Human writing in general contains two kinds of meaning: denotational (the dictionary definition) and affective (the feelings the writing evokes).  Many kinds of writing, such as technical writing, reference works, statutes, contracts, and many others, limit themselves as much as possible to denotational meaning, which can be objectively defined and delineated.  Affective meaning is subjective and much harder to nail down.  But that doesn't mean it's not useful or effective.  Some kinds of writing, such as poetry, actively use affective meaning to great effect.
 
@@ -22,23 +23,21 @@ The semantics of code represents the deep connection between the code and the wo
 
 Modeling reality in such fashion exploits a human advantage, which is the general knowledge humans have about how the world works.  This knowledge allows a programmer to perform semantic validation of the code.  For example, the assignment ```speed = temperature * salary``` would raise an immediate red flag because it would be absurd to calculate the real-world property of speed in this fashion.
 
-
 ###Why Affective Meaning Is OK
 
 Affective meaning in no way conflicts with or takes away from denotational meaning.  Quite the contrary, affective meaning can lead to more and deeper denotational meaning.  The great poet Rumi said that from understanding comes love.  It's also true that from love comes understanding.  When we love a subject, we dig deeper and invest more in making sense of it.  Revelations bring us joy.  When we love a person, we want to know not just the surface meaning of what she says; we want to know the feelings that she intends her words to carry.  It is those feelings that tell us what is really going on inside of her.
 
-Ideally we have virtuous understanding-love-understanding-love cycle, where the more we learn about persons or subjects, the more we love them, and the more we love persons or subjects, the more we learn about them.  But even if the feelings are not positive, they add positively to (painful) understanding.
+Ideally we have a virtuous understanding-love-understanding-love cycle, where the more we learn about persons or subjects, the more we love them, and the more we love persons or subjects, the more we learn about them.  But even if the feelings are not positive, they add positively to (painful) understanding.
 
 And the connection between denotational and affective goes beyond love of subject.  It extends to our most fundamental judgements.  Denotational knowledge always reaches a limit.  It reaches a limit as you drill down into the facts, and eventually reach questions of fact for which you have no answer.  It reaches a limit as you follow the logical arguments back to their source, to the premises we take as given.  And most notably for our present topic, it reaches a limit when we get to the normative judgments that underlie those premises.
 
 It is by now well established experimentally that normative judgments are often influenced by affective factors.  Sometimes this influence is small and fleeting, like the effect of store music on shopping behavior.  Other times it can be deep and abiding, such as the moral instruction we receive as children.  In the deep and abiding category is the normative judgment underlying scientific knowledge, known to philosophers of science as the problem of theory choice.  As Thomas Kuhn and others have observed, there is no way to select between two theories of the world on the basis of fact, because facts are always facts about something, and what counts as something is different from theory to theory.  So we need to use another basis, such as simplicity, or elegance, or beauty.  These are normative judgments, and they accept affective input. 
 
-
 ###Richness vs. Precision
 
 As noted above, poetry is rich because it includes affective as well as denotative meaning.  But this isn't the only source of richness.  Poetry can also express multiple levels of denotative meaning, and affective meaning, via metaphors.  When Carl Sandburg describes fog as coming on little cat feet he draws on our knowledge of cats to understand the behavior of fog.  Contrast this with the description a weather service might provide, which would include much more detailed information (visibility, temperature, time expected to lift), but all of it would be about fog, and none about cats.  This is the tradeoff between richness and precision.
 
-Poetic programming encourages semantic richness over precision.  While programs need to be syntactically, logically and numerically precise in order to be correct, semantically they do not.  (Remember, semantics has no effect on program execution.)  Code semantics can and should express the aspirational vision of the program: the real-world entities and actions it seeks to model, even if the implemented model is a pale shadow of reality.
+Poetic programming encourages semantic richness over precision.  While programs need to be syntactically, logically and numerically precise in order to be correct, semantically they do not.  (Remember, a lot of the semantic content of a program has no effect on its execution.)  Code semantics can and should express the aspirational vision of the program: the real-world entities and actions it seeks to model, even if the implemented model is a pale shadow of reality.
 
 ###Semantic Pollution
 
@@ -47,7 +46,7 @@ Not all names and comments in a program refer to the outside world.  Programs ty
 
 ##The Poetic Critique
 
-Poetic Programming begins not as a paradigm, or even a style.  It begins , in good dialectic fashion, as a critique of the existing practice.  Too often programs are bloated, incomprehensible, and ugly, not because programmers are incapable of better but because many forces push them in that direction.  Among these forces are various trends and commonly held principles that are generally considered to be neutral or positive, but which reliably lead to unwieldy and confusing programs.  Here are examples:
+Too often programs are bloated, incomprehensible, and ugly, not because programmers are incapable of better but because many forces push them in that direction.  Among these forces are various trends and commonly held principles that are generally considered to be neutral or positive, but which reliably lead to unwieldy and confusing programs.  Here are examples:
 
 ###Platforms and Frameworks
 
@@ -84,7 +83,7 @@ Just as important as spotlighting programming practices that should be changed i
 
 Design patterns did not originate among programmers. The book that started it all, _A Pattern Language: Towns, Buidings, Construction_, was written by architects (Christopher Alexander, Sara Ishikawa, and Murray Silverstein).  It begins with the recognition that the problems that architects and designers encounter at all scales, from chairs and tables to houses and shops to cities and parks, arise from the tension inherent in Human Space -- the interplay between the hard, unalterable reality of physics and geometry on the one hand, and the harder-to-pin-down but just as real needs and constraints of human beings on the other.  The problems of Human Space are too dynamic and variable for exact, scientifically determined solutions, yet with experience it is possible to recognize that some approaches are better than others.
 
-Design patterns are knowledge extracted from this experience.  They aren't algorithms; they depend on nuanced adaptation to circumstances.  They are templates, but not just templates; they are based on images of a solution deriving from simple but deep concepts.  They resemble more than anything else the metaphoric imagery of poetry. 
+Design patterns are knowledge extracted from this experience.  They aren't algorithms; they depend on nuanced adaptation to circumstances.  They are templates, but not just templates; they are based on images of a solution deriving from simple but deep concepts.  They resemble more than anything else the metaphoric imagery of poetry.  They suggest useful metaphors that can guide implementation: for code that has to process all the members of a structure, think of visitors; for code that has to create particular objects based on input parameters, think of factories; for code that has to impersonate a particular programming interface, think of facades; and so on.  
 
 ###Functions
 
