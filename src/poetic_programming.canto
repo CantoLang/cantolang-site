@@ -381,8 +381,6 @@ site poetic_programming {
             
         .content_main_points li {
             padding-bottom: 1rem;
-            font-style: italic;
-            font-weight: bold;
         }
     
         .content_main_points ul {
@@ -836,9 +834,17 @@ site poetic_programming {
         [| <div class="content_main_points">
            <h3>tl;dr</h3>
            <ul>
-           <li>Current programming practices often lead to software that is too complex and
-           too hard to understand.</li>
-           <li>One reason for this is that </li>
+           <li>Programming is a kind of writing.  The most important goal of any program
+           is to communicate to other programmers what it does, how it does it, and
+           why.</li>
+           <li>Current programming practices often neglect this, leading to programs
+           that are too complicated and too hard to understand.</li>
+           <li><strong>Poetic Programming</strong> addresses this problem by putting
+           <strong>poetic values</strong> -- economy, richness, and beauty -- at the
+           forefront of programming.</li>
+           <li>This realignment of concerns encourages programmers to de-emphasize the
+           non-semantic aspects of a program, such as frameworks, which lead to
+           semantic pollution.</li>
            </ul> 
            </div>
         |]
