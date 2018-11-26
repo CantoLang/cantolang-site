@@ -781,38 +781,4 @@ Fourth line is plain text.
         }
     }
 
-    t_res(test_name, boolean rslt) {
-        keep: name = test_name
-        keep: boolean result = rslt
-        
-        eval(name);
-        eval(result);
-        
-        this;
-    }
-
-    dynamic t_b {
-        name = owner.type
-        sub;    
-    }
-    
-    t_b t_b_sub {
-        "Z";
-    } 
-
-    t_r {
-        name = owner.type
-
-        t_b[] tests = [ t_b_sub ]
-
-        /** accumulator for test results **/
-        keep: t_res[] results(t_res[] rslts) = rslts 
-
-        dynamic run {
-            eval(results(: :));
-            for t_b t in tests {
-                results(: results + t_res(t.name, true) :);
-            }
-        } 
-    } 
 }
