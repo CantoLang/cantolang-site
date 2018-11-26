@@ -247,6 +247,7 @@ site poetic_programming {
                }
                .side_box {
                    width: 100%;
+                   align: bottom;
                }
                .content_body {
                    width: 96%;
@@ -254,6 +255,9 @@ site poetic_programming {
                }
                .content_body ul {
                    padding-left: 1rem;
+               }
+               .content_side_box {
+                   display: none;
                }
            }
         |]
@@ -270,6 +274,7 @@ site poetic_programming {
                    position: fixed;
                    float: left;
                    width: {= (side_box_width - 1); =}rem;
+                   height: 100%;
                    margin: 0 0 0 0;
                    padding: 1rem 1.5rem 1rem 1.5rem;
                }
@@ -280,6 +285,9 @@ site poetic_programming {
                }
                .content_header_box {
                    margin-left: {= side_box_width; =}rem;
+               }
+               .content_side_box {
+                   position: absolute;
                }
            }
         |]
@@ -362,7 +370,6 @@ site poetic_programming {
 
         .side_box {
             background-color: palegoldenrod;
-            height: 100%;
         }
         
         .footer_box {
@@ -380,13 +387,28 @@ site poetic_programming {
         }
             
         .content_main_points li {
+            color: darkslategray;
+            font-size: 1.1rem;
+            font-weight: bold;
             padding-bottom: 1rem;
         }
     
         .content_main_points ul {
-            padding-left: 1rem;
+            padding-left: 8rem;
+            padding-right: 1rem;
             margin: 0;
             list-style-type: square;
+        }
+
+        .content_side_box {
+            padding: 0.5rem;
+            background-color: slategray;
+        }
+
+        .content_side_box h3 {
+            color: silver;
+            font-size: 1.75rem;
+            font-weight: bold;
         }
 
         .main_panel {
@@ -652,10 +674,11 @@ site poetic_programming {
     
         boolean needs_login [?]    
         boolean needs_admin = false
+        title = "Poetic Programming: A Manifesto"
         
         label [?]
         
-       style {
+        style {
             main_style;
             menu_style;
         }
@@ -725,10 +748,7 @@ site poetic_programming {
             }, 7000); 
         |]
 
-
         main_slides[] = [ for quote q in main_quotes { quote_slide(q) } ]
-
-
 
         component header_bar {
             component_class = "header_bar"
@@ -739,7 +759,6 @@ site poetic_programming {
         component content_header_box {
             component_class = "content_header_box"
             header_bar;
-            menu_box(page_name, header_menu);
         }
 
         base_page this_page = owner
@@ -751,7 +770,6 @@ site poetic_programming {
             login_splash_box;
 
         } else if (!needs_admin || authenticate_admin(this_username)) {
-            log("we're good");
             [| <div class="page_wrapper"><div class="content_box"> |]
             side_box;
             [| <div class="content_header_box_wrapper"> |]
@@ -777,10 +795,6 @@ site poetic_programming {
         component this_component = owner
         field_ids[] = [ USERNAME_PARAM, PASSWORD_PARAM ]
         submit_params{} = { "goto": goto_page } 
-        
-        
-        log(" login component params: " + params);
-        log(" login submit params: " + submit_params);
         
         if (params[USERNAME_PARAM]) {
             log("trying to authenticate " + params[USERNAME_PARAM]);
@@ -828,29 +842,53 @@ site poetic_programming {
 
     public base_page(*) index(params{}) {
         boolean needs_login = false    
-
         label = "Home"
 
-        [| <div class="content_main_points">
-           <h3>tl;dr</h3>
-           <ul>
-           <li>Programming is a kind of writing.  The most important goal of any program
-           is to communicate to other programmers what it does, how it does it, and
-           why.</li>
-           <li>Current programming practices often neglect this, leading to programs
-           that are too complicated and too hard to understand.</li>
-           <li><strong>Poetic Programming</strong> addresses this problem by putting
-           <strong>poetic values</strong> -- economy, richness, and beauty -- at the
-           forefront of programming.</li>
-           <li>This realignment of concerns encourages programmers to de-emphasize the
-           non-semantic aspects of a program, such as frameworks, which lead to
-           semantic pollution.</li>
-           </ul> 
+        [| <div class="content_side_box">
+           <h3>TL;DR</h3>
            </div>
+           <div class="content_main_points">
+           <ul>
+           <li>Like bad prose, many programs are big, ugly, and complicated.</li>
+           <li>Like good poetry, programs should be short, beautiful, and full 
+           of meaning.</li>
+           <li>Programming is writing. These are truths, not metaphors.</li>
+           </ul> 
+           <p>Programming is a kind of writing.  The primary purpose of writing 
+           is communication, and programming is no exception.  The first goal of
+           any program is to communicate what it does, how it does it, and why.
+           Without this a program is unmaintainable and therefore close to useless.
+           </p> 
+           
+           <p>Standard programming practices often neglect this key fact, leading to 
+           programs that are too complicated and too hard to understand.  Poetic 
+           Programming addresses this problem by encouraging approaches that put
+           poetic values -- <strong>economy, richness, and beauty</strong> -- at the 
+           forefront.  This realignment of concerns encourages programmers to 
+           de-emphasize the aspects of a program that increase complexity without 
+           contributing to meaning (frameworks, for example) and focus on those
+           aspects that relate most closely to the problem domain.
+           </p>
+           </div>
+           <div class="main_link"><a href="manifesto">READ THE MANIFESTO</a></div>
         |]
-      
- 
     }
+
+
+    dynamic include_content(doc_name) {
+        include_file(file_base + "/docs/" + doc_name + ".md");
+    }
+
+
+
+    public base_page(*) manifesto(params{}) {
+        boolean needs_login = false;    
+        label = "The Manifesto"
+        content = include_content("poetic_programming_manifesto");
+
+        show_content(content);
+    }
+
 
     base_page item_page {
         boolean needs_login = false;    

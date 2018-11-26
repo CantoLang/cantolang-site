@@ -439,10 +439,10 @@ Fourth line is plain text.
         lns[] = lines(content)
         content_block[] blx = parse_blocks(lns)
     }
-    
+
     test_runner content_parser_tests {
     
-        parsing_test_base test_plain_text_parsing {
+        public parsing_test_base test_plain_text_parsing {
             expected = "ABC"
             content = plain_text_content
             content_block first_para = blx[0]
@@ -468,7 +468,7 @@ Fourth line is plain text.
             }
         }
 
-        parsing_test_base test_bullet_parsing {
+        public parsing_test_base test_bullet_parsing {
             expected = "ABCDEF"
             content = bullet_only_content
             content_block first_block = blx[0]
@@ -534,7 +534,7 @@ Fourth line is plain text.
             }
         }
 
-        parsing_test_base test_code_parsing {
+        public parsing_test_base test_code_parsing {
             expected = "ABCD"
             content = code_only_content
             content_block first_block = blx[0]
@@ -568,7 +568,7 @@ Fourth line is plain text.
             }
         }
 
-        parsing_test_base test_headers_parsing {
+        public parsing_test_base test_headers_parsing {
             expected = "ABCDEFGH"
             content = headers_content
             
@@ -633,7 +633,7 @@ Fourth line is plain text.
             }
         }
 
-        parsing_test_base test_text_and_code_parsing {
+        public parsing_test_base test_text_and_code_parsing {
             expected = "ABCD"
             content = text_and_code_content
             content_block first_block = blx[0]
@@ -667,7 +667,7 @@ Fourth line is plain text.
         }
 
 
-        parsing_test_base test_text_and_bullet_parsing {
+        public parsing_test_base test_text_and_bullet_parsing {
             expected = "ABCDE"
             content = text_and_bullet_content
 
@@ -721,7 +721,7 @@ Fourth line is plain text.
         }
         
         /--- the backtick parser tests don't need parsing_test_base ---/
-        test_base test_backtick_parser {
+        public test_base test_backtick_parser {
             expected = "ABCDEF"
             
             if (parse_blocks.encoded_line(no_backticks) == encoded_no_backticks) {
@@ -769,5 +769,50 @@ Fourth line is plain text.
         }
     }
 
+    test_runner t_t_runner {
+    
+        test_base test_that_passes {
+            expected = "A"
+            
+            test_log("this test is expected to pass");
+            test_log("this is the second message logged in this test");
+    
+            "A";
+        }
+    }
 
+    t_res(test_name, boolean rslt) {
+        keep: name = test_name
+        keep: boolean result = rslt
+        
+        eval(name);
+        eval(result);
+        
+        this;
+    }
+
+    dynamic t_b {
+        name = owner.type
+        sub;    
+    }
+    
+    t_b t_b_sub {
+        "Z";
+    } 
+
+    t_r {
+        name = owner.type
+
+        t_b[] tests = [ t_b_sub ]
+
+        /** accumulator for test results **/
+        keep: t_res[] results(t_res[] rslts) = rslts 
+
+        dynamic run {
+            eval(results(: :));
+            for t_b t in tests {
+                results(: results + t_res(t.name, true) :);
+            }
+        } 
+    } 
 }
