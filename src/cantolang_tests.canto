@@ -12,63 +12,15 @@ site cantolang {
 
     test_runner test_test_runner = t_t_runner
 
- 
-    lt_res(test_name, boolean rslt) {
-        keep: name = test_name
-        keep: boolean result = rslt
-        
-        eval(name);
-        eval(result);
-        
-        this;
-    }
-
-    dynamic lt_b {
-        name = owner.type
-        sub;    
-    }
-    
-    lt_b lt_b_sub {
-        "Y";
-    } 
-
-    lt_r {
-        name = owner.type
-
-        lt_b[] tests = [ lt_b_sub ]
-
-        /** accumulator for test results **/
-        keep: lt_res[] results(lt_res[] rslts) = rslts 
-
-        dynamic run {
-            eval(results(: :));
-            for lt_b t in tests {
-                results(: results + lt_res(t.name, true) :);
-            }
-        } 
-    } 
-
     public ttr {
-        //test_test_runner.run;
-        //test_test_runner.results[0].name;
-
-        //for test_runner tr in test_runners {                
-        //    tr.run;
-        //    for test_result rslt in tr.results {
-        //        rslt.name;
-        //    }
-        // }
-        
-        t_r.run;
-        for t_res rslt in t_r.results {
-            rslt.name;
-        }
-        "<br/>";
-        lt_r.run;
-        for lt_res rslt in lt_r.results {
-            rslt.name;
-        }
- 
+        test_test_runner.run;
+        test_test_runner.results[0].name;
+        for test_runner tr in test_runners {                
+            tr.run;
+            for test_result rslt in tr.results {
+                rslt.name;
+            }
+         }
     }
 
     public page(*) tests(params{}) {
