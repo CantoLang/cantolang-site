@@ -13,14 +13,15 @@ site cantolang {
     test_runner test_test_runner = t_t_runner
 
     public ttr {
-        test_test_runner.run;
-        test_test_runner.results[0].name;
+        //test_test_runner.run;
+        //test_test_runner.results[0].name;
+
         for test_runner tr in test_runners {                
             tr.run;
             for test_result rslt in tr.results {
                 rslt.name;
             }
-         }
+        }
     }
 
     public page(*) tests(params{}) {
