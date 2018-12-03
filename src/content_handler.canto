@@ -769,16 +769,5 @@ Fourth line is plain text.
         }
     }
 
-    test_runner t_t_runner {
-    
-        test_base test_that_passes {
-            expected = "A"
-            
-            test_log("this test is expected to pass");
-            test_log("this is the second message logged in this test");
-    
-            "A";
-        }
-    }
 
 }
