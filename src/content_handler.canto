@@ -433,7 +433,7 @@ Fourth line is plain text.
     encoded_empty_backticks = "A line with empty <code></code> backticks"
 
     /-- base class for parsing tests --/
-    test_base parsing_test_base {
+    dynamic test_base parsing_test_base {
         content [?]
         
         lns[] = lines(content)
@@ -769,5 +769,17 @@ Fourth line is plain text.
         }
     }
 
+
+    test_runner t_t_runner {
+    
+        test_base test_that_passes {
+            expected = "A"
+            
+            test_log("this test is expected to pass");
+            test_log("this is the second message logged in this test");
+    
+            "A";
+        }
+    }
 
 }

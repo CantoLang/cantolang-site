@@ -12,28 +12,16 @@ site cantolang {
 
     test_runner test_test_runner = t_t_runner
 
-    test_runner t_t_runner {
-    
-        test_base test_that_passes {
-            expected = "A"
-            
-            test_log("this test is expected to pass");
-            test_log("this is the second message logged in this test");
-    
-            "A";
-        }
-    }
-
     public ttr {
-        t_t_runner.run;
-        t_t_runner.results[0].name;
+        //t_t_runner.run;
+        //t_t_runner.results[0].name;
 
-        //for test_runner tr in test_runners {                
-        //    tr.run;
-        //    for test_result rslt in tr.results {
-        //        rslt.name;
-        //    }
-        //}
+        for test_runner tr in test_runners {                
+            tr.run;
+            for test_result rslt in tr.results {
+                rslt.name;
+            }
+        }
     }
 
     public page(*) tests(params{}) {
