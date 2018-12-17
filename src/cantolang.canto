@@ -1429,19 +1429,23 @@ site cantolang {
     global article backstory_article = overview_article("backstory", "Backstage Tour")
     global article poetic_programming_article = overview_article("poetic_programming_manifesto", "Poetic Programming");
 
-    public base_page quick_tour_page = article_page(quick_tour_article) 
-    public base_page leisurely_tour_page = article_page(leisurely_tour_article) 
-    public base_page backstory_page = article_page(backstory_article)
-    public base_page poetic_programming_page = article_page(poetic_programming_article)
+    public article_page quick_tour_page = article_page(quick_tour_article) 
+    public article_page leisurely_tour_page = article_page(leisurely_tour_article) 
+    public article_page backstory_page = article_page(backstory_article)
+    public article_page poetic_programming_page = article_page(poetic_programming_article)
 
 public tt {
  article_page[] pp = [ quick_tour_page, leisurely_tour_page ]
  for article_page ap in pp {
     show(ap);
  }
- show(article_page ap) {
+ dynamic show(article_page ap) {
   article_page app = ap
+  "|";
+  ap.type;
+  "/";
   app.type;
+  "\\";
   app.label;
  }
 

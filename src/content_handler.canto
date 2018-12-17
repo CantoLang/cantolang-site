@@ -210,29 +210,45 @@ site content_handler {
 
         dynamic string[] encoded_lines(string[] strs) = [ for str in strs { encoded_line(str) } ]
         
-        dynamic encoded_line(ln),(ln, open_delim, close_delim, open_code, close_code) {
-            with (open_delim) {
-                int segment_start = index_of(ln, open_delim)
-                int segment_end = index_of(ln, close_delim, segment_start + 1)
-                int line_end = strlen(ln)
-                encoded_segment = open_code + substring(ln, segment_start + 1, segment_end) + close_code 
-    
-                if (segment_start >= 0 && segment_end > segment_start) {
-                    if (segment_start > 0) {
-                        substring(ln, 0, segment_start);
+        dynamic xformed_line(ln, open_delim, close_delim, open_code, close_code, next_xform),
+                            (ln, open_delim, close_delim, open_code, close_code) {
+            int segment_start = index_of(ln, open_delim)
+            int segment_end = index_of(ln, close_delim, segment_start + 1)
+            int line_end = strlen(ln)
+            xformed_segment = open_code + substring(ln, segment_start + 1, segment_end) + close_code 
+            leading_segment = substring(ln, 0, segment_start)
+            trailing_segment = substring(ln, segment_end + 1, line_end)
+
+            if (segment_start >= 0 && segment_end > segment_start) {
+                if (segment_start > 0) {
+                    with (next_xform) {
+                        next_xform(leading_segment);
+                    } else {
+                        leading_segment;
                     }
-                    encoded_segment;
-                    if (segment_end + 1 < line_end) {
-                        encoded_line(substring(ln, segment_end + 1, line_end));
-                    }
-                } else {
-                    ln;
                 }
+                xformed_segment;
+                if (segment_end + 1 < line_end) {
+                    with (next_xform) {
+                        xformed_line(trailing_segment, open_delim, close_delim, open_code, close_code, next_xform);
+                    } else {
+                        xformed_line(trailing_segment, open_delim, close_delim, open_code, close_code);
+                    }
+                }
+            } else with (next_xform) {
+                next_xform(ln);
             } else {
-                encoded_line(encoded_line(ln,
-                    "`", "`", "<code>", "</code>"),
-                    "_", "_", "<i>", "</i>");
-            }       
+                ln;
+            }
+                
+        }
+
+        dynamic xformed_code(ln) = xformed_line(ln, "`", "`", "<code>", "</code>", xformed_italic)
+        
+        dynamic xformed_italic(ln) = xformed_line(ln, "_", "_", "<i>", "</i>")  
+
+        dynamic encoded_line(ln) {
+            xformed_code(ln);
         }
                 
                 
@@ -769,6 +785,9 @@ Fourth line is plain text.
         }
     }
 
+public tbt {
+  parse_blocks.encoded_line(two_backticks);
+}
 
     test_runner t_t_runner {
     
