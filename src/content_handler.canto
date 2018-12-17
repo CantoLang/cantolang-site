@@ -216,30 +216,49 @@ site content_handler {
             int segment_end = index_of(ln, close_delim, segment_start + 1)
             int line_end = strlen(ln)
             xformed_segment = open_code + substring(ln, segment_start + 1, segment_end) + close_code 
-            leading_segment = substring(ln, 0, segment_start)
-            trailing_segment = substring(ln, segment_end + 1, line_end)
+            leading_segment = segment_start > 0 ? substring(ln, 0, segment_start) : ""
+            trailing_segment = segment_end > -1 ? substring(ln, segment_end + 1, line_end) : ""
+
+            log("------------------------------");
+            log("delims: " + open_delim + " " + close_delim);
+            log("line: " + (ln ? ln : "[empty]"));
+            log("segment_start: " + segment_start);
+            log("segment_end: " + segment_end);
+            log("line_end: " + line_end);
+            log("leading_segment: " + (leading_segment ? leading_segment : "[none]"));
+            log("trailing_segment: " + (trailing_segment ? trailing_segment : "[none]"));
 
             if (segment_start >= 0 && segment_end > segment_start) {
                 if (segment_start > 0) {
+                    log("  ...handling leading_segment");
                     with (next_xform) {
                         next_xform(leading_segment);
                     } else {
                         leading_segment;
                     }
+                } else {
+                    log("  ...no leading_segment to handle");
                 }
+                log("  ...handling xformed_segment");
                 xformed_segment;
-                if (segment_end + 1 < line_end) {
+                if (segment_end > segment_start && segment_end + 1 < line_end) {
+                    log("  ...handling trailing_segment");
                     with (next_xform) {
                         xformed_line(trailing_segment, open_delim, close_delim, open_code, close_code, next_xform);
                     } else {
                         xformed_line(trailing_segment, open_delim, close_delim, open_code, close_code);
                     }
+                } else {
+                   log("  ...no trailing_segment to handle");
                 }
             } else with (next_xform) {
+                log("  ...no xform necessary, calling next xform");
                 next_xform(ln);
             } else {
+                log("  ...no xform necessary, outputting line as is");
                 ln;
             }
+            log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
                 
         }
 
