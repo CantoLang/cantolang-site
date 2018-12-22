@@ -114,7 +114,7 @@ site poetic_programming {
     static int MENU_WIDTH = 13
     static int CONTENT_MIN_WIDTH = 14
 
-    color main_bgcolor = "#E7FFFF"
+    color main_bgcolor = "#EFEFEF"
 
     /-------- common user interface ---------------/
 
@@ -249,6 +249,10 @@ site poetic_programming {
                    width: 100%;
                    align: bottom;
                }
+               .content_header_box_wrapper {
+                   width: 96%;
+                   padding: 2%;
+               }
                .content_body {
                    width: 96%;
                    padding: 2%;
@@ -283,8 +287,10 @@ site poetic_programming {
                    max-width: {= (66 - side_box_width); =}rem;
                    margin-left: {= (side_box_width + 1.5); =}rem;
                }
-               .content_header_box {
-                   margin-left: {= side_box_width; =}rem;
+               .content_header_box_wrapper {
+                   width: 100%;
+                   max-width: {= (66 - side_box_width); =}rem;
+                   margin-left: {= (side_box_width + 1.5); =}rem;
                }
                .content_side_box {
                    position: absolute;
@@ -337,7 +343,6 @@ site poetic_programming {
             background-color: darkslategray;
             color: white;
             text-align: left;
-            padding: 0 1rem 0 2rem;
             width: 100%;
         }
 
@@ -376,11 +381,6 @@ site poetic_programming {
             clear: both;
         }
         
-        .content_header_box_wrapper {
-            width: 100%;
-            max-width: 64rem;
-        }
-        
         .content_header_box {
             text-align: center;
             background-color: white;
@@ -388,27 +388,34 @@ site poetic_programming {
             
         .content_main_points li {
             color: darkslategray;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: bold;
-            padding-bottom: 1rem;
+            padding-bottom: 0.5rem;
         }
     
         .content_main_points ul {
-            padding-left: 8rem;
-            padding-right: 1rem;
+            padding-left: 9rem;
+            padding-right: 9rem;
             margin: 0;
             list-style-type: square;
         }
 
-        .content_side_box {
+        .content_main_body {
+            color: darkslategray;
+            font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+            font-size: 1.1rem;
+        }
+    
+        .content_side_box_xxx {
             padding: 0.5rem;
             background-color: slategray;
         }
 
-        .content_side_box h3 {
+        .content_side_box {
             color: silver;
             font-size: 1.75rem;
             font-weight: bold;
+            line-height: 2.5;
         }
 
         .main_panel {
@@ -416,7 +423,7 @@ site poetic_programming {
             background-color: white;
             padding: 2rem;
             font-size: 0.95rem;
-            line-height: 1.5;
+            line-height: 1.25;
         }
         
         .main_panel pre {
@@ -845,26 +852,34 @@ site poetic_programming {
         label = "Home"
 
         [| <div class="content_side_box">
-           <h3>TL;DR</h3>
+           <p>TL;DR</p>
            </div>
            <div class="content_main_points">
            <ul>
+           <li>Programming is writing.</li>
            <li>Like bad prose, many programs are big, ugly, and complicated.</li>
-           <li>Like good poetry, programs should be short, beautiful, and full 
+           <li>Like good poetry, programs should be concise, beautiful, and full 
            of meaning.</li>
-           <li>Programming is writing. These are truths, not metaphors.</li>
            </ul> 
+           </div><div class="content_main_body">
            <p>Programming is a kind of writing.  The primary purpose of writing 
-           is communication, and programming is no exception.  The first goal of
-           any program is to communicate what it does, how it does it, and why.
-           Without this a program is unmaintainable and therefore close to useless.
+           is communication, and the first goal of any program is to communicate 
+           what it does, how it does it, and why.
+           </p>
+           <p>This is not an abstract principle.  A program that doesn't communicate
+           well is harder and more expensive to maintain.  If anything goes wrong,
+           it's much more difficult to troubleshoot, and fixes are more likely to
+           be partial or temporary.
            </p> 
-           
-           <p>Standard programming practices often neglect this key fact, leading to 
-           programs that are too complicated and too hard to understand.  Poetic 
-           Programming addresses this problem by encouraging approaches that put
-           poetic values -- <strong>economy, richness, and beauty</strong> -- at the 
-           forefront.  This realignment of concerns encourages programmers to 
+           <p>Programmers tend to see communication as a matter of providing useful
+           comments.  This ignores the expressive properties of the code itself.
+           Standard programming practices often reinforce this neglect by ignoring
+           the semantic meaning of code, or, more insidiously, diluting or obstructing
+           it.  This leads to programs that don't say what they do, or say it an a
+           way that's too complicated and too hard to understand.</p>
+           <p>Poetic Programming addresses this problem by encouraging approaches that
+           put poetic values -- <strong>economy, richness, and beauty</strong> -- at 
+           the forefront.  This realignment of concerns helps programmers to 
            de-emphasize the aspects of a program that increase complexity without 
            contributing to meaning (frameworks, for example) and focus on those
            aspects that relate most closely to the problem domain.
