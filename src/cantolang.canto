@@ -1435,23 +1435,7 @@ site cantolang {
     public article_page poetic_programming_page = article_page(poetic_programming_article)
 
 public tt {
- article_page[] pp = [ quick_tour_page, leisurely_tour_page ]
- for article_page ap in pp {
-    show(ap);
- }
- dynamic show(article_page ap) {
-  article_page app = ap
-  "|";
-  ap.type;
-  "/";
-  app.type;
-  "\\";
-  app.label;
- }
-
- br; br;
- quick_tour_page.type;
- quick_tour_page.label;
+ show_article(quick_tour_article);
 }
 
 

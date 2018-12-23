@@ -230,7 +230,7 @@ site content_handler {
 
             if (segment_start >= 0 && segment_end > segment_start) {
                 if (segment_start > 0) {
-                    log("  ...handling leading_segment");
+                    //log("  ...handling leading_segment");
                     with (next_xform) {
                         next_xform(leading_segment);
                     } else {

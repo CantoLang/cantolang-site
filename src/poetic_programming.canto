@@ -872,7 +872,7 @@ site poetic_programming {
            be partial or temporary.
            </p> 
            <p>Programmers tend to see communication as a matter of providing useful
-           comments.  This ignores the expressive properties of the code itself.
+           comments.  This fails to recognize the expressive properties of the code itself.
            Standard programming practices often reinforce this neglect by ignoring
            the semantic meaning of code, or, more insidiously, diluting or obstructing
            it.  This leads to programs that don't say what they do, or say it an a
