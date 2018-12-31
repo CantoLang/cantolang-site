@@ -671,7 +671,9 @@ site poetic_programming {
               "Brian Kernighan"),
 
         quote([| Static typing where possible, dynamic typing when needed! |],
-              "Erik Meijer and Peter Drayton")
+              "Erik Meijer and Peter Drayton"),
+              
+        quote([| Good programmers and readable code go hand in hand. |], "Joel Lee")
 
         ]
 

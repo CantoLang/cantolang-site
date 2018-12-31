@@ -20,9 +20,8 @@
     /** Verbosity level for console output, can range from 0 (terse) to 2 (verbose) **/
     int verbosity = 1;
 
-    /** Define the available external interfaces (address and port).  Not every site
-     *  necessarily responds to every interface.  Individual sites may filter out 
-     *  some of them.
+    /** Define the available external interfaces (address and port).  This can be overridden in a site's
+     *  site_config.
      **/
     listen_to[] = [ "127.0.0.1:8080" ]
 
@@ -56,12 +55,11 @@
         filepath = "."
         boolean files_first = false;
         
-        /** If non-empty, respond only to the listed addresses.  The addresses are
-         *  allowed, but are not automatically enabled; addresses must also appear in 
-         *  the listen_to array.  If empty, respond to any address.
+        /** Define the available external interfaces (address and port).  If implemented, this overrides 
+         *  the globally defined listen_to array.
          **/
-        respond_only_to[] = []
-        
+        listen_to [?]
+
         this;
     }
     
@@ -81,6 +79,8 @@
     site_config poetic_prog_config {
         name = "poetic_programming"
         cantopath = "src/poetic*"
+
+        listen_to[] = [ "127.0.0.1:8088" ]
     }
 
 
