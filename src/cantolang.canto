@@ -939,8 +939,6 @@ site cantolang {
             [| </div> |]
         }
 
-        
-
         [| <div class="main_panel content_main_points"> |]
         
         expressive_and_simple;
@@ -1007,8 +1005,6 @@ site cantolang {
                 sky_dome.rotate(0, 0.0009, 0);
             }
         }
-      
-
 
         [| 
            <div class="content_panel" style="position: relative; top: 1rem; left: 2rem;">
@@ -1061,7 +1057,7 @@ site cantolang {
 
     expressive_and_simple [|
         <h2>Welcome to the Canto Programming Language</h2>
-        <p>Canto follows a design philosophy called <a href="poetic_programming_page"><b>Poetic Programming</b></a>.
+        <p>Canto follows a design philosophy called <a href="{= poetic_programming_url; =}"><b>Poetic Programming</b></a>.
         Poetry is simpler than prose, yet also more expressive.  Poetic Programming 
         asserts that the same qualities that allow poetry to achieve this can work
         for programming as well: economy (use fewer words and shorter phrases), 
@@ -1070,10 +1066,8 @@ site cantolang {
         pleasing whole).  These are the principles that have guided the design of Canto.</p>
     |]
     
-
-    
     poetic [|
-        <p>Canto's design philosophy, <a href="poetic_programming_page"><b>Poetic Programming</b></a>, asserts that the same
+        <p>Canto's design philosophy, <a href="{= poetic_programming_url; =}"><b>Poetic Programming</b></a>, asserts that the same
         qualities that allow poetry to be simultaneously more expressive and simpler 
         than prose can work for programming as well: economy (use fewer words and 
         shorter phrases), richness (use words and phrases that have multiple layers 
@@ -1114,8 +1108,6 @@ site cantolang {
             which means bits of template can be part of a type definition and can be
             inherited and extended.</p>
         |]
-    
-    
     }
     
     
@@ -1150,8 +1142,6 @@ site cantolang {
             
             The [?] indicates that there is no implementation for this definition.
             
-            
-            
         |]
     }
 
@@ -1163,7 +1153,6 @@ site cantolang {
             A Canto program is a description of output, not a list of commands.  Canto's
             declarative syntax supports functional programming (among other programming styles).
         |]
-        
         
         [|
             <p>
@@ -1424,10 +1413,12 @@ site cantolang {
         content = include_content(doc_name)
     }
 
-    global article quick_tour_article = overview_article("quick_tour", "Quick Tour");
+    global article quick_tour_article {
+        log("-----> qt <-----");
+        overview_article("quick_tour", "Quick Tour");
+    }
     global article leisurely_tour_article = overview_article("leisurely_tour", "Leisurely Tour");
     global article backstory_article = overview_article("backstory", "Backstage Tour")
-    global article poetic_programming_article = overview_article("poetic_programming_manifesto", "Poetic Programming");
 
     public article_page quick_tour_page = article_page(quick_tour_article) 
     public article_page leisurely_tour_page = article_page(leisurely_tour_article) 

@@ -896,14 +896,17 @@ site poetic_programming {
         include_file(file_base + "/docs/" + doc_name + ".md");
     }
 
+    global poetic_programming_manifesto {
+        content = include_content("poetic_programming_manifesto");
+        show_content(content);
+    }
 
 
     public base_page(*) manifesto(params{}) {
         boolean needs_login = false;    
         label = "The Manifesto"
-        content = include_content("poetic_programming_manifesto");
 
-        show_content(content);
+        poetic_programming_manifesto;
     }
 
 
