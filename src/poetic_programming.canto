@@ -13,6 +13,9 @@ site poetic_programming {
 
     global User_Table(utbl{}){} = utbl
     global Admin_User_Table(atbl{}){} = atbl
+    
+    static POETIC_PROGRAMMING_SITE = "http://poeprog.org"
+    global poetic_programming_url = (starts_with(this_server.base_url, "127.0.0.1") ? "http://
 
     /-------- initialization ----------------------/
 
