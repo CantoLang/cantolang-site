@@ -14,9 +14,6 @@ site poetic_programming {
     global User_Table(utbl{}){} = utbl
     global Admin_User_Table(atbl{}){} = atbl
     
-    static POETIC_PROGRAMMING_SITE = "http://poeprog.org"
-    global poetic_programming_url = (starts_with(this_server.base_url, "127.0.0.1") ? "http://
-
     /-------- initialization ----------------------/
 
     init {
@@ -518,9 +515,12 @@ site poetic_programming {
             }
         }
 
-        .slide {
+        .slide_panel {
             width: {= (side_box_width - 2); =}rem;
             position: absolute;
+        }
+
+        .slide {
             transition: opacity 1.5s;
             opacity: 0;
         }
@@ -604,81 +604,32 @@ site poetic_programming {
         {= media_queries; =}
     |]        
 
-    /-------- quote mechanism ---------------------/
+    /-------- slide mechanism ---------------------/
 
-    serializable(*) quote(quote_text, quote_author) {
-        keep: text = quote_text
-        keep: author = quote_author
+    serializable(*) slide(slide_text) {
+        keep: text = slide_text
         this;
     }
     
-    dynamic quote_slide(quote q) {
-        [| <p><i> |]
-        q.text;
-        [| </i></p> |]
-        if (q.author) {
-            [| <p><b> |]
-            q.author;
-            [| </b></p> |]
-        }
+    dynamic show_slide(slide s) {
+        [| <p> |]
+        s.text;
+        [| </p> |]
     }
 
-    /-------- quotes to show on main page ---------/
+    /-------- slides to show on main page ---------/
 
-    quote[] main_quotes = [
-        quote([| A program is, above all, a form of human communication.  A 
-                 program can't just work; it must explain itself.  It must
-                 telegraph its intentions and wear its strategy on its sleeve.
-                 It must have a voice. |], null),
+    slide[] main_slides = [
+        slide([| Programming is a kind of writing. |]),
 
-        quote([| It's much easier to make beautiful-but-slow code fast than it is
-                 to make fast-but-ugly code beautiful. |], "Tim Bray"),
+        slide([| Too many programs are like bad prose: big, ugly, and complicated. |]),
 
-        quote([| Any fool can write code that a computer can understand. Good
-                 programmers write code that humans can understand. |], "Martin Fowler"),
+        slide([| Poetic Programming wants programs to be like good poetry: concise, 
+                 beautiful, and full of meaning. |]),
+     
+    ]
 
-        quote([| Einstein argued that there must be simplified explanations of
-                 nature, because God is not capricious or arbitrary. No such
-                 faith comforts the software engineer. |], "Fred Brooks"),
 
-        quote([| If it's hard to fond a simple name for a variable or method that
-                 creates a clear image of the underlying object, that's a hint that
-                 the underlying object may not have a clean design. |],
-              "John Ousterhout"),
-
-        quote([| There are two ways of constructing a software design: One way is
-                 to make it so simple that there are obviously no deficiencies.  And
-                 the other way is to make it so complicated that there are no obvious
-                 deficiencies. |], "C.A.R. Hoare"),
-
-        quote([| The enjoyment of one's tools is an essential ingredient of
-                 successful work. |], "Donald Knuth"),
-
-        quote([| Even if aesthetics are not the mathematics of beauty, they are
-                 the proof of the calculation. |], "Franz Grillparzer"),
-
-        quote([| A sentence should contain no unnecessary words, a paragraph no 
-                 unnecessary sentences, for the same reason that a drawing should 
-                 have no unnecessary lines and a machine no unnecessary parts. |],
-              "William Strunk, Jr."),
-
-        quote([| The world is filled with frameworks that are a little too hard
-                 to understand and look like they have a bit too much investment
-                 in them. |], "Michael Feathers"),
-
-        quote([| Code is just a smart kind of data -- data designed to trigger
-                 processors into performing certain useful or amusing acts. |],
-              "Charles Petzold"),
-
-        quote([| Controlling complexity is the essence of computer programming. |],
-              "Brian Kernighan"),
-
-        quote([| Static typing where possible, dynamic typing when needed! |],
-              "Erik Meijer and Peter Drayton"),
-              
-        quote([| Good programmers and readable code go hand in hand. |], "Joel Lee")
-
-        ]
 
     /-------- base page ---------------------------/
     page(*) base_page(params{}) {
@@ -729,11 +680,13 @@ site poetic_programming {
             slide_show(main_slides);
         }
 
-        dynamic slide_show(slides[]) {
-            for slide in slides and int i from 1 {
+        dynamic slide_show(slide[] slides) {
+            for slide s in slides and int i from 1 {
+                if (i % 3 == 1) [| <div class="slide_panel"> |]
                 [| <div class="slide" id="slide{= i; =}"> |]
-                slide;
+                show_slide(s);
                 [| </div> |]
+                if (i % 3 == 0) [| </div> |]
             }
             [| <script> |]
             slide_script(slides.count);            
@@ -747,20 +700,24 @@ site poetic_programming {
             var startslide = document.getElementById("slide1");
             startslide.style.opacity = 1;
             setInterval(function () {
-                var oldslide = document.getElementById("slide" + cs);
                 if (cs == ns) {
                     cs = 1;
                 } else {
                     cs++;
                 }
                 var newslide = document.getElementById("slide" + cs);
-
-                oldslide.style.opacity = 0;
+                if (cs % 3 == 1) {
+                    var n = (cs == 1 ? ns + 1 : cs);
+                    var oldslide = document.getElementById("slide" + (n - 3));
+                    oldslide.style.opacity = 0;
+                    oldslide = document.getElementById("slide" + (n - 2));
+                    oldslide.style.opacity = 0;
+                    oldslide = document.getElementById("slide" + (n - 1));
+                    oldslide.style.opacity = 0;
+                }                    
                 newslide.style.opacity = 1;
-            }, 7000); 
+            }, 2333); 
         |]
-
-        main_slides[] = [ for quote q in main_quotes { quote_slide(q) } ]
 
         component header_bar {
             component_class = "header_bar"
@@ -861,27 +818,29 @@ site poetic_programming {
            </div>
            <div class="content_main_points">
            <ul>
-           <li>Programming is writing.</li>
-           <li>Like bad prose, many programs are big, ugly, and complicated.</li>
-           <li>Like good poetry, programs should be concise, beautiful, and full 
-           of meaning.</li>
+           <li>Programming is writing.  The better the writing, the more usable, 
+           maintainable, and improvable the program.</li>
+           
+           <li>Programmers can improve their writing by adopting 
+           poetic values: economy, beauty, and richness.</li>
+           
            </ul> 
+
            </div><div class="content_main_body">
-           <p>Programming is a kind of writing.  The primary purpose of writing 
-           is communication, and the first goal of any program is to communicate 
-           what it does, how it does it, and why.
-           </p>
-           <p>This is not an abstract principle.  A program that doesn't communicate
-           well is harder and more expensive to maintain.  If anything goes wrong,
-           it's much more difficult to troubleshoot, and fixes are more likely to
-           be partial or temporary.
+           <p>The purpose of writing is to communicate.  This includes programs, which
+           should communicate what they do, why they do it, and how they do it.  A 
+           program that fails to communicate these things is inevitably more expensive 
+           to maintain and more difficult to improve.
            </p> 
            <p>Programmers tend to see communication as a matter of providing useful
-           comments.  This fails to recognize the expressive properties of the code itself.
-           Standard programming practices often reinforce this neglect by ignoring
-           the semantic meaning of code, or, more insidiously, diluting or obstructing
-           it.  This leads to programs that don't say what they do, or say it an a
-           way that's too complicated and too hard to understand.</p>
+           comments.  But the best programs explain themselves.
+           </p>
+           <p>Standard programming practices don't always recognize the expressive 
+           properties of code.  They tend to emphasize structure and organization
+           and often ignore the semantics of code, or, more insidiously, dilute or
+           obscure it.  This leads to programs that don't say what they do, or say it 
+           in a way that's too complicated and too hard to understand.
+           </p>
            <p>Poetic Programming addresses this problem by encouraging approaches that
            put poetic values -- <strong>economy, richness, and beauty</strong> -- at 
            the forefront.  This realignment of concerns helps programmers to 
