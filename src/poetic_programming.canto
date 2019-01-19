@@ -818,12 +818,15 @@ site poetic_programming {
            </div>
            <div class="content_main_points">
            <ul>
-           <li>Programming is writing.  The better the writing, the more usable, 
-           maintainable, and improvable the program.</li>
+           <li>Programming is writing.  The purpose of writing is to
+           convey meaning.</li>
            
-           <li>Programmers can improve their writing by adopting 
-           poetic values: economy, beauty, and richness.</li>
+           <li>Programmers don't think enough about meaning.  This is 
+           regrettable because to be meaningful (impactful) a 
+           program has to be meaningful (full of meaning).</li>
            
+           <li>Poetry is very good at meaning.  Programmers can learn
+           from this.</li>
            </ul> 
 
            </div><div class="content_main_body">
