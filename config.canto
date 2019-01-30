@@ -46,24 +46,6 @@
     
     file_separator = "/"
 
-    /** A generic website configuration. **/
-    site_config {
-        name [?]
-        cantopath [?]
-        boolean recursive = false;
-
-        filepath = "."
-        boolean files_first = false;
-        
-        /** Define the available external interfaces (address and port).  If implemented, this overrides 
-         *  the globally defined listen_to array.
-         **/
-        listen_to [?]
-
-        this;
-    }
-    
-   
     /--- config objects for available sites ---/
 
     site_config cantolang_config {
