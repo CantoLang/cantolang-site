@@ -16,7 +16,7 @@ site cantolang {
     global Admin_User_Table(atbl{}){} = atbl
 
     static POETIC_PROGRAMMING_SITE = "http://poeprog.org"
-    global poetic_programming_url = (starts_with(this_server.base_url, "127.0.0.1") ? "http://127.0.0.1:8088" : POETIC_PROGRAMMING_SITE)
+    global poetic_programming_url = POETIC_PROGRAMMING_SITE
 
     /-------- initialization ----------------------/
 
