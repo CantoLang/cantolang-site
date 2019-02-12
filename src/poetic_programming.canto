@@ -831,10 +831,17 @@ site poetic_programming {
 
            </div><div class="content_main_body">
            <p>The purpose of writing is to communicate.  This includes programs, which
-           should communicate what they do, why they do it, and how they do it.  A 
-           program that fails to communicate these things is inevitably more expensive 
-           to maintain and more difficult to improve.
+           should communicate what they do how they do it.  A program that fails to 
+           communicate these things is inevitably more expensive to maintain and more 
+           difficult to improve.
            </p> 
+           <p>But that's just the beginning.  It's also possible for a program to
+           describe the world it operates in, the motivations of its developers and
+           users, and the deeper nature of the problems it's addressing.  It's possible
+           for a program to discuss the assumptions it begins with and the results it
+           ultimately hopes to end with.  It's even possible for a program to spell
+           out the philosophy that guides it.
+           </p>
            <p>Programmers tend to see communication as a matter of providing useful
            comments.  But the best programs explain themselves.
            </p>
