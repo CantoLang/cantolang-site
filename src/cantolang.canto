@@ -1066,13 +1066,9 @@ site cantolang {
         <p>Canto is a general-purpose programming language with a unique combination of features
         that makes it well suited for developing experimental and expressive web sites and 
         applications.</p>
-        <p>Canto follows a design philosophy called <a href="{= poetic_programming_url; =}"><b>Poetic Programming</b></a>.
-        A poem can be very simple and very powerful at the same time.  According to
-        Poetic Programmingthe same qualities that allow poetry to achieve this can work
-        for programming as well: economy (use fewer words and shorter phrases), 
-        richness (use words and phrases that have multiple layers of meaning), and
-        beauty (arrange the words and phrases into a melodious, rhythmic and visually 
-        pleasing whole).</p>
+        <p>Canto is <b>simple</b>, <b>beautiful</b>, and <b>rich</b>.  These are the
+        values advocated by a design philosophy called <a href="{= poetic_programming_url; =}">
+        <b>Poetic Programming</b></a> which Canto seeks to emobdy.</p>
     |]
     
     
