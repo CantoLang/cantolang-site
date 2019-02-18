@@ -1480,6 +1480,24 @@ public tt {
         boolean needs_login = false    
 
         label = "Download"
+        
+        [| <h1>Download Canto</h1>
+           <p>Latest release:
+           <a href="download/canto-1.0.0.zip">canto-1.0.0.zip</a>
+           </p>
+           <h2>Installing Canto</h2>
+           <ol>
+           <li>Download Canto from the above link.</li>
+           <li>Select or create a suitable directory for Canto, for example <code>mkdir -p ~/canto</code></li>
+           <li>Unzip Canto into the directory, for example <code>unzip canto-1.0.0.zip ~/canto</code></li>
+           <li>Go to the directory and run <code>install.sh</code></li>
+           </ol>
+           <h1>Get Canto source code</h1>
+           <p>Canto is open source. The source code for the Canto compiler
+           and runtime engine is available on GitHub:
+           <a href="https://github.com/CantoLang/canto">Canto source on GitHub</a>
+           </p>
+        |]
     }
     
     /-------- about page -----------------------/
