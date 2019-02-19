@@ -1056,8 +1056,18 @@ site cantolang {
         quote([| Static typing where possible, dynamic typing when needed! |],
               "Erik Meijer and Peter Drayton"),
 
-        quote([| Good programmers and readable code go hand in hand. |], "Joel Lee")
-
+        quote([| Good programmers and readable code go hand in hand. |], "Joel Lee"),
+        
+        quote([| In my experience as a developer, complexity and cognitive load
+                 are the single biggest factors in software bugs and
+                 development slowdown. |], "Uku Täht"),
+                 
+        quote([| Every decision of my design communicates something to the other
+                 people looking at it and working on it, whether I mean for it to
+                 or not. |], "Ryan Palo"),
+                 
+        quote([| Software engineering is what happens to programming when you add
+                 time and other programmers |], "Russ Cox"),
     ]
 
 

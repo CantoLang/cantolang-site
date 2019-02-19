@@ -1,0 +1,146 @@
+/**  weather_widget.canto
+ *
+ *   Simple front end component that calls the openweathermap.org
+ *   api to get the weather for a zip code.
+ *
+ *
+ **/
+
+site weather_widget {
+
+    /-------- initialization ----------------------/
+
+    init {
+    }
+    
+    session_init {
+    }
+
+    /-------- weather model -----------------------/
+    
+    /** An object corresponding to the object returned by the openweathermap endpoint.
+     *
+     *  The weather info object does not have to contain every field in the object
+     *  returned by the endpoint.  However, the fields that it does contain must
+     *  match the corresponding fields in the returned object in name and type.
+     **/
+    serializable weather_info {
+
+        serializable weather_condition {
+            keep: main [/]
+            keep: description [/]
+        }
+        
+        serializable main_weather {
+            keep: float temp = 0.0
+            keep: int pressure = 0
+            keep: int humdity = 0
+        }
+        
+        serializable wind_condition {
+            keep: float speed = 0.0
+            keep: int deg = 0 
+        }
+        
+        keep: weather_condition[] weather = []
+        keep: main_weather main [/]
+        keep: wind_condition wind [/]
+        keep: name [/]
+        keep: cod [/]
+    }
+
+
+    /-------- weather component -------------------/
+
+    dynamic component weather_component {
+    
+    }
+
+    SPLASH_LOGO = "images/sponge-logo-512x96.png"
+
+    color main_bgcolor = "#9fdfef"
+
+    /-------- base page ---------------------------/
+
+    page(*) base_page(params{}) {
+        boolean ajax_enabled = true
+    
+        style [| 
+            html, body { 
+                width: 100%;
+                height: 100%;
+                margin: 0 0 0 0;
+                background-color: {= main_bgcolor; =};
+            }
+
+            .centered_container {
+                width: 100%;
+                height: 100%;
+                margin: 0 0 0 0;
+                position: relative;
+            }
+            
+            .centered_high_box {
+                position: absolute;
+                left: 50%;
+                top: 38%;
+                margin-right: -50%;
+                transform: translate(-50%, -50%);
+                width: 36em;
+            }
+            
+            .centered_div  {
+                width: 100%;
+                text-align: center;
+             }
+            
+            .centered_div table {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .centered_div td {
+                padding: 0.125em 0.5em;
+            }
+            
+            .centered_div div {
+                padding: 0.75em 4em;
+            }
+            
+           .labeled_edit {
+                text-align: center;
+                font-weight: bold;
+                padding:0.5em;
+            }
+            
+            #weather_button {
+                width: 10em;
+            }
+            
+        |]        
+        
+        base_page this_page = owner
+        page_name = owner.type
+        
+        sub;
+    }
+
+    /-------- home page ---------------------------/
+
+    base_page(*) index(params{}) {
+        title = "Weather Page"
+    
+        [| <h1>Weather Info</h1> |]
+        
+        weather_component;
+    }
+
+    /-------- error page --------------------------/
+    page error_page(request r) {
+        title = "Error"
+        color bgcolor = "#AAEEDD"
+
+        error_div(r);        
+    }    
+
+}
