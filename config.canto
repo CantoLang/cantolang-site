@@ -50,7 +50,8 @@
 
     site_config cantolang_config {
         name = "cantolang"
-        cantopath = "src/cantolang*:src/content*:../three/src:../sceneserver/src"
+        boolean recursive = true
+        cantopath = "src/cantolang*:src/content*:../three/src:../sceneserver/src:examples"
     }    
     
     site_config content_handler_config {

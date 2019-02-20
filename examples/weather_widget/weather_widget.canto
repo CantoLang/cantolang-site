@@ -24,20 +24,20 @@ site weather_widget {
      *  returned by the endpoint.  However, the fields that it does contain must
      *  match the corresponding fields in the returned object in name and type.
      **/
-    serializable weather_info {
+    serializable(*) weather_info(str) {
 
-        serializable weather_condition {
+        serializable(*) weather_condition(str) {
             keep: main [/]
             keep: description [/]
         }
         
-        serializable main_weather {
+        serializable(*) main_weather(str) {
             keep: float temp = 0.0
             keep: int pressure = 0
             keep: int humdity = 0
         }
         
-        serializable wind_condition {
+        serializable(*) wind_condition(str) {
             keep: float speed = 0.0
             keep: int deg = 0 
         }
@@ -46,8 +46,7 @@ site weather_widget {
         keep: main_weather main [/]
         keep: wind_condition wind [/]
         keep: name [/]
-        keep: cod [/]
-    }
+     }
 
 
     /-------- weather component -------------------/
@@ -127,7 +126,7 @@ site weather_widget {
 
     /-------- home page ---------------------------/
 
-    base_page(*) index(params{}) {
+    public base_page(*) index(params{}) {
         title = "Weather Page"
     
         [| <h1>Weather Info</h1> |]
@@ -142,5 +141,71 @@ site weather_widget {
 
         error_div(r);        
     }    
+
+    /-------- tests -------------------------------/
+
+    weather_info_sample [|
+        {"coord":{"lon":-0.13,"lat":51.51},
+         "weather":[{"id":300,"main":"Drizzle","description":"light intensity drizzle","icon":"09d"}],
+         "base":"stations",
+         "main":{"temp":280.32,"pressure":1012,"humidity":81,"temp_min":279.15,"temp_max":281.15},
+         "visibility":10000,
+         "wind":{"speed":4.1,"deg":80},
+         "clouds":{"all":90},
+         "dt":1485789600,
+         "sys":{"type":1,"id":5091,"message":0.0103,"country":"GB","sunrise":1485762037,"sunset":1485794875},
+         "id":2643743,
+         "name":"London",
+         "cod":200}
+    |]
+
+    test_runner weather_widget_tests {
+    
+        public test_base deserialize_weather_info {
+            expected = "ABC"
+            
+            weather_info wi = weather_info(weather_info_sample)
+            
+            if (wi.name == "London") {
+                "A";
+            } else {
+                "x";
+            }
+            
+            if (wi.main.temp == 280.32) {
+                "B";
+            } else {
+                "x";
+            }
+            
+            if (wi.weather[0].main == "Drizzle") {
+                "C";
+            } else {
+                "x";
+            }
+        }
+    }
+
+    public page(*) tests(params{}) {
+        [| <h2>Test Results</h2> |]
+
+        weather_widget_tests.run;
+
+        [| <ol> |]
+        for test_result rslt in weather_widget_tests.results {
+            [| <li>{= rslt.name; =}<br> |]
+            if (rslt.result) [|
+                Passed
+            |] else [|
+                <span style="color:red">Failed</span>
+            |]
+            [| <br><ul> |]
+            for msg in rslt.messages [|
+                <li>{= msg; =}</li>
+            |]
+            [| </ul></li> |]                
+        }
+        [| </ol> |]
+    }   
 
 }

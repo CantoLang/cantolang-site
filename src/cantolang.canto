@@ -9,6 +9,7 @@ site cantolang {
 
     adopt three
     adopt content_handler
+    adopt weather_widget
 
     /-------- global values -----------------------/
 
