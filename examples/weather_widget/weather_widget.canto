@@ -162,9 +162,11 @@ site weather_widget {
     test_runner weather_widget_tests {
     
         public test_base deserialize_weather_info {
-            expected = "ABC"
+            expected = "ABCD"
             
             weather_info wi = weather_info(weather_info_sample)
+            
+            eval(wi);
             
             if (wi.name == "London") {
                 "A";
@@ -178,8 +180,14 @@ site weather_widget {
                 "x";
             }
             
-            if (wi.weather[0].main == "Drizzle") {
+            if (wi.weather.count == 1) {
                 "C";
+            } else {
+                "x";
+            }
+            
+            if (wi.weather[0].main == "Drizzle") {
+                "D";
             } else {
                 "x";
             }
