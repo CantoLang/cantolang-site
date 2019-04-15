@@ -67,7 +67,7 @@ Furthermore, the new framework-on-framework cancels out many of the advantages o
 ###Libraries
 
 Libraries are harmful.  They are opaque, written by someone who is not familiar with your concerns and may or may not share your assumptions about what should happen in various circumstances.  They are full of code that you don't need.  In the code you do need, there are often complexities of no value to you, and risks of which you have no knowledge.  Poetic programming encourages programmers to see functions they craft themselves as superior to functions in libraries, other things being equal.  Libraries have value because you can't do everything yourself, and wouldn't want to if you could.  But if it's a programming task you do have the luxury of tackling yourself, and you are interested in the problem being solved, then curating your own code may be better than blindly calling someone else's.
-   
+
 ###Dependencies with Dependencies
 
 Depenedencies with dependencies are harmful squared.  "Dependency Hell" is a rite of passage for developers, referring to the inability to build an application because of dependency conflicts and the hours of work often needed to fix them.  But "dependency hell" is a misnomer.  It really should be "dependency of dependency hell", because the problem arises only when dependencies have dependencies of their own, and those second-degree dependencies overlap with other primary or secondary dependencies.  When a dependency-with-a-dependency needs to be updated to a new version it may require an update if its own dependencies, which can trigger a cascade of further update requirements.  Sometimes this leads to contradictory requirements, such as two different versions of a single library. 
@@ -81,9 +81,15 @@ Programmers are often told that state is bad, but generally what is meant is not
 The problem with variables is that they are disentangled from the values they represent.  Consider a variable intended to hold a temperature value.  A measurement is taken, and the result is stored.  At that point the connection between the state of the program and the state of the world is severed.  The world goes its own way, while the stored value just sits there. There is generally no way to know if the value is correct without obtaining the temperature data again to check it against.  But if you have to do that every time there isn't much point in storing the temperature in the first place.
 
 
-##The Poetic Anti-Critique
+##The Poetic Vision
 
-Just as important as spotlighting programming practices that should be changed is identifying those that should be encouraged.  Poetic Programming acknowledges several positive trends in software engineering.
+Just as important as spotlighting programming practices that should be changed is identifying those that should be encouraged.  Many trends in software engineering are positive from a poetic point of view.
+
+###Simple Programming
+
+Simplicity has value.  If two programs do the same thing but differ in complexity, the simpler program is more valuable.  Complex programs are harder to maintain and more expensive to configure and run.  When something goes wrong it's harder to figure out the problem and riskier to push a fix.
+
+Poetic Programming is a practice of simplification.  The most complex program is the program not yet written.  In its earliest stages, when it's all skeleton and boilerplate, a program appears deceptively simple.  In fact, relative to what the program does at this early stage (almost nothing), the program may already be overly complex.
 
 ###Design Patterns
 
@@ -122,14 +128,6 @@ The Type Wars ended when the number of people fighting them were outnumbered by 
 ###Automated Testing
 
 Automated testing is the software equivalent of mindfulness -- the ability of a system to see what it's doing wrong.  Not all automated testing accomplishes this equally well.  Unit tests are seldom useful past initial development, but they are pretty easy to write and cheap to run.  Functional tests can be very valuable but it's hard to construct good functional tests.  Integration tests are always valuable but are hard to write and expensive to maintain and run.
-
-##The Vision
-
-###Simple Programming
-
-Simplicity has value.  If two programs do the same thing but differ in complexity, the simpler program is more valuable.  Complex programs are harder to maintain and more expensive to configure and run.  When something goes wrong it's harder to figure out the problem and riskier to push a fix.
-
-Poetic Programming is a practice of simplification.  The most complex program is the program not yet written.  In its earliest stages, when it's all skeleton and boilerplate, a program appears deceptively simple.  In fact, relative to what the program does at this early stage (almost nothing), the program may already be overly complex.
 
 ###Automated State Management
 

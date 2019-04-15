@@ -388,14 +388,14 @@ site poetic_programming {
             
         .content_main_points li {
             color: darkslategray;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: bold;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.75rem;
         }
     
         .content_main_points ul {
-            padding-left: 9rem;
-            padding-right: 9rem;
+            padding-left: 8.5rem;
+            padding-right: 8.5rem;
             margin: 0;
             list-style-type: square;
         }
@@ -594,9 +594,20 @@ site poetic_programming {
             font-weight: bold;
         }
         
-        h2 {
-            color: #777777;
-            font-size: 1rem;
+        #manifesto h1 {
+            display: none;
+        }
+        
+        h1 {
+            color: blue;
+            font-size: 1.1rem;
+            font-family: Impact, Charcoal, sans-serif
+            font-weight: bold;
+        }
+
+        h3 {
+            color: #005555;
+            font-size: 1.05rem;
             font-family: "Arial Black", Gadget, sans-serif
             font-weight: bold;
         }
@@ -818,36 +829,36 @@ site poetic_programming {
            </div>
            <div class="content_main_points">
            <ul>
-           <li>Programming is writing.  It can be prose or it can be poetry.</li>
+           <li>Programming is a kind of writing, like prose and poetry.</li>
            
            <li>Poetry excels at communicating economically, richly, and beautifully.</li>
 
-           <li>These are all very good things for a program.</li>
+           <li>Programs should do the same.</li>
            </ul> 
 
            </div><div class="content_main_body">
            <p>The purpose of writing is to communicate.  This includes programs, which
-           should communicate what they do and how they do it.  The better a program is
-           at communicating these things, the more maintainable and adaptable it is.
+           should at the very least communicate what they do and how they do it. But 
+           communication can go beyond what and how.  A program can also communicate
+           why it does what it does, by describing the world it operates in, the motivations
+           of its developers and users, and the deeper nature of the problems it's addressing.
+           It can spell out the assumptions it begins with, the results it hopes to attain,
+           and the philosophy that guides it.
+           </p>
+           <p>The better a program is at communicating how, what, and why, the more maintainable
+           and adaptable it is.  Such a program is also more fun to work on -- instead of
+           spending hours tracing the code and figuring out what it's doing, you can quickly
+           get to the business of adding or improving features.
            </p> 
-           <p>But that's just the beginning.  A program can describe the world it operates
-           in, the motivations of its developers and users, and the deeper nature of the 
-           problems it's addressing.  It can spell out the assumptions it begins with, the
-           results it hopes to attain, and the philosophy that guides it.  Such a program
-           means more, and more likely than not, does more, 
-           </p>
-           <p>Programmers tend to see communication as a matter of providing useful
-           comments.  But the best programs explain themselves.
-           </p>
            <p>Standard programming practices don't always recognize the expressive 
            properties of code.  They tend to emphasize structure and organization
            and often ignore the semantics of code, or, more insidiously, dilute or
            obscure it.  This leads to programs that don't say what they do, or say it 
            in a way that's too complicated and too hard to understand.
            </p>
-           <p>Poetic Programming addresses this problem by encouraging approaches that
+           <p>Poetic Programming addresses this problem by supporting approaches that
            put poetic values -- <strong>economy, richness, and beauty</strong> -- at 
-           the forefront.  This realignment of concerns helps programmers to 
+           the forefront.  This realignment of concerns encourages programmers to 
            de-emphasize the aspects of a program that increase complexity without 
            contributing to meaning (frameworks, for example) and focus on those
            aspects that relate most closely to the problem domain.
@@ -872,7 +883,9 @@ site poetic_programming {
         boolean needs_login = false;    
         label = "The Manifesto"
 
+        <div id="manifesto">
         poetic_programming_manifesto;
+        </div>
     }
 
 
