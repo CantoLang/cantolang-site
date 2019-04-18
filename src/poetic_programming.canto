@@ -246,8 +246,7 @@ site poetic_programming {
                    width: 100%;
                }
                .side_box {
-                   width: 100%;
-                   align: bottom;
+                   display: none;
                }
                .content_header_box_wrapper {
                    width: 96%;
@@ -390,7 +389,7 @@ site poetic_programming {
             color: darkslategray;
             font-size: 1.1rem;
             font-weight: bold;
-            padding-bottom: 0.75rem;
+            padding-bottom: 1rem;
         }
     
         .content_main_points ul {
@@ -550,6 +549,14 @@ site poetic_programming {
             text-align: center;
             font-weight: bold;
             padding:0.5rem;
+        }
+
+        .hyphenate {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
         }
 
         #splash_image_holder img {
@@ -836,7 +843,7 @@ site poetic_programming {
            <li>Programs should do the same.</li>
            </ul> 
 
-           </div><div class="content_main_body">
+           </div><div class="content_main_body hyphenate">
            <p>The purpose of writing is to communicate.  This includes programs, which
            should at the very least communicate what they do and how they do it. But 
            communication can go beyond what and how.  A program can also communicate
@@ -879,13 +886,13 @@ site poetic_programming {
     }
 
 
-    public base_page(*) manifesto(params{}) {
-        boolean needs_login = false;    
+    public base_page manifesto {
+        boolean needs_login = false   
         label = "The Manifesto"
 
-        <div id="manifesto">
+        [| <div id="manifesto"> |]
         poetic_programming_manifesto;
-        </div>
+        [| </div> |]
     }
 
 
