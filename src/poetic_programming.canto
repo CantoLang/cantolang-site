@@ -607,16 +607,25 @@ site poetic_programming {
         
         h1 {
             color: blue;
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             font-family: Impact, Charcoal, sans-serif
             font-weight: bold;
         }
 
+        h2 {
+            color: #220099;
+            font-size: 1.2rem;
+            font-family: "Arial Black", Gadget, sans-serif
+            font-weight: bold;
+            padding-top: 1.25rem;
+        }
+
         h3 {
-            color: #005555;
+            color: #446666;
             font-size: 1.05rem;
             font-family: "Arial Black", Gadget, sans-serif
             font-weight: bold;
+            padding-top: 0.5rem;
         }
         
         {= media_queries; =}
