@@ -17,7 +17,7 @@ The attributes of poetry that Poetic Programming seeks to emulate -- economy, ri
 
 Affective meaning gives writing such as poetry a second channel to convey information.  But poetry can, as well, express multiple levels of denotative meaning, via metaphors.  When Carl Sandburg describes fog as coming on little cat feet he draws on our knowledge of cats to understand the behavior of fog.  Contrast this with the description a weather service might provide, which would include much more detailed information (visibility, temperature, time expected to lift), but all of it would be about fog, and none about cats.
 
-###Why Affective Meaning Is OK
+###Affective Meaning Is OK
 
 Affective meaning in no way conflicts with or takes away from denotational meaning.  Quite the contrary, affective meaning can lead to more and deeper denotational meaning.  The great poet Rumi said that from understanding comes love.  It's also true that from love comes understanding.  When we love a subject, we dig deeper and invest more in making sense of it.  Revelations bring us joy.  When we love a person, we want to know not just the surface meaning of what she says; we want to know the feelings that she intends her words to carry.  It is those feelings that tell us what is really going on inside of her.
 
@@ -25,7 +25,7 @@ Denotational knowledge always reaches a limit.  As you drill down into the facts
 
 
 
-##The Semantics of Code
+##Code and Meaning
 
 Code has its own semantic divide, analogous in some ways to the denotational-affective difference.  The aspects of a program that determine what happens when the code executes, such as keywords and syntactic structures, are like denotational meaning: they are well defined and precise, but there is information they do not convey.  They carry no information about what the values being manipulated mean, what the manipulations are intended to accomplish, or almost anything else about the code that touches on the outside world.  Elements that do carry such information, such as comments, variable names and function names, are largely irrelevant to the execution path.  (That's why code minification and obfuscation work; you can remove all the comments and replace all the names with short meaningless strings and the program runs exactly the same.)  Yet these seemingly ineffective elements are absolutely necessary for understanding and maintaining code, the way that grasping affective meaning is necessary for understanding poetry.
 
@@ -43,10 +43,6 @@ As noted above, poetry is rich because it includes many layers of meaning, affec
 
 Poetic programming encourages semantic richness over precision.  While programs need to be syntactically, logically and numerically precise in order to be correct, semantically they do not.  (Remember, a lot of the semantic content of a program has no effect on its execution.)  Code semantics can and should express the aspirational vision of the program: the real-world entities and actions it seeks to model, even if the implemented model is a pale shadow of reality.
 
-###Semantic Pollution
-
-Programming practices typically don't differentiate internal and external semantic information.  Often external and internal semantics are mixed together.  So in addition to a `Car` object, the ride hailing app might have a `CarController`, a `CarView`, a `CarRepository`, etc.  When trying to understand a program's relationship to the outside world, such mixtures can muddy the waters  Is a `CarFactory` an internal mechanism for allocating `Car` objects, or is it a model of a automobile manufacturing facility?  This is semantic pollution.
-
 
 ##The Poetic Critique
 
@@ -54,7 +50,7 @@ Too often programs are bloated, incomprehensible, and ugly, not because programm
 
 ###Platforms and Frameworks
 
-Platforms and frameworks are harmful.  They constrain the behavior of a program and force it to adopt specific models and strategies.  They require constant care and feeding.  Over time the purposes of the platform may crowd out the purposes of the program.  Poetic Programming encourages programmers to see platforms and frameworks as the most temporary and throw-away part of a program rather than its most deeply entrenched and permanent part.
+Platforms and frameworks have high costs.  They constrain the behavior of a program and force it to adopt specific models and strategies.  They require constant care and feeding.  Over time the purposes of the platform may crowd out the purposes of the program.  Poetic Programming encourages programmers to see platforms and frameworks as the most temporary and throw-away part of a program rather than its most deeply entrenched and permanent part.
 
 ###Frameworks on Top of Frameworks
 
@@ -64,7 +60,7 @@ Furthermore, the new framework-on-framework cancels out many of the advantages o
 
 ###Libraries
 
-Libraries are harmful.  They are opaque, written by someone who is not familiar with your concerns and may or may not share your assumptions about what should happen in various circumstances.  They are full of code that you don't need.  In the code you do need, there are often complexities of no value to you, and risks of which you have no knowledge.  Poetic programming encourages programmers to see functions they craft themselves as superior to functions in libraries, other things being equal.  Libraries have value because you can't do everything yourself, and wouldn't want to if you could.  But if it's a programming task you do have the luxury of tackling yourself, and you are interested in the problem being solved, then curating your own code may be better than blindly calling someone else's.
+Libraries have costs.  They are opaque, written by someone who is not familiar with your concerns and may or may not share your assumptions about what should happen in various circumstances.  They are full of code that you don't need.  In the code you do need, there are often complexities of no value to you, and risks of which you have no knowledge.  Poetic programming encourages programmers to see functions they craft themselves as superior to functions in libraries, other things being equal.  Libraries have value because you can't do everything yourself, and wouldn't want to if you could.  But if it's a programming task you do have the luxury of tackling yourself, and you are interested in the problem being solved, then curating your own code may be better than blindly calling someone else's.
 
 ###Dependencies with Dependencies
 
@@ -77,6 +73,10 @@ Programmers hardly ever disqualify a dependency simply for having its own depend
 Programmers are often told that state is bad, but generally what is meant is not all state, but state contained in variables.  From the point of view of the hardware, a program is itself a form of state, but it's not automatically bad; to the contrary, not having a program is bad.  Other forms of state arise naturally during the course of program execution, such as the return address pushed on the stack when a function is called.  This bit of state is not bad; it allows a function to return to where it was called from, without which functions would be useless.
 
 The problem with variables is that they are disentangled from the values they represent.  Consider a variable intended to hold a temperature value.  A measurement is taken, and the result is stored.  At that point the connection between the state of the program and the state of the world is severed.  The world goes its own way, while the stored value just sits there. There is generally no way to know if the value is correct without obtaining the temperature data again to check it against.  But if you have to do that every time there isn't much point in storing the temperature in the first place.
+
+###Semantic Pollution
+
+Programming practices typically don't differentiate internal and external semantic information.  Often external and internal semantics are mixed together.  So in addition to a `Car` object, the ride hailing app might have a `CarController`, a `CarView`, a `CarRepository`, etc.  When trying to understand a program's relationship to the outside world, such mixtures can muddy the waters  Is a `CarFactory` an internal mechanism for allocating `Car` objects, or is it a model of a automobile manufacturing facility?  This is semantic pollution.
 
 
 ##The Poetic Vision
@@ -132,3 +132,14 @@ Automated testing is the software equivalent of mindfulness -- the ability of a 
 As we have stated, variables are harmful because they are disconnected from their sources of information.  Poetic Programming suggests replacing variables with cached values that are connected to their sources.
 
 
+##Go Forth and Program Poetically
+
+Your code tells a story.  Tell a good story!
+
+Somewhere in your code, however scattershot and oblique, you describe things and people in the world.  Bring this model out of the shadows and make it the centerpiece of your program.  Have it drive all that your program does.
+
+Use metaphors liberally.  If your program were a giant machine, what would it look like?
+
+Find or make up your own set of design patterns, and use them over and over -- this is how you rhyme in logic.
+
+Go against the grain.  Trends such as microservices, containers, devops, and the cloud all conspire to make you focus on infrastructure and operations.  That's fine, just remember that none of that is essential to your program.  Invest where your heart is.  If your choice is between a full-featured framework and a pile of shell scripts, choose the shell scripts.  

@@ -238,6 +238,9 @@ site poetic_programming {
         /--- narrow ---/
           
         [| @media (max-width: {= narrow_max; =}rem) {
+               html {
+                   font-size: 120%;
+               }
                .page_wrapper {
                    width: 100%;
                    padding: 0;
@@ -269,6 +272,9 @@ site poetic_programming {
         /--- wide ---/    
     
         [| @media (min-width: {= narrow_max; =}rem) {
+               html {
+                   font-size: 100%;
+               }
                .page_wrapper {
                    width: 100%;
                    padding: 0;
@@ -307,7 +313,6 @@ site poetic_programming {
             margin: 0 0 0 0;
             background-color: {= main_bgcolor; =};
             font-family: "Arial", sans-serif;
-            font-size: 100%;
         }
         
         code, pre {
@@ -555,6 +560,7 @@ site poetic_programming {
             overflow-wrap: break-word;
             word-wrap: break-word;
             -webkit-hyphens: auto;
+            -moz-hyphens: auto;
             -ms-hyphens: auto;
             hyphens: auto;
         }
@@ -854,29 +860,24 @@ site poetic_programming {
 
            </div><div class="content_main_body hyphenate">
            <p>The purpose of writing is to communicate.  This includes programs, which
-           should at the very least communicate what they do and how they do it. But 
-           communication can go beyond what and how.  A program can also communicate
-           why it does what it does, by describing the world it operates in, the motivations
-           of its developers and users, and the deeper nature of the problems it's addressing.
-           It can spell out the assumptions it begins with, the results it hopes to attain,
-           and the philosophy that guides it.
+           should at the very least communicate <strong>what</strong> and <strong>how</strong>
+           -- what the program does and and it does it. But a program can also communicate
+           <strong>why</strong>, by describing the world it operates in, the motivations of
+           its developers and users, and the deeper nature of the problems it's addressing.
            </p>
            <p>The better a program is at communicating how, what, and why, the more maintainable
            and adaptable it is.  Such a program is also more fun to work on -- instead of
            spending hours tracing the code and figuring out what it's doing, you can quickly
            get to the business of adding or improving features.
            </p> 
-           <p>Standard programming practices don't always recognize the expressive 
-           properties of code.  They tend to emphasize structure and organization
-           and often ignore the semantics of code, or, more insidiously, dilute or
-           obscure it.  This leads to programs that don't say what they do, or say it 
-           in a way that's too complicated and too hard to understand.
+           <p>Standard programming practices tend to ignore the semantics of code, or, more
+           insidiously, dilute or obscure it.
            </p>
-           <p>Poetic Programming addresses this problem by supporting approaches that
-           put poetic values -- <strong>economy, richness, and beauty</strong> -- at 
-           the forefront.  This realignment of concerns encourages programmers to 
-           de-emphasize the aspects of a program that increase complexity without 
-           contributing to meaning (frameworks, for example) and focus on those
+           <p><strong>Poetic Programming</strong> addresses this problem by supporting 
+           approaches that put poetic values -- <strong>economy, richness, and 
+           beauty</strong> -- at the forefront.  This realignment of concerns encourages 
+           programmers to de-emphasize the aspects of a program that increase complexity
+           without contributing to meaning (frameworks, for example) and focus on those
            aspects that relate most closely to the problem domain.
            </p>
            </div>
