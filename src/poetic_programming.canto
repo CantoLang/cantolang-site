@@ -265,6 +265,10 @@ site poetic_programming {
                .content_side_box {
                    display: none;
                }
+               .content_main_points ul {
+                   padding-left: 0.5rem;
+                   padding-right: 0.5rem;
+               }
            }
         |]
         
@@ -299,6 +303,10 @@ site poetic_programming {
                }
                .content_side_box {
                    position: absolute;
+               }
+               .content_main_points ul {
+                   padding-left: 8.5rem;
+                   padding-right: 8.5rem;
                }
            }
         |]
@@ -398,16 +406,13 @@ site poetic_programming {
         }
     
         .content_main_points ul {
-            padding-left: 8.5rem;
-            padding-right: 8.5rem;
             margin: 0;
             list-style-type: square;
         }
 
         .content_main_body {
-            color: darkslategray;
-            font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
-            font-size: 1.1rem;
+            color: black;
+            font-size: 1rem;
         }
     
         .content_side_box_xxx {
@@ -755,7 +760,7 @@ site poetic_programming {
         component header_bar {
             component_class = "header_bar"
             
-            [| <div><h1>Poetic Programming:</h1><h2>A Manifesto</h2></div> |]
+            [| <div onclick="location.href = '/'"><h1>Poetic Programming:</h1><h2>A Manifesto</h2></div> |]
         }
         
         component content_header_box {
@@ -900,7 +905,7 @@ site poetic_programming {
         boolean needs_login = false   
         label = "The Manifesto"
 
-        [| <div id="manifesto"> |]
+        [| <div id="manifesto" class="content_main_body hyphenate"> |]
         poetic_programming_manifesto;
         [| </div> |]
     }
