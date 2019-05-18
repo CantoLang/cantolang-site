@@ -268,7 +268,10 @@ site cantolang {
                    width: 100%;
                }
                .side_box {
-                   width: 100%;
+                   display: none;
+               }
+               .content_box {
+                   margin-top: {= (HEADER_HEIGHT + 6); =}rem;
                }
                .content_body {
                    width: 96%;
@@ -294,6 +297,9 @@ site cantolang {
                    width: {= (side_box_width - 4.5); =}rem;
                    margin: 0 0.5rem 0 0;
                    padding: 5rem 3rem 1rem 1rem;
+               }
+               .content_box {
+                   margin-top: {= HEADER_HEIGHT; =}rem;
                }
                .content_body {
                    width: 100%;
@@ -338,7 +344,7 @@ site cantolang {
             font-family: "Arial", sans-serif;
             font-size: 100%;
         }
-        
+
         code, pre {
             font-family: "Lucida Console", Monaco, monospace
         }
@@ -350,22 +356,19 @@ site cantolang {
             min-height: 100%;
             overflow: hidden;
         }
-        
+
         .viewer_container {
             width: 100%;
             height: 100%;
         }
-        
+
         .header_box {
             position: fixed;
+            background-color: #EAEAEF;
+            z-index: 100;
             padding: 0;
             margin: 0;
-            height: {= HEADER_HEIGHT; =}rem;
             width: 100%;
-        }
-        
-        .content_box {
-            margin-top: {= HEADER_HEIGHT; =}rem;
         }
 
         .header_bar {
@@ -399,21 +402,26 @@ site cantolang {
             background-color: #EFEDE1;
             height: 100%;
         }
-        
+
         .footer_box {
             clear: both;
         }
-        
+
+        .content_box {
+            position: relative;
+            z-index: 0;
+        }
+
         .content_header_box_wrapper {
             width: 100%;
             max-width: 64rem;
         }
-        
+
         .content_header_box {
             text-align: center;
             background-color: white;
         }
-            
+
         .content_main_points li {
             display: block;
             padding: 0.5rem 1rem;
@@ -427,6 +435,7 @@ site cantolang {
 
         .content_body {
             max-width: 64rem;
+            overflow: hidden;
         }
 
         .main_panel {
@@ -435,8 +444,9 @@ site cantolang {
             padding: 1rem;
             font-size: 0.95rem;
             line-height: 1.5;
+            overflow: auto;
         }
-        
+
         .main_panel pre {
             background-color: #DEE3EE;
             color: #0000CC; 
@@ -449,7 +459,7 @@ site cantolang {
             color: #0000CC; 
             font-size: 0.9rem;
         }
-        
+
         .content_panel {
             width: 40rem;
             padding: 1.5rem;
@@ -465,7 +475,7 @@ site cantolang {
             padding: 0.25rem;
             list-style-type: square;
         }
-        
+
         .main_point_body {
             overflow: hidden;
             transition: transform 0.67s ease-in-out, height 0.67s ease-in-out;
@@ -474,7 +484,7 @@ site cantolang {
         .active, .main_point_span:hover {
             background-color: gold; 
         }
-        
+
         .point_closed {
             height: 0;
         }
@@ -482,11 +492,11 @@ site cantolang {
         .point_open {
             height: 100%;
         }
-        
+
         .two_columns {
             display: flex;
         }
-        
+
         .two_columns ul {
             margin: 0;
         }
@@ -533,14 +543,14 @@ site cantolang {
             transition: opacity 1.5s;
             opacity: 0;
         }
-        
+
         .centered_container {
             width: 100%;
             height: 100%;
             margin: 0 0 0 0;
             position: relative;
         }
-        
+
         .centered_high_box {
             position: absolute;
             left: 50%;
@@ -549,12 +559,12 @@ site cantolang {
             transform: translate(-50%, -50%);
             width: 36rem;
         }
-        
+
         .centered_div  {
             width: 100%;
             text-align: center;
-         }
-        
+        }
+
        .labeled_edit {
             text-align: center;
             font-weight: bold;
@@ -566,18 +576,18 @@ site cantolang {
             margin-left: auto;
             margin-right: auto;
         }
-        
+
         #login_splash_box {
             color: white;
             font-size: 1rem;
             font-weight: bold;
             font-family: "Arial", sans-serif;
         }
-        
+
         #login_button {
             width: 10rem;
         }
-        
+
         #ok_button {
             width: 10rem;
         }
@@ -585,31 +595,31 @@ site cantolang {
         #cancel_button {
             width: 10rem;
         }
-        
+
         #tc_container {
             width: 100%;
             height: 100%;
         }
-        
+
         #tc {
             width: 100%;
             height: 100%;
         }
-        
+
         h1 {
             color: blue;
             font-size: 1.25rem;
             font-family: Impact, Charcoal, sans-serif
             font-weight: bold;
         }
-        
+
         h2 {
             color: #777777;
             font-size: 1rem;
             font-family: "Arial Black", Gadget, sans-serif
             font-weight: bold;
         }
-        
+
         {= media_queries; =}
     |]        
 

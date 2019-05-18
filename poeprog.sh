@@ -20,8 +20,6 @@ if [[ $COMMAND == "refresh" ]]; then
     COMMAND="restart"
 fi
 
-echo command is $COMMAND
-
 if [[ $COMMAND == "start" || $COMMAND == "stop" || $COMMAND == "status" || $COMMAND == "run"  || $COMMAND == "restart" ]]; then
     source ${DIR}/bin/cantoserver.sh $COMMAND "$@" --site poetic_programming
 else
