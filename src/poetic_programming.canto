@@ -292,7 +292,6 @@ site poetic_programming {
                    padding: 1rem 1.5rem 1rem 1.5rem;
                }
                .content_body {
-                   width: 100%;
                    max-width: {= (66 - side_box_width); =}rem;
                    margin-left: {= (side_box_width + 1.5); =}rem;
                }
