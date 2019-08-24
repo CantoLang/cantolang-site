@@ -1091,7 +1091,7 @@ site cantolang {
         applications.</p>
         <p>Canto is <b>simple</b>, <b>beautiful</b>, and <b>rich</b>.  These are the
         values advocated by a design philosophy called <a href="{= poetic_programming_url; =}">
-        <b>Poetic Programming</b></a> which Canto seeks to emobdy.</p>
+        <b>Poetic Programming</b></a> which Canto seeks to embody.</p>
     |]
     
     
