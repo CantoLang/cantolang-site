@@ -2,18 +2,18 @@
 
 ##Introduction
 
-Poetic Programming is a view of programming that emphasizes poetic concerns: the importance of meaning, the importance of economy, the importance of beauty.  Programming is a form of writing, and its primary purpose, as with all writing, is to communicate, and poetry is a particularly powerful way to communicate.
+Poetic Programming is a view of programming that emphasizes poetic concerns: meaning, economy, beauty.  Programmers are writers; so are poets.  Poetic programming suggests that the former can learn something from the latter.
 
-Communicating effectively is more important even than working correctly, because a program that succeeds in its communication mission can be understood, corrected, and improved, while a program that fails to communicate is unmaintainable and destined to fade into irrelevance.  At a minimum a program should communicate to readers what and how -- what it does and how it does so.  Ideally a program should go beyond this and also communicate why, by painting a picture of the world the program lives in and the aspirations that led to it.
+The purpose of a program is to communicate.  At a minimum a program should communicate to readers what and how -- what it does and how it does so.  Ideally a program should go beyond this and also communicate why, by painting a picture of the world the program lives in and the aspirations that led to it.  Communicating effectively is more important even than working correctly, because a program that succeeds in its communication mission can be understood, corrected, and improved, while a program that fails to communicate is unmaintainable and destined to fade into irrelevance.
 
-What a program communicates is its semantic content -- the words in the program.  This includes comments, keywords and names.  It encompasses not just which words are chosen but also the way the words are put together -- sequence, juxtaposition, repetition, and so on.  Most importantly, it encompasses the concepts and emotions that the words, arranged as they are, evoke.  Current programming practices, with some exceptions, treat semantic content as secondary, and limited to implementation -- how, not what or why.  The unfortunate result is that modern software tends to be harder to understand than it neeeds to be, and therefore harder to maintain and improve.
+What a program communicates is its semantic content -- the words in the program.  This includes comments, keywords and names.  It encompasses not just which words are chosen but also the way the words are put together -- sequence, juxtaposition, repetition, and so on.  Most importantly, it encompasses the concepts and emotions that the words, arranged as they are, evoke.  Current programming practices, with some exceptions, treat semantic content as secondary, if it is considered at all.  The unfortunate result is that modern software tends to be harder to understand than it neeeds to be, and therefore harder to maintain and improve.
 
 Poetic programming seeks to correct this shortage of meaning, economy and beauty.
 
 
-##Poetry and Meaning
+##Kinds of Meaning
 
-Human writing in general contains two kinds of meaning: denotational (the dictionary definitions) and affective (the feelings the writing evokes).  Many kinds of writing, including technical writing, reference works, statutes, contracts, and many others, limit themselves as much as possible to denotational meaning, which can be objectively defined and delineated.  Affective meaning is subjective and much harder to nail down.  But that doesn't mean it's not useful or effective.  Some kinds of writing, such as poetry, rely as much or more on affective meaning to communicate.
+Human writing in general contains two kinds of meaning: denotational (the dictionary definitions) and affective (the feelings the writing evokes).  Many kinds of writing, including technical writing, reference works, statutes, contracts, and others, limit themselves as much as possible to denotational meaning, which can be objectively defined and delineated.  Affective meaning is subjective and much harder to nail down.  But that doesn't mean it's not useful or effective.  Some kinds of writing, such as poetry, rely as much or more on affective meaning to communicate.
 
 Moreover, denotational knowledge always reaches a limit.  As you drill down into the facts, you eventually reach questions of fact for which you have no answer, and premises for which you have no proof.  And sometimes you reach the point where a normative judgment is required.  What is the best thing to do?  What is the right thing to do?  Such questions cannot be fully explored using only denotational meaning.
 
@@ -22,7 +22,7 @@ Affective meaning in no way conflicts with or takes away from denotational meani
 Affective meaning gives writing such as poetry a second channel to convey information.  But poetry can, as well, express multiple levels of denotative meaning, via metaphors.  When Carl Sandburg describes fog as coming on little cat feet he draws on our knowledge of cats to understand the behavior of fog.  Contrast this with the description a weather service might provide, which would include much more detailed information (visibility, temperature, time expected to lift), but all of it would be about fog, and none about cats.
 
 
-##Code and Meaning
+##The Meaning of Code
 
 Code has its own semantic divide, analogous in some ways to the denotational-affective difference.  The aspects of a program that determine what happens when the code executes, such as keywords and syntactic structures, are like denotational meaning: they are well defined and precise, but there is information they do not convey.  They carry no information about what the values being manipulated mean, what the manipulations are intended to accomplish, or almost anything else about the code that touches on the outside world.  Elements that do carry such information, such as comments, variable names and function names, are largely irrelevant to the execution path.  (That's why code minification and obfuscation work; you can remove all the comments and replace all the names with short meaningless strings and the program runs exactly the same.)  Yet these seemingly ineffective elements are absolutely necessary for understanding and maintaining code, the way that grasping affective meaning is necessary for understanding poetry.
 
@@ -51,7 +51,7 @@ Platforms and frameworks have high costs.  They constrain the behavior of a prog
 
 ###Frameworks on Top of Frameworks
 
-Frameworks designed as customizations or extensions of other frameworks are doubly harmful.  Programmers who love frameworks generally love building frameworks as well, and if a framework has been adopted for a mission the temptation to build a more suitable and powerful framework on top of the first framework is very strong.  Any functionality that might be useful to multiple applications built on top of the framework is a candidate for the new intermediate framework.  The goal is improve the efficiency of application development by providing more functionality "out of the box".  Often however the result is that functionality is divided among different levels, and what might have seemed to be a natural division of responsibility to the original programmer seems arbitrary to those that come after.
+Frameworks designed as customizations or extensions of other frameworks are doubly harmful.  Programmers who love frameworks generally love building frameworks as well, and if a framework has been adopted for a mission the temptation to build a more suitable and powerful framework on top of the first framework is very strong.  Any functionality that might be useful to multiple applications built on top of the framework is a candidate for the new intermediate framework.  The goal is to improve the efficiency of application development by providing more functionality "out of the box".  Often however the result is that functionality is divided among different levels, and what might have seemed to be a natural division of responsibility to the original programmer seems arbitrary to those that come after.
 
 Furthermore, the new framework-on-framework cancels out many of the advantages of using a framework in the first place.  Instead of implementing the program on top of externally-maintained, well-documented and widely-supported code, the program must be implemented on top of custom code that is much less likely to be properly maintained or documented over time.  If the author of the framework-on-framework has left the company, there is a good chance it's not maintained or documented at all.
 
@@ -73,7 +73,7 @@ The problem with variables is that they are disentangled from the values they re
 
 ###Semantic Pollution
 
-Programming practices typically don't differentiate internal and external semantic information.  Often external and internal semantics are mixed together.  So in addition to a `Car` object, the ride hailing app might have a `CarController`, a `CarView`, a `CarRepository`, etc.  When trying to understand a program's relationship to the outside world, such mixtures can muddy the waters  Is a `CarFactory` an internal mechanism for allocating `Car` objects, or is it a model of a automobile manufacturing facility?  This is semantic pollution.
+Programming practices typically don't differentiate internal and external semantic information.  Often external and internal semantics are mixed together.  So in addition to a `Car` object, the ride hailing app might have a `CarController`, a `CarView`, a `CarRepository`, etc.  When trying to understand a program's relationship to the outside world, such mixtures can muddy the waters.  Is a `CarFactory` an internal mechanism for allocating `Car` objects, or is it a model of a automobile manufacturing facility?  This is semantic pollution.
 
 
 ##The Poetic Vision
@@ -114,19 +114,19 @@ There is no single universally recognized definition of object-oriented programm
 
 Polymorphism is the user's view.  Let's say I pick up some object x.  x might be a corkscrew, so I can use x to open a bottle of wine.  x might also be bottle opener, so I can also use x to open a bottle of beer.  In this case two abstract models (corkscrew and bottle opener) are entangled with one concrete instance (x).  A user's interest in a concrete instance depends on which abstract models are entangled with it, since the user is engaging with the instance for a reason, and reasons are themselves almost always abstractions.
 
-Inheritance is the implementer's view.  If I have to construct x, and x has to be a corkscrew and also a bottle opener, my job is a lot easier if I start with a good corkscrew prototype and also a good bottle opener prototype.  In most cases it's much easier and better to build on good existing designs than to build something complex (like a corkscrew-bottlge-opener) completely from scratch. 
+Inheritance is the implementer's view.  If I have to construct x, and x has to be a corkscrew and also a bottle opener, my job is a lot easier if I start with a good corkscrew prototype and also a good bottle opener prototype.  In most cases it's much easier and better to build on good existing designs than to build something complex (like a corkscrew-bottle-opener) completely from scratch. 
 
 ###Static Typing and Dynamic Typing
 
-The Type Wars ended when the number of people fighting them were outnumbered by people saying the Type Wars were stupid because static and dynamic typing are both useful.  Static typing provides safety, reliability, and performance while dynamic typing provides flexibility, robustness, and rapid development.
+The Type Wars ended when the people fighting them were outnumbered by people saying the Type Wars were stupid because static and dynamic typing are both useful.  Static typing provides safety, reliability, and performance while dynamic typing provides flexibility, robustness, and rapid development.
 
 ###Automated Testing
 
-Automated testing is the software equivalent of mindfulness -- the ability of a system to see what it's doing wrong.  Not all automated testing accomplishes this equally well.  Unit tests are seldom useful past initial development, but they are pretty easy to write and cheap to run.  Functional tests can be very valuable but it's hard to construct good functional tests.  Integration tests are always valuable but are hard to write and expensive to maintain and run.
+Automated testing is the software equivalent of mindfulness -- the ability of a system to see what it's doing wrong.  Not all automated testing accomplishes this equally well.  Unit tests are seldom useful past initial development, but they are pretty easy to write and cheap to run.  Functional tests can be very valuable but it's hard to construct good functional tests.  Integration tests are almost always valuable but are hard to write and expensive to maintain and run.
 
-###Automated State Management
+###Caching
 
-As we have stated, variables are harmful because they are disconnected from their sources of information.  Poetic Programming suggests replacing variables with cached values that are connected to their sources.
+As we have stated, variables are harmful because they are disconnected from their sources of information.  Variables can be replaced with functions, but this raises issues of consistency (the function may return a different value on a subsequent call) and performance (obtaining a value may be expensive).  Poetic Programming suggests using properly designed and managed caching to achieve the proper balance between fidelity, consistency, and performance.
 
 
 ##Go Forth and Program Poetically

@@ -874,10 +874,7 @@ site poetic_programming {
            spending hours tracing the code and figuring out what it's doing, you can quickly
            get to the business of adding or improving features.
            </p> 
-           <p>Standard programming practices tend to ignore the semantics of code, or, more
-           insidiously, dilute or obscure it.
-           </p>
-           <p><strong>Poetic Programming</strong> addresses this problem by supporting 
+           <p><strong>Poetic Programming</strong> seeks to improve programming by supporting 
            approaches that put poetic values -- <strong>economy, richness, and 
            beauty</strong> -- at the forefront.  This realignment of concerns encourages 
            programmers to de-emphasize the aspects of a program that increase complexity
@@ -894,7 +891,9 @@ site poetic_programming {
         include_file(file_base + "/docs/" + doc_name + ".md");
     }
 
-    global poetic_programming_manifesto {
+    public response the_manifesto = poetic_programming_manifesto
+
+    global public poetic_programming_manifesto {
         content = include_content("poetic_programming_manifesto");
         show_content(content);
     }
@@ -904,6 +903,8 @@ site poetic_programming {
         boolean needs_login = false   
         label = "The Manifesto"
 
+        [| <div><a href="index">Home</a></div> |]
+ 
         [| <div id="manifesto" class="content_main_body hyphenate"> |]
         poetic_programming_manifesto;
         [| </div> |]
