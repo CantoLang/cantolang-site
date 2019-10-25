@@ -663,7 +663,25 @@ site poetic_programming {
 
         slide([| Poetic Programming wants programs to be like good poetry: concise, 
                  beautiful, and full of meaning. |]),
-     
+
+        
+        slide([| The purpose of writing is to communicate. |]),
+        
+        slide([| This includes programs, which should at the very least communicate
+                 <strong>what</strong> and <strong>how</strong> -- what the program does
+                 and and it does it. |]),
+        
+        slide([| A program can also communicate <strong>why</strong>, by describing the world
+                 it operates in, the motivations of its developers and users, and the deeper 
+                 nature of the problems it's addressing. |]),
+
+       
+        slide([| A program that effectively communicates how, what, and why is generally easier
+                 to maintain and improve. |]),
+                 
+        slide([| It's also a better educator of the programmers who work on it. |]),
+        
+        slide([| And more fun. |])
     ]
 
 
@@ -734,9 +752,10 @@ site poetic_programming {
             var ns = {= numslides; =};
             var cs = 1;
 
+            var interval = 3000;
             var startslide = document.getElementById("slide1");
             startslide.style.opacity = 1;
-            setInterval(function () {
+            setTimeout(function nextslide() {
                 if (cs == ns) {
                     cs = 1;
                 } else {
@@ -753,7 +772,15 @@ site poetic_programming {
                     oldslide.style.opacity = 0;
                 }                    
                 newslide.style.opacity = 1;
-            }, 2333); 
+                
+                if (cs % 3 == 0) {
+                    interval = 4333;
+                } else {
+                    interval = 2777;
+                }
+                setTimeout(nextslide, interval);
+                
+            }, interval); 
         |]
 
         component header_bar {
@@ -863,24 +890,6 @@ site poetic_programming {
            </ul> 
 
            </div><div class="content_main_body hyphenate">
-           <p>The purpose of writing is to communicate.  This includes programs, which
-           should at the very least communicate <strong>what</strong> and <strong>how</strong>
-           -- what the program does and and it does it. But a program can also communicate
-           <strong>why</strong>, by describing the world it operates in, the motivations of
-           its developers and users, and the deeper nature of the problems it's addressing.
-           </p>
-           <p>The better a program is at communicating how, what, and why, the more maintainable
-           and adaptable it is.  Such a program is also more fun to work on -- instead of
-           spending hours tracing the code and figuring out what it's doing, you can quickly
-           get to the business of adding or improving features.
-           </p> 
-           <p><strong>Poetic Programming</strong> seeks to improve programming by supporting 
-           approaches that put poetic values -- <strong>economy, richness, and 
-           beauty</strong> -- at the forefront.  This realignment of concerns encourages 
-           programmers to de-emphasize the aspects of a program that increase complexity
-           without contributing to meaning (frameworks, for example) and focus on those
-           aspects that relate most closely to the problem domain.
-           </p>
            </div>
            <div class="main_link"><a href="manifesto">READ THE MANIFESTO</a></div>
         |]
