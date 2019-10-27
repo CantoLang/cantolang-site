@@ -452,6 +452,14 @@ site poetic_programming {
             padding: 1.5rem;
             color: #88FFAA;
         }
+        
+        .main_link {
+            width: 100%;
+            padding-top: 1rem;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+        }
 
         .main_point {
             color: #003388;
@@ -886,7 +894,7 @@ site poetic_programming {
            
            <li>Poetry excels at communicating economically, richly, and beautifully.</li>
 
-           <li>Programs should do the same.</li>
+           <li>By pursuing poetic values programs can do the same.</li>
            </ul> 
 
            </div><div class="content_main_body hyphenate">
@@ -904,6 +912,7 @@ site poetic_programming {
 
     global public poetic_programming_manifesto {
         content = include_content("poetic_programming_manifesto");
+        log("constructing poetic_programming_manifesto");
         show_content(content);
     }
 
